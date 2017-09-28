@@ -1,0 +1,21 @@
+/* This file is for your main application css. */
+
+nav.bottom {
+    margin-top: 25px;
+}
+
+.list-body {
+}
+
+.hsImage {
+    width: 25%;
+    height: 75%;
+}
+
+.disabled {
+    opacity: 50%;
+}
+
+.deck-list {
+    height: 350px;
+}
