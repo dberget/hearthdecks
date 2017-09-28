@@ -7,7 +7,7 @@ export default class List extends React.Component {
    constructor(props){
     super(props)
 
-    this.state = { entries: [] }
+    this.state = { entries: [], page: 1 }
     this.cards(props, this.state.page)
 
     this.handlePageClick = this.handlePageClick.bind(this)
@@ -16,7 +16,7 @@ export default class List extends React.Component {
   } 
 
   componentWillReceiveProps(nextProps) {
-    this.cards(nextProps)
+    this.cards(nextProps, this.state.page_number)
   }
 
   handlePageClick(page) {
@@ -38,12 +38,12 @@ export default class List extends React.Component {
   
   cardCount(card, deck) {
     var count = 0
-  for(var i = 0; i < deck.length; ++i){
-      if(deck[i].name == card.name)
-          count++;
+    for (var i = 0; i < deck.length; ++i) {
+      if (deck[i].name == card.name)
+        count++;
+    }
+    return count;
   }
-  return count;
-}
 
   handleCardClick(card) {
     let deck = this.props.deck
@@ -65,7 +65,7 @@ export default class List extends React.Component {
       this.props.updateDeck(deck)
     }  else {
       throw("max # reached")
-    }
+    };
   }
 
   render() {
@@ -77,7 +77,7 @@ export default class List extends React.Component {
           )}
         </Grid>
         <nav className="bottom">
-          <ReactPaginate activeClassName={"active"} 
+         <ReactPaginate activeClassName={"active"} 
                          breakClassName={"break-me"}
                          breakLabel={<a href="">...</a>}
                          containerClassName={"pagination"}

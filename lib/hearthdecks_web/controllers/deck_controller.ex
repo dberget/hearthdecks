@@ -36,7 +36,6 @@ defmodule HearthdecksWeb.DeckController do
     defp class(%{"class" => ""}), do: [] 
     defp class(params) do
       params
-      |> IO.inspect
       |> Map.get("class", "Neutral")
     end
   

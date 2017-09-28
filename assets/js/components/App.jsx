@@ -21,7 +21,7 @@ export default class App extends React.Component {
   handleDeckChange(deck) {
     this.setState(prevState => ({
       deck: deck
-    }))
+    }));
   }
 
   handleClassChange(playerClass) {
@@ -34,7 +34,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
-        <Filters class={this.state.class} updateClass={this.handleClassChange} />
+        <Filters class={this.state.class} resetDeck={this.handleDeckChange} updateClass={this.handleClassChange} />
         <Grid textAlign="center">
           <Grid.Column textAlign="center" width={10}>
             <List class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />

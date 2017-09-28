@@ -15,7 +15,7 @@ export default class Deck extends React.Component {
       if (card.count == 2) {
         deck[index].count -= 1;
       } else {
-      deck.splice(index, 1)
+        deck.splice(index, 1)
       }
 
       this.props.updateDeck(deck)
