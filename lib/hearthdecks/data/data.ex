@@ -73,6 +73,12 @@ defmodule Hearthdecks.Data do
     |> Repo.update()
   end
 
+  def update_for_wild(%Card{} = card, attrs) do
+      card
+      |> Card.changeset(attrs)
+      |> Repo.update()
+  end
+
   @doc """
   Deletes a Card.
 

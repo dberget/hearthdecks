@@ -10,12 +10,13 @@ export default class App extends React.Component {
     super(props)
 
     this.state = {
-      class: "",
-      deck: [] 
+      filters: {},
+      deck: []
     }
 
     this.handleDeckChange = this.handleDeckChange.bind(this)
     this.handleClassChange = this.handleClassChange.bind(this)
+    this.handleExpansionChange = this.handleExpansionChange.bind(this)
   }
 
   handleDeckChange(deck) {
@@ -24,23 +25,34 @@ export default class App extends React.Component {
     }));
   }
 
-  handleClassChange(playerClass) {
-    this.setState(prevState => ({
-      class: playerClass
-    }));
+  handleExpansionChange(exp) {
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        expansion: exp,
+      }),
+    });
   }
+
+  handleClassChange(playerClass) {
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        class: playerClass,
+      }),
+    });
+  }
+
 
   render () {
     return (
       <div>
         <Header />
-        <Filters class={this.state.class} resetDeck={this.handleDeckChange} updateClass={this.handleClassChange} />
+        <Filters updateExpansion={this.handleExpansionChange} resetClass={this.handleClassChange} class={this.state.class} resetDeck={this.handleDeckChange} updateClass={this.handleClassChange} />
         <Grid textAlign="center">
           <Grid.Column textAlign="center" width={10}>
-            <List class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+            <List filters={this.state.filters} deck={this.state.deck} updateDeck={this.handleDeckChange} />
           </Grid.Column>
           <Grid.Column width={3}>
-            <Deck updateDeck={this.handleDeckChange} deck={this.state.deck} />
+            <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
           </Grid.Column>
         </Grid>
       </div>

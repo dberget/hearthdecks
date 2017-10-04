@@ -23,6 +23,7 @@ defmodule HearthdecksWeb.Router do
     pipe_through :api
 
     get "/deck", DeckController, :index
+    get "/search", DeckController, :search
   end
 
 end

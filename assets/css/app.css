@@ -7,13 +7,13 @@ nav.bottom {
 .list-body {
 }
 
+#app {
+    margin: 10px;
+}
+
 .hsImage {
     width: 25%;
     height: 75%;
-}
-
-.disabled {
-    opacity: 50%;
 }
 
 .deck-list {

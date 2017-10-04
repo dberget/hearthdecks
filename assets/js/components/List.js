@@ -1,5 +1,5 @@
 import React from 'react'
-import HSCard from './Card'
+import HSCard from "./Card.js"
 import ReactPaginate from 'react-paginate'
 import { Grid } from 'semantic-ui-react'
 
@@ -7,25 +7,41 @@ export default class List extends React.Component {
    constructor(props){
     super(props)
 
-    this.state = { entries: [], page: 1 }
-    this.cards(props, this.state.page)
+    this.state = { entries: [], page_number: 0 }
 
     this.handlePageClick = this.handlePageClick.bind(this)
     this.handleCardClick = this.handleCardClick.bind(this)
-    this.cardCount = this.cardCount.bind(this)
+    this.scrubFilter = this.scrubFilter.bind(this)
+    this.encodeQueryData = this.encodeQueryData.bind(this)
   } 
 
   componentWillReceiveProps(nextProps) {
     this.cards(nextProps, this.state.page_number)
   }
-
+  
   handlePageClick(page) {
     let next = page.selected + 1
     this.cards(this.props, next)
   }
 
+  scrubFilter(state) {
+    let newObj = [Object.keys(state).forEach((key) => 
+      (state[key] == null) && delete state[key]), state][1]
+      return newObj;
+  }
+
+  encodeQueryData(data) {
+    var newData = this.scrubFilter(data) 
+    let ret = [];
+    for (let d in newData)
+      ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(newData[d]));
+      console.log(ret.join('&'))
+    return ret.join('&');
+ }
+
   cards(props, page) {
-    fetch(`/deck?class=${props.class}&page=${page}`, {
+    var request = this.encodeQueryData(props.filters)
+    fetch(`/deck?${request}&page=${page}`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -35,8 +51,20 @@ export default class List extends React.Component {
       this.setState(prevState => json)
     })
   }
+
+  countDeck(deck) {
+    if (deck.length == 0) {
+      return 0;
+    } else {
+     var deckCount = deck.map(x => x.count).reduce(function (sum, value) {
+        return sum + value;
+      }, 0)
+    }
+
+    return deckCount;
+  }
   
-  cardCount(card, deck) {
+  countCard(card, deck) {
     var count = 0
     for (var i = 0; i < deck.length; ++i) {
       if (deck[i].name == card.name)
@@ -47,25 +75,26 @@ export default class List extends React.Component {
 
   handleCardClick(card) {
     let deck = this.props.deck
-    let count = this.cardCount(card, deck)
+    let count = this.countCard(card, deck)
+    let deckSize = this.countDeck(deck) 
 
-    if (card.rarity == "Legendary") {
-      var maxCount = 1
-    }  else {
-      var maxCount = 2
-    }
+    var maxCount = card.rarity == "Legendary" ? 1 : 2;
 
-    if (count == 0) {
+    if (deckSize == 30) {
+      throw("Max Deck Size reached")
+    } else if (count == maxCount) {
+      throw("Max card # reached")
+    } else if (count == 0) {
       card.count = 1
       deck.push(card)
-      this.props.updateDeck(deck)
     } else if (count == 1 && maxCount != 1) {
       var index = deck.map(x => x.name).indexOf(card.name)
       deck[index].count = 2;
-      this.props.updateDeck(deck)
-    }  else {
-      throw("max # reached")
+    } else {
+      throw("error")
     };
+
+    this.props.updateDeck(deck)
   }
 
   render() {
@@ -73,7 +102,7 @@ export default class List extends React.Component {
       <div className="list-body">
         <Grid>
           {this.state.entries.map(card => 
-          <HSCard count={card.count} onClick={(e) => this.handleCardClick.bind(this, e)} key={card.id} data={card} /> 
+          <HSCard onClick={(e) => this.handleCardClick.bind(this, e)} key={card.id} data={card} /> 
           )}
         </Grid>
         <nav className="bottom">

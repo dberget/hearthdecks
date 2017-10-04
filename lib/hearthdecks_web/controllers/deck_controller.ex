@@ -2,6 +2,8 @@ defmodule HearthdecksWeb.DeckController do
     use HearthdecksWeb, :controller
     alias Hearthdecks.Cards
   
+    @standard ["Basic", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"]
+
     def index(conn, params) do
       page = 
         params
@@ -31,8 +33,13 @@ defmodule HearthdecksWeb.DeckController do
       card
       |> Map.take([:id, :cardId, :dbfId, :cardSet, :type, :faction, :rarity, :text, :attack, :health, :name, :playerClass, :cost, :img])
     end
-  
-  
+
+    defp standard(params), do: Map.get(params, "standard", true)
+    defp search(params), do: Map.get(params, "search", nil)
+
+    defp expansion(%{"expansion" => "all"}), do: @standard
+    defp expansion(params), do: Map.get(params, "expansion", "Classic")
+
     defp class(%{"class" => ""}), do: [] 
     defp class(params) do
       params
@@ -42,8 +49,11 @@ defmodule HearthdecksWeb.DeckController do
     defp index_filters(params) do
       %{
         page: current_page(params),
+        search: search(params),
         filters: %{
           playerClass: class(params),
+          standard: standard(params),
+          cardSet: expansion(params),
         }
       }
     end
