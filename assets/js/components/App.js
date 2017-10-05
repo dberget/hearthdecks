@@ -17,12 +17,21 @@ export default class App extends React.Component {
     this.handleDeckChange = this.handleDeckChange.bind(this)
     this.handleClassChange = this.handleClassChange.bind(this)
     this.handleExpansionChange = this.handleExpansionChange.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   handleDeckChange(deck) {
     this.setState(prevState => ({
       deck: deck
     }));
+  }
+
+  handleSearch(term) {
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        search: term,
+      }),
+    }); 
   }
 
   handleExpansionChange(exp) {
@@ -46,13 +55,13 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
-        <Filters updateExpansion={this.handleExpansionChange} resetClass={this.handleClassChange} class={this.state.class} resetDeck={this.handleDeckChange} updateClass={this.handleClassChange} />
+        <Filters searchTerm={this.handleSearch} updateExpansion={this.handleExpansionChange} class={this.state.filters.class} resetDeck={this.handleDeckChange} updateClass={this.handleClassChange} />
         <Grid textAlign="center">
           <Grid.Column textAlign="center" width={10}>
             <List filters={this.state.filters} deck={this.state.deck} updateDeck={this.handleDeckChange} />
           </Grid.Column>
           <Grid.Column width={3}>
-            <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+            <Deck class={this.state.filters.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
           </Grid.Column>
         </Grid>
       </div>

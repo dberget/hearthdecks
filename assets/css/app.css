@@ -4,7 +4,12 @@ nav.bottom {
     margin-top: 25px;
 }
 
+.main-nav {
+    margin: 10px;
+}
+
 .list-body {
+    margin-top: -3px;
 }
 
 #app {

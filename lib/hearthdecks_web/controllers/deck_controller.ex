@@ -38,7 +38,7 @@ defmodule HearthdecksWeb.DeckController do
     defp search(params), do: Map.get(params, "search", nil)
 
     defp expansion(%{"expansion" => "all"}), do: @standard
-    defp expansion(params), do: Map.get(params, "expansion", "Classic")
+    defp expansion(params), do: Map.get(params, "expansion", @standard)
 
     defp class(%{"class" => ""}), do: [] 
     defp class(params) do

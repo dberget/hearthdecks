@@ -1,16 +1,17 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
-import ExpansionDropdown from './Dropdown'
+import { Button, Search, Menu } from 'semantic-ui-react'
+import ExpansionDropdown from './ExpansionDropdown'
 
 export default class Filters extends React.Component {
   constructor(props) {
     super(props)
 
+    this.resetDeck = this.resetDeck.bind(this)
     this.toggleMage = this.toggleMage.bind(this)
     this.toggleWarrior = this.toggleWarrior.bind(this)
-    this.resetDeck = this.resetDeck.bind(this)
-    this.toggleExpansion = this.toggleExpansion.bind(this)
     this.toggleNeutral = this.toggleNeutral.bind(this)
+    this.toggleExpansion = this.toggleExpansion.bind(this)
+    this.selectResult = this.selectResult.bind(this)
   }
 
   resetDeck() {
@@ -21,17 +22,24 @@ export default class Filters extends React.Component {
   toggleMage() {
     this.toggleClass("Mage")
   }
+
   toggleWarrior() {
     this.toggleClass("Warrior")
   }
+
   toggleNeutral() {
-    this.props.updateClass("Neutral")
+    this.toggleClass("Neutral")
   }
 
   toggleClass(newClass) {
-    this.props.class !=  
-    this.resetDeck();
+    if (this.props.class != newClass) { this.resetDeck(); } 
+
     this.props.updateClass(newClass);
+  }
+
+  selectResult(e) {
+    this.props.searchTerm(e.target.value)
+    e.preventDefault();
   }
 
   toggleExpansion(e, data) {
@@ -40,15 +48,15 @@ export default class Filters extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>Selected Class:</h3>
-        <div>
+      <div className="main-nav">
+        <Menu secondary>
          <Button primary onClick={this.toggleMage}> Mage </Button>
          <Button primary onClick={this.toggleWarrior}> Warrior </Button>
          <Button primary onClick={this.toggleNeutral}> Neutral </Button>
          <Button onClick={this.resetDeck.bind(this)}> Reset </Button>
          <ExpansionDropdown onChange={this.toggleExpansion.bind(this)} />
-        </div>
+         <Search showNoResults={true} onSearchChange={this.selectResult} />
+        </Menu>
       </div>
     );
   }

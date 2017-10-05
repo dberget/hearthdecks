@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
+
 const standard = [{
     key: "All", 
     value: "all", 
@@ -36,7 +37,7 @@ const standard = [{
 }]
 
 const ExpansionDropdown = (props) => (
-  <Dropdown placeholder='Select Expansion' onChange={props.onChange} inline search selection options={standard} />
+  <Dropdown defaultValue={"all"} onChange={props.onChange} button selection options={standard} />
 )
 
 export default ExpansionDropdown

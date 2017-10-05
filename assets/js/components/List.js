@@ -16,9 +16,13 @@ export default class List extends React.Component {
   } 
 
   componentWillReceiveProps(nextProps) {
-    this.cards(nextProps, this.state.page_number)
+    const diffFilters = nextProps.filters !== this.props.filters; // if filters haven't changed, don't re-render.
+    if (diffFilters) {
+      this.cards(nextProps, this.state.page_number)
+    }
   }
-  
+
+
   handlePageClick(page) {
     let next = page.selected + 1
     this.cards(this.props, next)
@@ -26,7 +30,8 @@ export default class List extends React.Component {
 
   scrubFilter(state) {
     let newObj = [Object.keys(state).forEach((key) => 
-      (state[key] == null) && delete state[key]), state][1]
+      (state[key] == false) && delete state[key]), state][1]
+
       return newObj;
   }
 
@@ -35,13 +40,12 @@ export default class List extends React.Component {
     let ret = [];
     for (let d in newData)
       ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(newData[d]));
-      console.log(ret.join('&'))
     return ret.join('&');
  }
 
   cards(props, page) {
     var request = this.encodeQueryData(props.filters)
-    fetch(`/deck?${request}&page=${page}`, {
+    fetch(`/deck?page=${page}&${request}`, {
       headers: {
         'Content-Type': 'application/json'
       }
