@@ -6,6 +6,7 @@ export default class ExportDeck extends React.Component {
     constructor(props){
         super(props)
         
+        this.state = {deckstring: ""}
         this.handleClick = this.handleClick.bind(this)
         this.getClassdbfId = this.getClassdbfId.bind(this)
     }
@@ -39,14 +40,22 @@ export default class ExportDeck extends React.Component {
           cards: deck.map((e) => [parseInt(e.dbfId), e.count]),
           heroes: hero,
           format: 1
-
       };
       const deckstring = encode(str);
+
+      this.setState({deckstring: deckstring});
     }
+
+    
 
     render() { 
         return(
-            <Button onClick={this.handleClick}>Export</Button>
+            <div>
+              <Modal basic trigger={<Button onClick={this.handleClick} > Export </Button>}>
+               <Modal.Content content={this.state.deckstring}>
+               </Modal.Content>
+              </Modal>
+            </div>
         ) 
     }
 }
