@@ -1,6 +1,7 @@
 import React from 'react'
 import HSCard from "./Card.js"
 import ReactPaginate from 'react-paginate'
+import { countDeck, countCard } from '../utils'
 import { Grid } from 'semantic-ui-react'
 
 export default class List extends React.Component {
@@ -17,6 +18,7 @@ export default class List extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const diffFilters = nextProps.filters !== this.props.filters; // if filters haven't changed, don't re-render.
+    
     if (diffFilters) {
       this.cards(nextProps, this.state.page_number)
     }
@@ -45,7 +47,7 @@ export default class List extends React.Component {
 
   cards(props, page) {
     var request = this.encodeQueryData(props.filters)
-    fetch(`/deck?page=${page}&${request}`, {
+    fetch(`/cards?page=${page}&${request}`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -56,31 +58,12 @@ export default class List extends React.Component {
     })
   }
 
-  countDeck(deck) {
-    if (deck.length == 0) {
-      return 0;
-    } else {
-     var deckCount = deck.map(x => x.count).reduce(function (sum, value) {
-        return sum + value;
-      }, 0)
-    }
 
-    return deckCount;
-  }
-  
-  countCard(card, deck) {
-    var count = 0
-    for (var i = 0; i < deck.length; ++i) {
-      if (deck[i].name == card.name)
-        count++;
-    }
-    return count;
-  }
 
   handleCardClick(card) {
     let deck = this.props.deck
-    let count = this.countCard(card, deck)
-    let deckSize = this.countDeck(deck) 
+    let count = countCard(card, deck)
+    let deckSize = countDeck(deck) 
 
     var maxCount = card.rarity == "Legendary" ? 1 : 2;
 

@@ -1,4 +1,4 @@
-defmodule HearthdecksWeb.DeckController do
+defmodule HearthdecksWeb.CardController do
     use HearthdecksWeb, :controller
     alias Hearthdecks.Cards
   
@@ -40,11 +40,7 @@ defmodule HearthdecksWeb.DeckController do
     defp expansion(%{"expansion" => "all"}), do: @standard
     defp expansion(params), do: Map.get(params, "expansion", @standard)
 
-    defp class(%{"class" => ""}), do: [] 
-    defp class(params) do
-      params
-      |> Map.get("class", "Neutral")
-    end
+    defp class(params), do: Map.get(params, "class", "Neutral")
   
     defp index_filters(params) do
       %{

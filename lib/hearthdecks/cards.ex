@@ -21,13 +21,12 @@ defmodule Hearthdecks.Cards do
 
 
        def search_query(q, nil), do: q
-       def search_query(q, %{"search" => "undefind"}), do: q
+       def search_query(q, %{"search" => "undefined"}), do: q
        def search_query(query, t) do
         from c in query,
-            or_where: ilike(c.name, ^"%#{t}%"),
-            or_where: ilike(c.faction, ^"%#{t}%"),
-            or_where: ilike(c.text, ^"%#{t}%"),
-            or_where: ilike(c.rarity, ^"%#{t}%"),
-            or_where: ilike(c.cardSet, ^"%#{t}%")
+            where: ilike(c.name, ^"%#{t}%"),
+            # or_where: ilike(c.faction, ^"%#{t}%"),
+             or_where: ilike(c.text, ^"%#{t}%"),
+             or_where: ilike(c.rarity, ^"%#{t}%")
       end
 end

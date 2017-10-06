@@ -22,8 +22,7 @@ defmodule HearthdecksWeb.Router do
   scope "/", HearthdecksWeb do
     pipe_through :api
 
-    get "/deck", DeckController, :index
-    get "/search", DeckController, :search
+    get "/cards", CardController, :index
   end
 
 end

@@ -2,6 +2,7 @@ import React from 'react'
 import DeckItem from './DeckItem'
 import { Header, Segment, Input } from 'semantic-ui-react'
 import ExportDeck from './Export'
+import { countDeck } from '../utils'
 
 export default class Deck extends React.Component {
     constructor(props){
@@ -13,14 +14,13 @@ export default class Deck extends React.Component {
     }
 
     handleClick(card) {
-      let deck = this.props.deck
+      let { deck } = this.props
       var index = deck.map(x => x.name).indexOf(card.name)
-      var size = this.deckSize(deck)
 
       if (card.count == 2) {
         deck[index].count -= 1;
       } else {
-        deck.splice(index, 1)
+        deck.splice(index, 1);
       }
       this.props.updateDeck(deck)
     }
@@ -31,17 +31,6 @@ export default class Deck extends React.Component {
       })
     }
 
-    deckSize(deck) {
-      if (deck.length == 0) {
-        return 0;
-      } else {
-       var deckCount = deck.map(x => x.count).reduce(function (sum, value) {
-          return sum + value;
-        }, 0)
-      }
-      return deckCount;
-    }
-
     render() {
       const { deck } = this.props
 
@@ -50,11 +39,11 @@ export default class Deck extends React.Component {
         <Header attached='top'>
          <Input onChange={this.handleTitleChange} value={this.state.name} fluid placeholder='Deck Name' />
         </Header>
+         <div> { countDeck(deck) } </div>
         <Segment attached='bottom' className="deck-list">
          {deck.map(card =>
           <DeckItem count={card.count} onClick={(e) => this.handleClick.bind(this, e)} key={card.id} name={card.name} />
          )}
-         <div> {this.deckSize(deck)} </div>
         </Segment>
         <ExportDeck class={this.props.class} deck={deck} />
        </div>

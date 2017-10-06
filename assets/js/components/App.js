@@ -10,7 +10,8 @@ export default class App extends React.Component {
     super(props)
 
     this.state = {
-      filters: {},
+      class: "",
+      filters: {expansion: "all"},
       deck: []
     }
 
@@ -18,6 +19,7 @@ export default class App extends React.Component {
     this.handleClassChange = this.handleClassChange.bind(this)
     this.handleExpansionChange = this.handleExpansionChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
+    this.handleFilterClass = this.handleFilterClass.bind(this)
   }
 
   handleDeckChange(deck) {
@@ -34,6 +36,14 @@ export default class App extends React.Component {
     }); 
   }
 
+  handleFilterClass(filterClass) {
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        class: filterClass,
+      }),
+    }); 
+  }
+
   handleExpansionChange(exp) {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
@@ -43,11 +53,9 @@ export default class App extends React.Component {
   }
 
   handleClassChange(playerClass) {
-    this.setState({
-      filters: Object.assign({}, this.state.filters, {
-        class: playerClass,
-      }),
-    });
+    this.setState(prevState => ({
+      class: playerClass
+    }));
   }
 
 
@@ -55,13 +63,18 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
-        <Filters searchTerm={this.handleSearch} updateExpansion={this.handleExpansionChange} class={this.state.filters.class} resetDeck={this.handleDeckChange} updateClass={this.handleClassChange} />
+        <Filters searchTerm={this.handleSearch} 
+                 updateFilterClass={this.handleFilterClass}
+                 updateExpansion={this.handleExpansionChange} 
+                 class={this.state.class} 
+                 resetDeck={this.handleDeckChange} 
+                 updateClass={this.handleClassChange} />
         <Grid textAlign="center">
           <Grid.Column textAlign="center" width={10}>
             <List filters={this.state.filters} deck={this.state.deck} updateDeck={this.handleDeckChange} />
           </Grid.Column>
           <Grid.Column width={3}>
-            <Deck class={this.state.filters.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+            <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
           </Grid.Column>
         </Grid>
       </div>

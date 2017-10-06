@@ -34,14 +34,15 @@ export default class ExportDeck extends React.Component {
     }
 
     handleClick() {
-      var deck = this.props.deck
-      var hero = this.getClassdbfId(this.props.class)
-      var str = {
+      let deck = this.props.deck
+      let hero = this.getClassdbfId(this.props.class)
+
+      let str = {
           cards: deck.map((e) => [parseInt(e.dbfId), e.count]),
           heroes: hero,
           format: 1
       };
-      const deckstring = encode(str);
+      let deckstring = encode(str);
 
       this.setState({deckstring: deckstring});
     }
