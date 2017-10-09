@@ -26,19 +26,15 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
-      presets: ['react', 'latest', 'es2015']
+      presets: ['env', 'react'],
     },
-   
-  },
-
-
-  modules: {
-    autoRequire: {
-      "js/index.js": ["js/index"]
-    }
   },
 
   npm: {
     enabled: true,
-  }
+    whitelist: [
+      "react",
+      "react-dom"
+    ],
+  },
 };

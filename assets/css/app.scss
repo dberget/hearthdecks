@@ -1,0 +1,64 @@
+nav.bottom {
+    margin-top: 25;
+}
+
+.main-nav {
+    margin: 10px;
+}
+
+.list-body {
+    background-color: #eee;
+    margin-top: 15px;
+}
+
+div.ui.grid.list-body {
+    margin-left: 4rem;
+}
+
+html body {
+    margin: 10px;
+}
+
+.deck-container {
+    margin: auto;
+    width: 50%;
+}
+
+.hsImage {
+    width: 25%;
+    height: 75%;
+    padding-right: 0px;
+    padding-left: 0px;
+
+    &:hover {
+        cursor: pointer;
+    } 
+}
+
+div.ui.relaxed.grid {
+    margin: 25px; 
+}
+
+.deck-list {
+}
+
+.deck-container {
+    height: 380px;
+    text-align: center;
+
+    span {
+        margin: 3px;
+    }
+
+}
+
+div .ui .buttons {
+    position:fixed;
+    bottom: 5%;
+    right: 60%;
+}
+
+.button.ui.blue.icon.button {
+    margin-left: 3px;
+    margin-right: 3px;
+}

@@ -1,45 +1,9 @@
 import React from 'react'
 import { Dropdown, Button, Search, Menu } from 'semantic-ui-react'
 import ExpansionDropdown from './ExpansionDropdown'
+import { classes } from '../constants'
 
-
- const classes = [{
-   value: "Mage",
-   text: "Mage",
-   key: "Mage"
- }, {
-   value: "Warrior",
-   text: "Warrior",
-   key: "Warrior"
- }, {
-   text: "Warlock",
-   value: "Warlock",
-   key: "Warlock"
- }, {
-   text: "Paladin",
-   value: "Paladin",
-   key: "Paladin"
- }, {
-   text: "Priest",
-   value: "Priest",
-   key: "Priest"
- }, {
-   text: "Rogue",
-   value: "Rogue",
-   key: "Rogue"
- }, {
-   text: "Druid",
-   value: "Druid",
-   key: "Druid"
- }, {
-   value: "Hunter",
-   text: "Hunter",
-   key: "Hunter"
- }, {
-   value: "Shaman",
-   text: "Shaman",
-   key: "Shaman"
- }]
+ 
 
 export default class Filters extends React.Component {
   constructor(props) {
@@ -53,8 +17,8 @@ export default class Filters extends React.Component {
   }
 
   resetDeck() {
-   var deck = []
-   this.props.resetDeck(deck)
+   var newDeck = []
+   this.props.resetDeck(newDeck)
   }
 
   handleFilterClass() {
@@ -65,7 +29,7 @@ export default class Filters extends React.Component {
     this.props.updateFilterClass("Neutral")
   }
 
-  toggleClass(e, data) {
+  selectClass(e, data) {
     var newClass = data.value
     if (this.props.class != newClass) { this.resetDeck(); } 
 
@@ -86,7 +50,7 @@ export default class Filters extends React.Component {
     return (
       <div className="main-nav">
         <Menu secondary>
-          <Dropdown selection placeholder="select class" options={classes} onChange={this.toggleClass.bind(this)} />
+          <Dropdown selection placeholder="select class" options={classes} onChange={this.selectClass.bind(this)} />
           <Button primary onClick={this.handleFilterClass}> {this.props.class} </Button>
           <Button primary onClick={this.filterNeutral}> Neutral </Button>
           <Button onClick={this.resetDeck}> Reset </Button>

@@ -5,6 +5,7 @@ defmodule HearthdecksWeb.CardController do
     @standard ["Basic", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"]
 
     def index(conn, params) do
+      IO.inspect(params)
       page = 
         params
         |> index_filters
@@ -40,7 +41,7 @@ defmodule HearthdecksWeb.CardController do
     defp expansion(%{"expansion" => "all"}), do: @standard
     defp expansion(params), do: Map.get(params, "expansion", @standard)
 
-    defp class(params), do: Map.get(params, "class", "Neutral")
+    defp class(params), do: Map.get(params, "class")
   
     defp index_filters(params) do
       %{

@@ -4,6 +4,7 @@ import Filters from "./Filters"
 import List from "./List"
 import Deck from "./Deck"
 import { Grid } from 'semantic-ui-react'
+import ManaBar from "./ManaBar.js"
 
 export default class App extends React.Component {
   constructor(props){
@@ -11,7 +12,7 @@ export default class App extends React.Component {
 
     this.state = {
       class: "",
-      filters: {expansion: "all"},
+      filters: {},
       deck: []
     }
 
@@ -58,7 +59,6 @@ export default class App extends React.Component {
     }));
   }
 
-
   render () {
     return (
       <div>
@@ -69,14 +69,9 @@ export default class App extends React.Component {
                  class={this.state.class} 
                  resetDeck={this.handleDeckChange} 
                  updateClass={this.handleClassChange} />
-        <Grid textAlign="center">
-          <Grid.Column textAlign="center" width={10}>
             <List filters={this.state.filters} deck={this.state.deck} updateDeck={this.handleDeckChange} />
-          </Grid.Column>
-          <Grid.Column width={3}>
+            <ManaBar />
             <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
-          </Grid.Column>
-        </Grid>
       </div>
     );
   }

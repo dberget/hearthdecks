@@ -1,17 +1,16 @@
 import React from 'react'
-import HSCard from "./Card.js"
+import HSCard from "./HSCard.js"
 import ReactPaginate from 'react-paginate'
-import { countDeck, countCard } from '../utils'
-import { Grid } from 'semantic-ui-react'
+import { countDeck, countCard, sortDeck } from '../utils'
+import { Grid, Button } from 'semantic-ui-react'
 
 export default class List extends React.Component {
    constructor(props){
     super(props)
 
-    this.state = { entries: [], page_number: 0 }
+    this.state = { entries: [], page_number: 1 }
 
-    this.handlePageClick = this.handlePageClick.bind(this)
-    this.handleCardClick = this.handleCardClick.bind(this)
+    this.addCardToDeck = this.addCardToDeck.bind(this)
     this.scrubFilter = this.scrubFilter.bind(this)
     this.encodeQueryData = this.encodeQueryData.bind(this)
   } 
@@ -22,12 +21,6 @@ export default class List extends React.Component {
     if (diffFilters) {
       this.cards(nextProps, this.state.page_number)
     }
-  }
-
-
-  handlePageClick(page) {
-    let next = page.selected + 1
-    this.cards(this.props, next)
   }
 
   scrubFilter(state) {
@@ -59,12 +52,10 @@ export default class List extends React.Component {
   }
 
 
-
-  handleCardClick(card) {
+  addCardToDeck(card) {
     let deck = this.props.deck
     let count = countCard(card, deck)
     let deckSize = countDeck(deck) 
-
     var maxCount = card.rarity == "Legendary" ? 1 : 2;
 
     if (deckSize == 30) {
@@ -80,37 +71,16 @@ export default class List extends React.Component {
     } else {
       throw("error")
     };
-
+    deck.sort(sortDeck);
+    
     this.props.updateDeck(deck)
   }
 
   render() {
     return (
-      <div className="list-body">
-        <Grid>
-          {this.state.entries.map(card => 
-          <HSCard onClick={(e) => this.handleCardClick.bind(this, e)} key={card.id} data={card} /> 
+      <div>
+          {this.state.entries.map(card => <HSCard  onSelect={this.addCardToDeck} key={card.id} data={card} /> 
           )}
-        </Grid>
-        <nav className="bottom">
-         <ReactPaginate activeClassName={"active"} 
-                         breakClassName={"break-me"}
-                         breakLabel={<a href="">...</a>}
-                         containerClassName={"pagination"}
-                         disabledClassName={"invisible"}
-                         initialPage={this.state.page_number}
-                         marginPagesDisplayed={2}
-                         nextClassName={"page-item"}
-                         nextLabel={">>"}
-                         onPageChange={this.handlePageClick}
-                         pageClassName={"page-item"}
-                         pageCount={this.state.total_pages}
-                         pageLinkClassName={"page-link"}
-                         pageRangeDisplayed={5}
-                         previousClassName={"page-item"}
-                         previousLabel={"<<"}
-                         subContainerClassName={"pages pagination"} />
-        </nav>
       </div>
     );
   }

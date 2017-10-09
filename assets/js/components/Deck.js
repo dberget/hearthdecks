@@ -12,7 +12,6 @@ export default class Deck extends React.Component {
      this.handleTitleChange = this.handleTitleChange.bind(this);
      this.handleClick = this.handleClick.bind(this);
     }
-
     handleClick(card) {
       let { deck } = this.props
       var index = deck.map(x => x.name).indexOf(card.name)
@@ -22,6 +21,7 @@ export default class Deck extends React.Component {
       } else {
         deck.splice(index, 1);
       }
+
       this.props.updateDeck(deck)
     }
 
@@ -35,15 +35,12 @@ export default class Deck extends React.Component {
       const { deck } = this.props
 
      return (
-       <div>
-        <Header attached='top'>
-         <Input onChange={this.handleTitleChange} value={this.state.name} fluid placeholder='Deck Name' />
-        </Header>
-         <div> { countDeck(deck) } </div>
+       <div className="deck-container">
         <Segment attached='bottom' className="deck-list">
          {deck.map(card =>
           <DeckItem count={card.count} onClick={(e) => this.handleClick.bind(this, e)} key={card.id} name={card.name} />
          )}
+         <span> { countDeck(deck) } </span>
         </Segment>
         <ExportDeck class={this.props.class} deck={deck} />
        </div>

@@ -9,8 +9,8 @@ defmodule Hearthdecks.Cards do
     
         Card
         |> order_by(^opts.sort_by)
-        |> filters(opts.filters)
         |> search_query(opts.search)
+        |> filters(opts.filters)
         |> Repo.paginate(page: opts.page, page_size: 8)
       end
 
@@ -25,8 +25,7 @@ defmodule Hearthdecks.Cards do
        def search_query(query, t) do
         from c in query,
             where: ilike(c.name, ^"%#{t}%"),
-            # or_where: ilike(c.faction, ^"%#{t}%"),
-             or_where: ilike(c.text, ^"%#{t}%"),
-             or_where: ilike(c.rarity, ^"%#{t}%")
+            or_where: ilike(c.text, ^"%#{t}%"),
+            or_where: ilike(c.rarity, ^"%#{t}%")
       end
 end

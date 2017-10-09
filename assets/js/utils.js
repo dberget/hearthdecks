@@ -17,3 +17,23 @@ export function countDeck(deck){
     }
     return count;
   }
+
+  export const sortDeck = (a, b) => {
+    if (a.cost < b.cost) {
+      return -1;
+    }
+    if (a.cost > b.cost) {
+      return 1;
+    }
+  
+    if (a.cost == b.cost) {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    }
+  };
+  

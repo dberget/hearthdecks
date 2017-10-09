@@ -1,15 +1,25 @@
 import React from 'react'
 import {encode} from 'deckstrings'
-import { Button, Modal } from 'semantic-ui-react'
+import { Button, Modal, Icon } from 'semantic-ui-react'
+import { countDeck } from '../utils'
 
 export default class ExportDeck extends React.Component {
     constructor(props){
         super(props)
         
-        this.state = {deckstring: ""}
+
+        this.state = {deckstring: "", disabled: true}
         this.handleClick = this.handleClick.bind(this)
         this.getClassdbfId = this.getClassdbfId.bind(this)
     }
+
+    componentWillReceiveProps() {
+       var deckCount = countDeck(this.props.deck)
+       if (deckCount == 30) {
+         this.setState({disabled: false});
+       }
+    }
+
 
     getClassdbfId(playerClass) {
         switch (playerClass) {
@@ -30,16 +40,17 @@ export default class ExportDeck extends React.Component {
             case "Rogue":
                 return [930]
         }
-    
     }
+
+
 
     handleClick() {
       let deck = this.props.deck
-      let hero = this.getClassdbfId(this.props.class)
+      let heroId = this.getClassdbfId(this.props.class)
 
       let str = {
           cards: deck.map((e) => [parseInt(e.dbfId), e.count]),
-          heroes: hero,
+          heroes: heroId,
           format: 1
       };
       let deckstring = encode(str);
@@ -52,7 +63,7 @@ export default class ExportDeck extends React.Component {
     render() { 
         return(
             <div>
-              <Modal basic trigger={<Button onClick={this.handleClick} > Export </Button>}>
+              <Modal basic trigger={<Button disabled={this.state.disabled} onClick={this.handleClick} ><Icon name="cloud download" /> Export </Button>}>
                <Modal.Content content={this.state.deckstring}>
                </Modal.Content>
               </Modal>
