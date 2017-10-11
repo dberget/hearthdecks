@@ -2,7 +2,7 @@ import React from 'react'
 import Header from "./Header"
 import Filters from "./Filters"
 import List from "./List"
-import Deck from "./Deck"
+import Deck from "./UserDeck/Deck" 
 import { Grid } from 'semantic-ui-react'
 import ManaBar from "./ManaBar.js"
 

@@ -15,6 +15,7 @@ export default class ExportDeck extends React.Component {
 
     componentWillReceiveProps() {
        var deckCount = countDeck(this.props.deck)
+
        if (deckCount == 30) {
          this.setState({disabled: false});
        }

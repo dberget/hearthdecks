@@ -1,8 +1,8 @@
 import React from 'react'
 import DeckItem from './DeckItem'
 import { Header, Segment, Input } from 'semantic-ui-react'
-import ExportDeck from './Export'
-import { countDeck } from '../utils'
+import ExportDeck from '../Export'
+import { countDeck } from '../../utils'
 
 export default class Deck extends React.Component {
     constructor(props){
@@ -32,7 +32,7 @@ export default class Deck extends React.Component {
          {deck.map(card =>
           <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />
          )}
-         <span> { countDeck(deck) }/30 </span>
+         <span> { countDeck(deck) } / 30 </span>
         </Segment>
         <ExportDeck class={this.props.class} deck={deck} />
        </div>

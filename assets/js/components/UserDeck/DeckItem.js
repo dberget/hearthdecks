@@ -1,5 +1,5 @@
 import React from 'react';
-import Count from "./UserDeck/CardCount"
+import Count from "./CardCount"
 
 export default class DeckItem extends React.Component {
 

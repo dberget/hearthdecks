@@ -129,8 +129,6 @@ img.hsImage {
           }
     }
 
-
-
     i.star.icon {
         width: 0; 
         height: 0; 
@@ -139,11 +137,13 @@ img.hsImage {
 
  
 @-webkit-keyframes example {
-    0%   {background-color: $mustard; left:5px; top:0px;}
+    0%   {background-color: color($mustard/4); left:10px; top:0px;}
+    50%  {background-color: color($mustard/2); left:10px; top:0px;}
     100% {background-color: $mustard; left:0px; top:0px;}
 }
 
 @keyframes example {
-    0%   {background-color: $mustard; left:5px; top:0px;}
+    0%   {background-color: color($mustard/4); left:10px; top:0px;}
+    50%  {background-color: color($mustard/2); left:10px; top:0px;}
     100% {background-color: $mustard; left:0px; top:0px;}
 }
