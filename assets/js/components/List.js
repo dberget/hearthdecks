@@ -2,7 +2,7 @@ import React from 'react'
 import HSCard from "./HSCard.js"
 import ReactPaginate from 'react-paginate'
 import { countDeck, countCard, sortDeck } from '../utils'
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid, Button, Message } from 'semantic-ui-react'
 
 export default class List extends React.Component {
    constructor(props){
@@ -10,9 +10,10 @@ export default class List extends React.Component {
 
     this.state = { entries: [], page_number: 1 }
 
-    this.addCardToDeck = this.addCardToDeck.bind(this)
+    this.handlePageClick = this.handlePageClick.bind(this)
     this.scrubFilter = this.scrubFilter.bind(this)
     this.encodeQueryData = this.encodeQueryData.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   } 
 
   componentWillReceiveProps(nextProps) {
@@ -38,8 +39,25 @@ export default class List extends React.Component {
     return ret.join('&');
  }
 
+ handlePageClick(page) {
+   let nextPage = this.state.page_number
+
+   if (this.state.page_number == this.state.total_pages && page =="next") {
+     nextPage
+   } else if (page == "prev") {
+     nextPage -=1;
+   } else if (page == "next") {
+     nextPage += 1;
+   } else {
+     nextPage 
+   }
+
+   this.cards(this.props, nextPage)
+ }
+
   cards(props, page) {
     var request = this.encodeQueryData(props.filters)
+
     fetch(`/cards?page=${page}&${request}`, {
       headers: {
         'Content-Type': 'application/json'
@@ -51,17 +69,15 @@ export default class List extends React.Component {
     })
   }
 
+  handleClick(card) {
 
-  addCardToDeck(card) {
     let deck = this.props.deck
     let count = countCard(card, deck)
     let deckSize = countDeck(deck) 
-    var maxCount = card.rarity == "Legendary" ? 1 : 2;
+    let maxCount = card.rarity == "Legendary" ? 1 : 2;
 
-    if (deckSize == 30) {
-      throw("Max Deck Size reached")
+    if (deckSize == 30) { //TODO: pull into own function
     } else if (count == maxCount) {
-      throw("Max card # reached")
     } else if (count == 0) {
       card.count = 1
       deck.push(card)
@@ -69,8 +85,9 @@ export default class List extends React.Component {
       var index = deck.map(x => x.name).indexOf(card.name)
       deck[index].count = 2;
     } else {
-      throw("error")
+      return false
     };
+
     deck.sort(sortDeck);
     
     this.props.updateDeck(deck)
@@ -78,9 +95,13 @@ export default class List extends React.Component {
 
   render() {
     return (
-      <div>
-          {this.state.entries.map(card => <HSCard  onSelect={this.addCardToDeck} key={card.id} data={card} /> 
-          )}
+        <div className="list-body">
+          <Button className="prev-button" onClick={() => this.handlePageClick("prev")}> PREV PAGE </Button>
+          <div className="card-entries">
+            {this.state.entries.map(card => <HSCard  onSelect={this.handleClick} key={card.id} data={card} /> 
+            )}
+          </div>
+          <Button className="next-button" onClick={() => this.handlePageClick("next")}> NEXT PAGE </Button>
       </div>
     );
   }

@@ -15,7 +15,9 @@ export default class HSCard extends React.Component {
 
   render() {
     return (
-      <img className="hsImage" onClick={this.handleClick} src={this.props.data.img} />
+      <div className="img-container"> 
+        <img className="hsImage" onClick={this.handleClick} src={this.props.data.img} />
+      </div>
     )
   }
 }

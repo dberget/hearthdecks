@@ -61,7 +61,7 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="container">
         <Header />
         <Filters searchTerm={this.handleSearch} 
                  updateFilterClass={this.handleFilterClass}
@@ -69,9 +69,8 @@ export default class App extends React.Component {
                  class={this.state.class} 
                  resetDeck={this.handleDeckChange} 
                  updateClass={this.handleClassChange} />
-            <List filters={this.state.filters} deck={this.state.deck} updateDeck={this.handleDeckChange} />
-            <ManaBar />
-            <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+         <List filters={this.state.filters} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+         <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
       </div>
     );
   }

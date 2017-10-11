@@ -1,64 +1,142 @@
-nav.bottom {
-    margin-top: 25;
+$darkblue: #063560;
+$darkgrey: #4E5560;
+$jet: #2F2F2F;
+$mustard: #FFC857;
+$white: #ffffff;
+
+.container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-flow: wrap;
+    margin: 10px;
+ }
+
+ h1 {
+     color: $white;
+     margin: 10px;
+ }
+
+html body {
+    height: 100%;
+    font-size: 62.5%;
+    background-color: $darkgrey;
 }
 
+
 .main-nav {
-    margin: 10px;
+    padding: 5px;
+    width: 100%;
+    margin-left: 10px; 
 }
 
 .list-body {
-    background-color: #eee;
-    margin-top: 15px;
-}
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
 
-div.ui.grid.list-body {
-    margin-left: 4rem;
-}
-
-html body {
     margin: 10px;
+    border-radius: .28571429rem;
+    background-color: $white;
+    -webkit-flex: 3;
+    flex: 3;
+    padding: 10px;
+    overflow: hidden;
+    height: 627px;
+
+    .card-entries {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        flex-flow: wrap;
+        -webkit-flex: 3;
+        flex: 3;
+    }
+
+    .ui.button.next-button {
+        margin-left: auto;
+    }
 }
 
-.deck-container {
-    margin: auto;
-    width: 50%;
+.img-container {
+    overflow: hidden;
+    width: calc(100% / 4);
 }
 
-.hsImage {
-    width: 25%;
-    height: 75%;
-    padding-right: 0px;
-    padding-left: 0px;
+img.hsImage {
+    width: 100%;
+    display: block;
+    margin-right: 10px;
+    margin: -20px auto -5px;
 
     &:hover {
         cursor: pointer;
-    } 
-}
-
-div.ui.relaxed.grid {
-    margin: 25px; 
-}
-
-.deck-list {
+    }
 }
 
 .deck-container {
-    height: 380px;
-    text-align: center;
+    margin: 10px;
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+    -webkit-flex: 1;
+    flex: 1;
+    height: 627px; 
 
-    span {
-        margin: 3px;
+    .deck-list {
+        line-height: 2rem;
+    }
+
+    .deck-card {
+        margin: .25rem;
+        border: 1px solid;
+        border-radius: 5px; 
+        z-index: 5;
+
+        position: relative;
+        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
+        animation-name: example;
+        animation-duration: .5s;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $mustard;
+        }
+
+    }
+
+    .mana {
+        display: inline-block;
+        color: $white;
+        background-color: $darkblue;
+        text-align: center;
+        width: 6%;
+    }
+
+    div.count {
+        float: right;
+        text-align: center;
+        position: relative;
+        width: 7%;
+        background-color: $jet;
+        color: $mustard;
     }
 
 }
 
-div .ui .buttons {
-    position:fixed;
-    bottom: 5%;
-    right: 60%;
+
+ 
+@-webkit-keyframes example {
+    0%   {background-color: $mustard; left:5px; top:0px;}
+    100% {background-color: $mustard; left:0px; top:0px;}
 }
 
-.button.ui.blue.icon.button {
-    margin-left: 3px;
-    margin-right: 3px;
+@keyframes example {
+    0%   {background-color: $mustard; left:5px; top:0px;}
+    100% {background-color: $mustard; left:0px; top:0px;}
 }
