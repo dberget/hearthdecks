@@ -95,9 +95,8 @@ img.hsImage {
         margin: .25rem;
         border: 1px solid;
         border-radius: 5px; 
-        z-index: 5;
+        overflow: hidden;
 
-        position: relative;
         -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
         -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
         animation-name: example;
@@ -116,18 +115,26 @@ img.hsImage {
         background-color: $darkblue;
         text-align: center;
         width: 6%;
+        height: 29px;
     }
 
-    div.count {
+    span.count {
         float: right;
-        text-align: center;
-        position: relative;
-        width: 7%;
-        background-color: $jet;
         color: $mustard;
+        width: 0; 
+        height: 0; 
+        border-left: 15px solid transparent;
+        border-right: 1.5rem solid $jet;
+        border-bottom: 29px solid $jet;
+          }
     }
 
-}
+
+
+    i.star.icon {
+        width: 0; 
+        height: 0; 
+    }
 
 
  

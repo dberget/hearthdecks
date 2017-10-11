@@ -30,7 +30,7 @@ export default class Deck extends React.Component {
        <div className="deck-container">
         <Segment className="deck-list">
          {deck.map(card =>
-          <DeckItem count={card.count} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />
+          <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />
          )}
          <span> { countDeck(deck) }/30 </span>
         </Segment>

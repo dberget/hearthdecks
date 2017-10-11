@@ -20,7 +20,7 @@ export default class List extends React.Component {
     const diffFilters = nextProps.filters !== this.props.filters; // if filters haven't changed, don't re-render.
     
     if (diffFilters) {
-      this.cards(nextProps, this.state.page_number)
+      this.cards(nextProps, 1)
     }
   }
 
