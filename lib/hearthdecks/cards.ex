@@ -39,6 +39,10 @@ defmodule Hearthdecks.Cards do
         from c in q,
         where: c.cost > 6
     end
+    def mana(q, "<1") do
+        from c in q,
+        where: c.cost < 1
+    end
     def mana(q, mana) do
         from c in q,
         where: [cost: ^mana]

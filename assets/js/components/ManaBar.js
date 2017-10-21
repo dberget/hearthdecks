@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react'
   const ManaBar = (props) => {
       return(
         <Button.Group>
-          <Button active={props.active === "0"} onClick={props.handleClick} value="0" icon> 0 </Button> 
+          <Button active={props.active === "<1"} onClick={props.handleClick} value="<1" icon> 0 </Button> 
           <Button active={props.active === "1"} onClick={props.handleClick} value="1" icon> 1 </Button> 
           <Button active={props.active === "2"} onClick={props.handleClick} value="2" icon> 2 </Button> 
           <Button active={props.active === "3"} onClick={props.handleClick} value="3" icon> 3 </Button> 
