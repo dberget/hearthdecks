@@ -1,8 +1,15 @@
-export const standard = [{
-    key: "All", 
-    value: "all", 
-    text: "All"
+import React from 'react'
+import { Header } from 'semantic-ui-react'
+
+export const expansions = [{
+    key: "Standard", 
+    disabled: true,
+    content: <Header as='h4' textAlign="center" content="Standard" dividing/>  
 },{
+  key: "All Standard",
+  value: "standard",
+  text: "All Standard"
+}, {
     key: "Basic",
     value: "Basic",
     text: "Basic"
@@ -30,6 +37,38 @@ export const standard = [{
     key: "Whispers of the Old Gods",
     value: "Whispers of the Old Gods",
     text:  "Whispers of the Old Gods"
+}, {
+  key: "Wild", 
+  disabled: true,
+  content: <Header as='h4' textAlign="center" content="Wild" dividing/>  
+}, {
+  key: "All Wild",
+  value: "wild",
+  text: "All Wild"
+}, {
+  key: "League of Explorers",
+  value: "The League of Explorers",
+  text: "League of Explorers"
+}, {
+  key: "Grand Tournament",
+  value: "The Grand Tournament",
+  text: "Grand Tournament"
+}, {
+  key: "Blackrock Mountain",
+  value: "Blackrock Mountain",
+  text: "Blackrock Mountain"
+}, {
+  key: "Goblins vs Gnomes",
+  value: "Goblins vs Gnomes",
+  text: "Goblins vs Gnomes"
+}, {
+  key: "Naxxramas",
+  value: "Naxxramas",
+  text: "Naxxramas"
+}, {
+  key: "Hall of Fame",
+  value: "Hall of Fame",
+  text:  "Hall of Fame"
 }]
 
 export const classes = [{

@@ -18,17 +18,36 @@ $white: #ffffff;
      margin: 10px;
  }
 
+ div.ui.buttons {
+     margin-left: auto;
+ }
+ 
+ .ui.icon.button {
+     margin: 3px;
+     border-radius: 0rem; 
+     color: $jet;
+     width: 3rem;
+ }
+
 html body {
     height: 100%;
     font-size: 62.5%;
     background-color: $darkgrey;
 }
 
+#app {
+    height: 100%
+}
+
 
 .main-nav {
     padding: 5px;
+    margin-right: 10px;
     width: 100%;
-    margin-left: 10px; 
+}
+
+.ui.button.resetButton {
+    height: inherit;
 }
 
 .list-body {
@@ -39,14 +58,13 @@ html body {
     flex-flow: wrap;
     justify-content: center;
 
-    margin: 10px;
     border-radius: .28571429rem;
     background-color: $white;
-    -webkit-flex: 3;
-    flex: 3;
-    padding: 10px;
+    -webkit-flex: 4;
+    flex: 4;
+    padding: 5px;
     overflow: hidden;
-    height: 627px;
+    min-height: 627px;
 
     .card-entries {
         display: -webkit-flex;
@@ -56,6 +74,15 @@ html body {
         flex-flow: wrap;
         -webkit-flex: 3;
         flex: 3;
+        height: 93%;
+    }
+
+   .ui.menu {
+        width: 100%;
+        margin-left: 10px; 
+        max-height: 0%;
+        margin-bottom: 0px;
+        color: $jet;
     }
 
     .ui.button.next-button {
@@ -66,13 +93,13 @@ html body {
 .img-container {
     overflow: hidden;
     width: calc(100% / 4);
+    margin: -5px;
 }
 
 img.hsImage {
-    width: 100%;
+    width: 85%;
     display: block;
-    margin-right: 10px;
-    margin: -20px auto -5px;
+    margin: -10px auto;
 
     &:hover {
         cursor: pointer;
@@ -80,7 +107,7 @@ img.hsImage {
 }
 
 .deck-container {
-    margin: 10px;
+    margin: 0px 10px 0px 10px ;
     -webkit-align-self: flex-start;
     align-self: flex-start;
     -webkit-flex: 1;

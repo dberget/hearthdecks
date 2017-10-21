@@ -21,6 +21,7 @@ export default class App extends React.Component {
     this.handleExpansionChange = this.handleExpansionChange.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleFilterClass = this.handleFilterClass.bind(this)
+    this.handleCostChange = this.handleCostChange.bind(this)
   }
 
   handleDeckChange(deck) {
@@ -33,6 +34,14 @@ export default class App extends React.Component {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
         search: term,
+      }),
+    }); 
+  }
+
+  handleCostChange(mana) {
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        cost: mana,
       }),
     }); 
   }
@@ -68,8 +77,17 @@ export default class App extends React.Component {
                  updateExpansion={this.handleExpansionChange} 
                  class={this.state.class} 
                  resetDeck={this.handleDeckChange} 
-                 updateClass={this.handleClassChange} />
-         <List filters={this.state.filters} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+                 updateClass={this.handleClassChange}
+                 deck={this.state.deck} />
+         <List filters={this.state.filters} 
+               deck={this.state.deck} 
+               updateDeck={this.handleDeckChange} 
+               searchTerm={this.handleSearch} 
+               updateFilterClass={this.handleFilterClass}
+               updateExpansion={this.handleExpansionChange} 
+               class={this.state.class}
+               handleCostChange={this.handleCostChange}
+               />
          <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
       </div>
     );

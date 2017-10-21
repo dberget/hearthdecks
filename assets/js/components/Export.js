@@ -1,5 +1,5 @@
 import React from 'react'
-import {encode} from 'deckstrings'
+import {encode, decode} from 'deckstrings'
 import { Button, Modal, Icon } from 'semantic-ui-react'
 import { countDeck } from '../utils'
 
@@ -43,8 +43,6 @@ export default class ExportDeck extends React.Component {
         }
     }
 
-
-
     handleClick() {
       let deck = this.props.deck
       let heroId = this.getClassdbfId(this.props.class)
@@ -63,12 +61,10 @@ export default class ExportDeck extends React.Component {
 
     render() { 
         return(
-            <div>
               <Modal basic trigger={<Button disabled={this.state.disabled} onClick={this.handleClick} ><Icon name="cloud download" /> Export </Button>}>
                <Modal.Content content={this.state.deckstring}>
                </Modal.Content>
               </Modal>
-            </div>
         ) 
     }
 }

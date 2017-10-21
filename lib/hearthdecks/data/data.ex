@@ -21,6 +21,13 @@ defmodule Hearthdecks.Data do
     Repo.all(Card)
   end
 
+  def card_by_dbfId(dbfId) do
+    q = from c in Card, where: c.dbfId == ^dbfId, select: c
+
+    Repo.all(q)
+  end
+
+
   @doc """
   Gets a single card.
 

@@ -34,7 +34,6 @@ export default class Deck extends React.Component {
          )}
          <span> { countDeck(deck) } / 30 </span>
         </Segment>
-        <ExportDeck class={this.props.class} deck={deck} />
        </div>
      );
     }

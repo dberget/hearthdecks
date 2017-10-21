@@ -3,7 +3,7 @@ defmodule Hearthdecks.Repo.Migrations.AddStandardOrWildToCards do
 
   def change do
     alter table(:cards) do
-      add :standard, :boolean, [default: true]
+      add :standard, :boolean, [default: false]
     end
   end
 end
