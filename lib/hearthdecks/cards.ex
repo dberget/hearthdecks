@@ -10,12 +10,12 @@ defmodule Hearthdecks.Cards do
         Card
         |> search_query(opts.search)
         |> standard(opts.standard)
+        |> IO.inspect
         |> mana(opts.cost)
         |> player_class(opts.playerClass)
         |> card_set(opts.cardSet)
         |> order_by(:cost)
         |> order_by(:name)
-        |> IO.inspect
         |> Repo.paginate(page: opts.page, page_size: 8)
     end
 
@@ -36,10 +36,16 @@ defmodule Hearthdecks.Cards do
     end
 
     def mana(q, nil), do: q
+    def mana(q, "7+") do
+        from c in q,
+        where: c.cost > 6
+    end
     def mana(q, mana) do
         from c in q,
         where: [cost: ^mana]
     end
+
+
 
     def player_class(q, nil), do: q
     def player_class(q, class) do

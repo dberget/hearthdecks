@@ -12,7 +12,7 @@ import { Button } from 'semantic-ui-react'
           <Button onClick={props.handleClick} value="4" icon> 4 </Button> 
           <Button onClick={props.handleClick} value="5" icon> 5 </Button> 
           <Button onClick={props.handleClick} value="6" icon> 6 </Button> 
-          <Button onClick={props.handleClick} value=">=7" icon> 7+ </Button> 
+          <Button onClick={props.handleClick} value="7+" icon> 7+ </Button> 
         </Button.Group >
       )
     }
