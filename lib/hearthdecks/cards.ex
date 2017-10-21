@@ -10,7 +10,6 @@ defmodule Hearthdecks.Cards do
         Card
         |> search_query(opts.search)
         |> standard(opts.standard)
-        |> IO.inspect
         |> mana(opts.cost)
         |> player_class(opts.playerClass)
         |> card_set(opts.cardSet)

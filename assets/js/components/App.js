@@ -39,11 +39,19 @@ export default class App extends React.Component {
   }
 
   handleCostChange(mana) {
-    this.setState({
-      filters: Object.assign({}, this.state.filters, {
-        cost: mana,
-      }),
-    }); 
+    if (this.state.filters.cost != mana) {
+      this.setState({
+        filters: Object.assign({}, this.state.filters, {
+          cost: mana
+        }),
+      });
+    } else {
+      this.setState({
+        filters: Object.assign({}, this.state.filters, {
+          cost: false
+        }),
+      });
+    }
   }
 
   handleFilterClass(filterClass) {
@@ -86,6 +94,7 @@ export default class App extends React.Component {
                updateFilterClass={this.handleFilterClass}
                updateExpansion={this.handleExpansionChange} 
                class={this.state.class}
+               activeMana={this.state.filters.cost}
                handleCostChange={this.handleCostChange}
                />
          <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />

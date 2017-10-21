@@ -50,7 +50,7 @@ export default class ListSearch extends React.Component {
         <Menu secondary tabular>
           <Menu.Item active={activeName === "Class"} onClick={this.handleFilterClass}> {this.props.class || "Class"} </Menu.Item>
           <Menu.Item active={activeName === "Neutral"} onClick={this.filterNeutral}> Neutral </Menu.Item>
-          <ManaBar handleClick={this.handleManaChange} />
+          <ManaBar active={this.props.activeMana} handleClick={this.handleManaChange} />
           <Menu.Menu position="right">
             <ExpansionDropdown onChange={this.toggleExpansion.bind(this)} />
             <Search showNoResults={false} onSearchChange={this.selectResult} />
