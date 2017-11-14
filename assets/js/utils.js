@@ -18,6 +18,7 @@ export function countDeck(deck){
     return count;
   }
 
+
   export const sortDeck = (a, b) => {
     if (a.cost < b.cost) {
       return -1;

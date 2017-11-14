@@ -99,14 +99,16 @@ export default class List extends React.Component {
 
   render() {
     return (
+      <div className="list-container">
+       <ListSearch {...this.props} />
         <div className="list-body">
-          <ListSearch {...this.props} />
           <Button className="prev-button" onClick={() => this.handlePageClick("prev")}> <Icon name="arrow left" /></Button>
           <div className="card-entries">
             {this.state.entries.map(card => <HSCard onSelect={this.handleClick} key={card.id} data={card} /> 
             )}
           </div>
           <Button className="next-button" onClick={() => this.handlePageClick("next")}><Icon name="arrow right" /></Button>
+        </div>
       </div>
     );
   }

@@ -11,23 +11,7 @@ $white: #ffffff;
     flex-direction: row;
     flex-flow: wrap;
     margin: 10px;
- }
-
- h1 {
-     color: $white;
-     margin: 10px;
- }
-
- div.ui.buttons {
-     margin-left: auto;
- }
- 
- .ui.icon.button {
-     margin: 3px;
-     border-radius: 0rem; 
-     color: $jet;
-     width: 3rem;
- }
+}
 
 html body {
     height: 100%;
@@ -35,10 +19,21 @@ html body {
     background-color: $darkgrey;
 }
 
+h1 {
+    color: $white;
+    margin: 10px;
+}
+
+.ui.icon.button {
+    margin: 3px;
+    border-radius: 0rem;
+    color: $jet;
+    width: 3rem;
+}
+
 #app {
     height: 100%
 }
-
 
 .main-nav {
     padding: 5px;
@@ -50,21 +45,26 @@ html body {
     height: inherit;
 }
 
-.list-body {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    flex-flow: wrap;
-    justify-content: center;
-
-    border-radius: .28571429rem;
-    background-color: $white;
+.list-container {
     -webkit-flex: 4;
     flex: 4;
-    padding: 5px;
-    overflow: hidden;
-    min-height: 627px;
+    height: 627px;
+
+
+    .list-body {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        flex-flow: wrap;
+        justify-content: center;
+        -webkit-flex: 4;
+        flex: 4;
+        padding: 5px;
+        overflow: hidden;
+        background-color: white;
+        min-height: 627px;
+    }
 
     .card-entries {
         display: -webkit-flex;
@@ -74,15 +74,21 @@ html body {
         flex-flow: wrap;
         -webkit-flex: 3;
         flex: 3;
-        height: 93%;
+        height: 100%;
     }
 
-   .ui.menu {
-        width: 100%;
-        margin-left: 10px; 
+    .ui.menu {
+        border-bottom: 0px;
+        margin: 0 0 0 0;
         max-height: 0%;
-        margin-bottom: 0px;
-        color: $jet;
+        background-color: $white; 
+        border-radius: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .ui.search .prompt {
+        border-radius: 10px;
     }
 
     .ui.button.next-button {
@@ -93,13 +99,12 @@ html body {
 .img-container {
     overflow: hidden;
     width: calc(100% / 4);
-    margin: -5px;
 }
 
 img.hsImage {
-    width: 75%;
+    width: 85%;
     display: block;
-    margin: -10px auto;
+    margin: -15px auto;
 
     &:hover {
         cursor: pointer;
@@ -107,26 +112,28 @@ img.hsImage {
 }
 
 .deck-container {
-    margin: 0px 10px 0px 10px ;
+    margin: 0px 0px 0px 5px;
     -webkit-align-self: flex-start;
     align-self: flex-start;
     -webkit-flex: 1;
     flex: 1;
-    height: 627px; 
+    height: 627px;
 
     .deck-list {
         line-height: 2rem;
+
+        :nth-child(2) {
+            margin-top: 15px;
+        }
     }
 
     .deck-card {
         margin: .25rem;
         border: 1px solid;
-        border-radius: 5px; 
-        overflow: hidden;
-
-        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-        -webkit-animation-duration: .5s; /* Safari 4.0 - 8.0 */
-        animation-name: example;
+        border-radius: 5px;
+        -webkit-animation-name: card-add;
+        -webkit-animation-duration: .5s;
+        animation-name: card-add;
         animation-duration: .5s;
 
         &:hover {
@@ -134,8 +141,8 @@ img.hsImage {
             background-color: $mustard;
         }
 
+        
     }
-
     .mana {
         display: inline-block;
         color: $white;
@@ -147,30 +154,66 @@ img.hsImage {
 
     span.count {
         float: right;
+        text-align: center;
         color: $mustard;
-        width: 0; 
-        height: 0; 
+        width: 0;
+        height: 0;
         border-left: 15px solid transparent;
-        border-right: 1.5rem solid $jet;
+        border-right: 1.4rem solid $jet;
         border-bottom: 29px solid $jet;
-          }
+
     }
-
-    i.star.icon {
-        width: 0; 
-        height: 0; 
-    }
-
-
- 
-@-webkit-keyframes example {
-    0%   {background-color: color($mustard/4); left:10px; top:0px;}
-    50%  {background-color: color($mustard/2); left:10px; top:0px;}
-    100% {background-color: $mustard; left:0px; top:0px;}
 }
 
-@keyframes example {
-    0%   {background-color: color($mustard/4); left:10px; top:0px;}
-    50%  {background-color: color($mustard/2); left:10px; top:0px;}
-    100% {background-color: $mustard; left:0px; top:0px;}
+i.star.icon {
+    width: 0;
+    height: 0;
+}
+
+.mana-bar {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    -webkit-align-self: flex-start;
+
+    .ui.buttons {
+        margin-left: 25%;
+        position: absolute;
+    }
+}
+
+@-webkit-keyframes card-add {
+    0% {
+        background-color: color($mustard/4);
+        left: 10px;
+        top: 0px;
+    }
+    50% {
+        background-color: color($mustard/2);
+        left: 10px;
+        top: 0px;
+    }
+    100% {
+        background-color: $mustard;
+        left: 0px;
+        top: 0px;
+    }
+}
+
+@keyframes card-add {
+    0% {
+        background-color: color($mustard/4);
+        left: 10px;
+        top: 0px;
+    }
+    50% {
+        background-color: color($mustard/2);
+        left: 10px;
+        top: 0px;
+    }
+    100% {
+        background-color: $mustard;
+        left: 0px;
+        top: 0px;
+    }
 }

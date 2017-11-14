@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from "./Header"
-import Filters from "./Filters"
+import MainNav from "./MainNav"
 import List from "./List"
 import Deck from "./UserDeck/Deck" 
 import { Grid } from 'semantic-ui-react'
@@ -34,21 +34,22 @@ export default class App extends React.Component {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
         search: term,
+        cost: ""
       }),
     }); 
   }
 
-  handleCostChange(mana) {
-    if (this.state.filters.cost != mana) {
+  handleCostChange(e, mana) {
+    if (this.state.filters.cost != mana.value) {
       this.setState({
         filters: Object.assign({}, this.state.filters, {
-          cost: mana
+          cost: mana.value
         }),
       });
     } else {
       this.setState({
         filters: Object.assign({}, this.state.filters, {
-          cost: false
+          cost: ""
         }),
       });
     }
@@ -80,13 +81,14 @@ export default class App extends React.Component {
     return (
       <div className="container">
         <Header />
-        <Filters searchTerm={this.handleSearch} 
+        <MainNav searchTerm={this.handleSearch} 
                  updateFilterClass={this.handleFilterClass}
                  updateExpansion={this.handleExpansionChange} 
                  class={this.state.class} 
                  resetDeck={this.handleDeckChange} 
                  updateClass={this.handleClassChange}
-                 deck={this.state.deck} />
+                 deck={this.state.deck} 
+                 />
          <List filters={this.state.filters} 
                deck={this.state.deck} 
                updateDeck={this.handleDeckChange} 
@@ -98,6 +100,7 @@ export default class App extends React.Component {
                handleCostChange={this.handleCostChange}
                />
          <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+         <ManaBar active={this.state.filters.cost} handleClick={this.handleCostChange} />
       </div>
     );
   }

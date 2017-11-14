@@ -12,7 +12,6 @@
     "deckstrings": "^1.1.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-paginate": "^4.4.4",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2",
     "whatwg-fetch": "^2.0.3"

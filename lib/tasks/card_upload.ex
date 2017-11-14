@@ -1,5 +1,4 @@
-defmodule Mix.Tasks.CardUpload do
-  use Mix.Task
+defmodule Hearthdecks.Tasks.CardUpload do
 
   alias Hearthdecks.Data.Card
   import Ecto.Query
@@ -12,8 +11,6 @@ defmodule Mix.Tasks.CardUpload do
     "Naxxramas", "One Night in Karazhan",
     "The Grand Tournament", "The League of Explorers",
     "Whispers of the Old Gods"]
-
-    @shortdoc "add all cards to db and set standard to true/false"
 
     def run(_args) do
       Enum.each(@expansions, &(add_set/1))
