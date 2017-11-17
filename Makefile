@@ -11,11 +11,11 @@ release:
 	$(eval VERSION := $(shell sed -n '/version:/s/ *version: "\(.*\)",/\1/p' mix.exs))
 	ssh root@45.55.254.134 "mkdir /hearthdecks_new"
 	scp _build/prod/rel/hearthdecks/releases/$(VERSION)/hearthdecks.tar.gz root@45.55.254.134:/hearthdecks_new/
-	ssh root@45.55.254.134 "cd /hearthdecks && ./bin/hearthdecks stop"
-	ssh root@45.55.254.134 "mv /hearthdecks /hearthdecks_old"
-	ssh root@45.55.254.134 "mv /hearthdecks_new /hearthdecks"
-	ssh root@45.55.254.134 "cd /hearthdecks && tar xzf hearthdecks.tar.gz"
-	ssh root@45.55.254.134 "cd /hearthdecks && PORT=80 ./bin/hearthdecks start"
+	ssh root@45.55.254.134 "cd /var/www/hearthdecks && ./bin/hearthdecks stop"
+	ssh root@45.55.254.134 "mv /var/www/hearthdecks /hearthdecks_old"
+	ssh root@45.55.254.134 "mv /hearthdecks_new /var/www/hearthdecks"
+	ssh root@45.55.254.134 "cd /var/www/hearthdecks && tar xzf hearthdecks.tar.gz"
+	ssh root@45.55.254.134 "cd /var/www/hearthdecks && PORT=4000 ./bin/hearthdecks start"
 	ssh root@45.55.254.134 "rm -rf /hearthdecks_old"
 
 upgrade:

@@ -15,8 +15,12 @@ use Mix.Config
 # which you typically run after static files are built.
 config :hearthdecks, HearthdecksWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "daveberget.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [port: {:system, "PORT"}],
+  url: [host: "hearthdecks.daveberget.com", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true,
+  root: ".",
+  version: Mix.Project.config[:version]
 
 # Do not print debug messages in production
 config :logger, level: :info

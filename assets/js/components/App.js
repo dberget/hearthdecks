@@ -3,7 +3,7 @@ import Header from "./Header"
 import MainNav from "./MainNav"
 import List from "./List"
 import Deck from "./UserDeck/Deck" 
-import { Grid } from 'semantic-ui-react'
+import { Grid, Message } from 'semantic-ui-react'
 import ManaBar from "./ManaBar.js"
 
 export default class App extends React.Component {
@@ -25,10 +25,31 @@ export default class App extends React.Component {
   }
 
   handleDeckChange(deck) {
+    localStorage.setItem("deck", JSON.stringify(deck));
+
     this.setState(prevState => ({
       deck: deck
     }));
+
   }
+
+  componentDidMount() {
+  const cachedDeck = localStorage.getItem("deck");
+  const cachedClass = localStorage.getItem("class");
+
+  if (cachedDeck && cachedClass) {
+    this.setState({ 
+      deck: JSON.parse(cachedDeck),
+      class: JSON.parse(cachedClass),
+    })
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        class: JSON.parse(cachedClass)
+      }),
+    }); 
+  }
+ }  
+
 
   handleSearch(term) {
     this.setState({
@@ -58,7 +79,7 @@ export default class App extends React.Component {
   handleFilterClass(filterClass) {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
-        class: filterClass,
+        class: filterClass 
       }),
     }); 
   }
@@ -72,9 +93,11 @@ export default class App extends React.Component {
   }
 
   handleClassChange(playerClass) {
+    localStorage.setItem("class", JSON.stringify(playerClass));
     this.setState(prevState => ({
       class: playerClass
-    }));
+    })
+   );
   }
 
   render () {

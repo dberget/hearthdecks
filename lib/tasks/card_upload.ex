@@ -3,7 +3,7 @@ defmodule Hearthdecks.Tasks.CardUpload do
   alias Hearthdecks.Data.Card
   import Ecto.Query
 
-    @standard ["Basic", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"]
+    @standard ["Basic", "Kobolds & Catacombs", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"]
 
     @expansions ["Basic", "Blackrock Mountain", "Classic",
     "Goblins vs Gnomes", "Hall of Fame", "Journey to Un'Goro",
@@ -12,7 +12,7 @@ defmodule Hearthdecks.Tasks.CardUpload do
     "The Grand Tournament", "The League of Explorers",
     "Whispers of the Old Gods"]
 
-    def run(_args) do
+    def run() do
       Enum.each(@expansions, &(add_set/1))
       Enum.each(@standard, &(add_standard_to_set/1))
     end

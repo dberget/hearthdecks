@@ -1,16 +1,18 @@
 import React from 'react'
 import {encode, decode} from 'deckstrings'
-import { Button, Modal, Icon, Label } from 'semantic-ui-react'
+import { Button, Modal, Icon, Label, Message } from 'semantic-ui-react'
 import { countDeck } from '../utils'
+import Clipboard from 'react-clipboard.js';
 
 export default class ExportDeck extends React.Component {
     constructor(props){
         super(props)
         
 
-        this.state = {deckstring: "", ready: false}
+        this.state = {deckstring: "", ready: false, hidden: true}
         this.handleClick = this.handleClick.bind(this)
         this.getClassdbfId = this.getClassdbfId.bind(this)
+        this.onSuccess = this.onSuccess.bind(this)
     }
 
     componentWillReceiveProps() {
@@ -63,11 +65,17 @@ export default class ExportDeck extends React.Component {
       this.setState({deckstring: deckstring});
     }
 
+    onSuccess() {
+        this.setState({hidden: false});
+    }
+
     
 
     render() { 
         return(
-        <Label onClick={this.handleClick} color="green" as="a" corner="right" icon="copy" /> 
+            <Label onClick={this.handleClick} color="green" corner="right"> 
+                <Clipboard component="a" data-clipboard-text={this.state.deckstring} onSuccess={this.onSuccess}> <Icon name="copy" /> </Clipboard>
+            </Label>
         ) 
     }
 }

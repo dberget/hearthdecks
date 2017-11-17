@@ -1,7 +1,7 @@
 import React from 'react'
 import DeckItem from './DeckItem'
 import DeckStats from './DeckStats'
-import { Header, Segment, Input, Label, Icon } from 'semantic-ui-react'
+import { Header, Segment, Input, Label, Icon, Message } from 'semantic-ui-react'
 import ExportDeck from '../Export'
 import { countDeck } from '../../utils'
 
@@ -25,7 +25,7 @@ export default class Deck extends React.Component {
 
 
     render() {
-      const { deck } = this.props
+     const { deck } = this.props 
 
      return (
        <div className="deck-container">

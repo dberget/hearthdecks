@@ -14,7 +14,13 @@ export default class List extends React.Component {
     this.scrubFilter = this.scrubFilter.bind(this)
     this.encodeQueryData = this.encodeQueryData.bind(this)
     this.handleClick = this.handleClick.bind(this)
-  } 
+  }
+
+  componentDidMount() {
+    if (this.props.deck.length) {
+      this.cards(this.props, 1)
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     const diffFilters = nextProps.filters !== this.props.filters; // if filters haven't changed, don't re-render.
