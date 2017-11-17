@@ -13,6 +13,5 @@ done
 
 set -e
 
-echo "Running migrations"  
-/var/www/hearthdecks/bin/hearthdecks rpc Elixir.Release.Tasks migrate  
+
 echo "Migrations run successfully"

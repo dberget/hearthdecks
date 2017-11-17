@@ -12,7 +12,7 @@ defmodule Hearthdecks.Tasks.CardUpload do
     "The Grand Tournament", "The League of Explorers",
     "Whispers of the Old Gods"]
 
-    def run() do
+    def run do
       Enum.each(@expansions, &(add_set/1))
       Enum.each(@standard, &(add_standard_to_set/1))
     end

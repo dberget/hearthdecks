@@ -1,5 +1,4 @@
 import React from 'react'
-import { Dropdown, Image } from 'semantic-ui-react'
 
 
 export default class ClassSelect extends React.Component {
@@ -10,12 +9,10 @@ export default class ClassSelect extends React.Component {
     }
 
     render() {
-        let imgsrc = '../../static/images/Druid.png'
-        
+        console.log(img)
+
         return (
-        <div>
-            <img src={imgsrc} /> 
-        </div>
+            <img src="/" /> 
         )
       }
 }
