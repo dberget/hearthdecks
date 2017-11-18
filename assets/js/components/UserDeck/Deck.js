@@ -30,6 +30,7 @@ export default class Deck extends React.Component {
      return (
        <div className="deck-container">
         <Segment className="deck-list">
+        <h5> {this.props.class} Deck </h5>
         <ExportDeck class={this.props.class} deck={this.props.deck} /> 
          {deck.map(card =>
           <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />

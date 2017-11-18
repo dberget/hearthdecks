@@ -18,6 +18,10 @@ export const expansions = [{
     value: "Classic",
     text: "Classic"
 }, {
+  key: "Kobolds & Catacombs",
+  value: "Kobolds & Catacombs",
+  text: "Kobolds & Catacombs"
+},{
     key: "Journey to Un'Goro",
     value: "Journey to Un'Goro",
     text: "Journey to Un'Goro"

@@ -35,6 +35,10 @@ h1 {
     padding: 5px;
     margin-right: 10px;
     width: 100%;
+
+    h1 {
+        display: inline;
+    }
 }
 
 .ui.button.resetButton {
@@ -44,7 +48,6 @@ h1 {
 .list-container {
     -webkit-flex: 4;
     flex: 4;
-    height: 627px;
 
 
     .list-body {
@@ -144,7 +147,7 @@ img.hsImage {
         color: $white;
         background-color: $darkblue;
         text-align: center;
-        width: 6%;
+        width: 7%;
         height: 29px;
     }
 
