@@ -1,6 +1,6 @@
 import React from 'react'
 import HSCard from "./HSCard.js"
-import { countDeck, countCard, sortDeck } from '../utils'
+import { countDeck, countCard, sortDeck } from '../../utils'
 import ListSearch from "./ListSearch"
 import { Grid, Button, Message, Icon } from 'semantic-ui-react'
 

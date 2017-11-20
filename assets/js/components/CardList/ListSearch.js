@@ -2,7 +2,7 @@ import React from 'react'
 import { Dropdown, Button, Search, Menu } from 'semantic-ui-react'
 import ExpansionDropdown from './ExpansionDropdown'
 import ManaBar from './ManaBar'
-import { classes } from '../constants'
+import { classes } from '../../constants'
 
 export default class ListSearch extends React.Component {
   constructor(props) {

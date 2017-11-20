@@ -1,7 +1,7 @@
 import React from 'react'
 import {encode, decode} from 'deckstrings'
 import { Button, Modal, Icon, Label, Message } from 'semantic-ui-react'
-import { countDeck } from '../utils'
+import { countDeck } from '../../utils'
 import Clipboard from 'react-clipboard.js';
 
 export default class ExportDeck extends React.Component {
@@ -9,22 +9,10 @@ export default class ExportDeck extends React.Component {
         super(props)
         
 
-        this.state = {deckstring: "", ready: false, hidden: true}
         this.handleClick = this.handleClick.bind(this)
         this.getClassdbfId = this.getClassdbfId.bind(this)
         this.onSuccess = this.onSuccess.bind(this)
     }
-
-    componentWillReceiveProps() {
-       var deckCount = countDeck(this.props.deck)
-
-       if (deckCount == 30) {
-         this.setState({ready: true});
-       } else {
-           this.setState({ready: false})
-       }
-    }
-
 
     getClassdbfId(playerClass) {
         switch (playerClass) {
@@ -58,24 +46,25 @@ export default class ExportDeck extends React.Component {
           format: 1
       };
 
-      if (this.state.ready == true) {
-        deckstring = encode(str);
-      } 
+     deckstring = encode(str);
 
-      this.setState({deckstring: deckstring});
+     return deckstring;
+    }
+
+    buttonContent() {
+        let count = countDeck(this.props.deck)
+        var text = count == 30 ? "Export" : count + "/30";
+
+        return text;
     }
 
     onSuccess() {
-        this.setState({hidden: false});
+        window.alert("copied")
     }
-
-    
 
     render() { 
         return(
-            <Label onClick={this.handleClick} color="green" corner="right"> 
-                <Clipboard component="a" data-clipboard-text={this.state.deckstring} onSuccess={this.onSuccess}> <Icon name="copy" /> </Clipboard>
-            </Label>
+             <Clipboard component="button" option-text={this.handleClick} onSuccess={this.onSuccess}> {this.buttonContent.bind(this)()} </Clipboard>
         ) 
     }
 }

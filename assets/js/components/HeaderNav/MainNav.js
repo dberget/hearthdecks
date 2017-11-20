@@ -1,9 +1,8 @@
 import React from 'react'
 import { Dropdown, Button, Search, Menu, Icon } from 'semantic-ui-react'
-import ExpansionDropdown from './ExpansionDropdown'
-import ExportDeck from "./Export"
+import ExpansionDropdown from '../CardList/ExpansionDropdown'
 import ClassSelect from "./ClassSelect"
-import { classes } from '../constants'
+import { classes } from '../../constants'
 
  
 
@@ -31,11 +30,10 @@ export default class MainNav extends React.Component {
 
     return (
       <div className="main-nav">
+      <h1> HEARTHDECKS </h1>
         <Menu secondary >
-          <Dropdown selection placeholder="select class" value={this.props.class} options={classes} onChange={this.selectClass.bind(this)} />
-          <Menu.Menu position="right">
-            <Button className="resetButton" onClick={this.resetDeck}><Icon name='undo'/> Reset Deck</Button>
-          </Menu.Menu>
+          <Dropdown selection placeholder="select class" value={this.props.class} placeholder="Select Class" options={classes} onChange={this.selectClass.bind(this)} />
+          <Button className="resetButton" onClick={this.resetDeck}><Icon name='undo'/> Reset Deck</Button>
         </Menu>
       </div>
     );

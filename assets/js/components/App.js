@@ -1,10 +1,9 @@
 import React from 'react'
-import Header from "./Header"
-import MainNav from "./MainNav"
-import List from "./List"
+import MainNav from "./HeaderNav/MainNav"
+import List from "./CardList/List"
 import Deck from "./UserDeck/Deck" 
 import { Grid, Message } from 'semantic-ui-react'
-import ManaBar from "./ManaBar.js"
+import ManaBar from "./CardList/ManaBar.js"
 
 export default class App extends React.Component {
   constructor(props){
@@ -103,7 +102,6 @@ export default class App extends React.Component {
   render () {
     return (
       <div className="container">
-        <Header />
         <MainNav searchTerm={this.handleSearch} 
                  updateFilterClass={this.handleFilterClass}
                  updateExpansion={this.handleExpansionChange} 

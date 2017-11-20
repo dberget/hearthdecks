@@ -21,7 +21,7 @@ html body {
 
 h1 {
     color: $white;
-    margin: 10px;
+    margin: 0px;
 }
 
 .ui.icon.button {
@@ -42,6 +42,7 @@ h1 {
 }
 
 .ui.button.resetButton {
+    margin-left: 4px;
     height: inherit;
 }
 
@@ -62,7 +63,7 @@ h1 {
         padding: 5px;
         overflow: hidden;
         background-color: white;
-        min-height: 627px;
+        min-height: 550px;
     }
 
     .card-entries {
@@ -116,14 +117,11 @@ img.hsImage {
     align-self: flex-start;
     -webkit-flex: 1;
     flex: 1;
-    height: 627px;
 
     .deck-list {
         line-height: 2rem;
+    }
 
-        :nth-child(2) {
-            margin-top: 15px;
-        }
     }
 
     .deck-card {
@@ -162,7 +160,19 @@ img.hsImage {
         border-bottom: 29px solid $jet;
 
     }
-}
+
+    .deck-name {
+        margin: auto;
+        font-size: 1.4rem;
+    }
+
+    button {
+        float: right;
+        background-color: transparent;
+        border: solid;
+        border-width: thin;
+    }
+
 
 i.star.icon {
     width: 0;
