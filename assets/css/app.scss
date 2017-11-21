@@ -180,15 +180,29 @@ i.star.icon {
 }
 
 .mana-bar {
-    position: relative;
-    margin: auto;
-    width: 100%;
-    -webkit-align-self: flex-start;
+    margin: 5px auto;
+    height: 40px;
+    width: 33%;
 
     .ui.buttons {
-        margin-left: 25%;
-        position: absolute;
+        margin: auto;
+        width: 100%;
+        color: white;
     }
+}
+
+#flash_notice {
+    text-align: center;
+	width:400px;
+	padding:10px;
+	background: $mustard;
+	color: $jet;
+	height:50px;
+	line-height:30px;
+	border:1px solid #060;
+	font-size:12pt;
+    margin-top:30px;
+    border-radius: 5px;
 }
 
 @-webkit-keyframes card-add {

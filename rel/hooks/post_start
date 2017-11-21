@@ -12,6 +12,3 @@ while true; do
 done
 
 set -e
-
-bin/people_tracker rpc Elixir.Release.Tasks update  
-echo "Migrations run successfully"

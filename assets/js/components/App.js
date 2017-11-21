@@ -2,8 +2,9 @@ import React from 'react'
 import MainNav from "./HeaderNav/MainNav"
 import List from "./CardList/List"
 import Deck from "./UserDeck/Deck" 
-import { Grid, Message } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import ManaBar from "./CardList/ManaBar.js"
+import { DeckSuccess } from './Messages/DeckSuccess'
 
 export default class App extends React.Component {
   constructor(props){
@@ -119,9 +120,10 @@ export default class App extends React.Component {
                class={this.state.class}
                activeMana={this.state.filters.cost}
                handleCostChange={this.handleCostChange}
+               active={this.state.filters.cost}
+               handleCostClick={this.handleCostChange}
                />
          <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
-         <ManaBar active={this.state.filters.cost} handleClick={this.handleCostChange} />
       </div>
     );
   }

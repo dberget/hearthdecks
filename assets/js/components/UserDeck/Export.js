@@ -1,7 +1,7 @@
 import React from 'react'
 import {encode, decode} from 'deckstrings'
 import { Button, Modal, Icon, Label, Message } from 'semantic-ui-react'
-import { countDeck } from '../../utils'
+import { countDeck, flash_notice } from '../../utils'
 import Clipboard from 'react-clipboard.js';
 
 export default class ExportDeck extends React.Component {
@@ -36,19 +36,26 @@ export default class ExportDeck extends React.Component {
     }
 
     handleClick() {
-      let deck = this.props.deck
-      let heroId = this.getClassdbfId(this.props.class)
-      let deckstring = ""
+      let count = countDeck(this.props.deck)
 
-      let str = {
-          cards: deck.map((e) => [parseInt(e.dbfId), e.count]),
-          heroes: heroId,
-          format: 1
-      };
+      if (count == 30) {
+        let deck = this.props.deck
+        let heroId = this.getClassdbfId(this.props.class)
+        let deckstring = ""
+        let str = {
+            cards: deck.map((e) => [parseInt(e.dbfId), e.count]),
+            heroes: heroId,
+            format: 1
+        };
+       deckstring = encode(str);
+       return deckstring;
 
-     deckstring = encode(str);
+      } else {
+          flash_notice(`Erm, You need 30 Cards to export. Add ${30 - count} more.`)
+      }
+      
 
-     return deckstring;
+    
     }
 
     buttonContent() {
@@ -59,7 +66,7 @@ export default class ExportDeck extends React.Component {
     }
 
     onSuccess() {
-        window.alert("copied")
+        flash_notice("Deck Copied Successfully!")
     }
 
     render() { 

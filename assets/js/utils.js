@@ -1,4 +1,7 @@
-export function countDeck(deck){
+import React from 'react'
+import { Message } from 'semantic-ui-react'
+
+export const countDeck = (deck) => {
     if (deck.length == 0) {
       var deckCount = 0;
     } else {
@@ -9,8 +12,9 @@ export function countDeck(deck){
     return deckCount;
   }
   
- export function countCard(card, deck){
+ export const countCard = (card, deck) => { 
     var count = 0
+
     for (var i = 0; i < deck.length; ++i) {
       if (deck[i].name == card.name)
         count++;
@@ -18,6 +22,18 @@ export function countDeck(deck){
     return count;
   }
 
+  export function flash_notice(message) {
+    let notice = $('<div></div>').attr('id', 'flash_notice').html(message);
+    notice.css('position', 'absolute');
+    notice.css('z-index', 1050);
+    $('body').append(notice.hide());
+    notice.css('left', ($('body').width() / 2) - (notice.width() / 2)) + 'px';
+    notice.css('top', $(window).scrollTop() + 'px');
+    notice.fadeIn();
+
+    function remove_notice() { notice.fadeOut(function() { notice.remove() }); }
+    setTimeout(remove_notice, 3000);
+  }
 
   export const sortDeck = (a, b) => {
     if (a.cost < b.cost) {

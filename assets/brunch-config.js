@@ -12,7 +12,12 @@ exports.config = {
   },
 
   conventions: {
-    assets: /^(static)/
+    assets: [
+      /^(static)/
+    ],
+    ignored: [
+      /\test.js$/
+    ]
   },
 
   // Phoenix paths configuration
@@ -26,12 +31,16 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
-      presets: ['env', 'react'],
+      presets: ['es2015', 'react'],
     },
   },
 
   npm: {
     enabled: true,
+    globals: {
+      $: 'jquery',
+      jQuery: 'jquery'
+    },
     whitelist: [
       "react",
       "react-dom"
