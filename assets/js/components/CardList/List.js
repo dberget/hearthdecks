@@ -4,7 +4,7 @@ import ManaBar from './ManaBar'
 import { countDeck, countCard, sortDeck, flash_notice } from '../../utils'
 import ListSearch from "./ListSearch"
 import { Grid, Button, Message, Icon } from 'semantic-ui-react'
-import { encodeQueryData } from '../ApiHelpers/GetCards'
+import { encodeQueryData, scrubFilters } from '../Helpers/ApiHelpers'
 
 export default class List extends React.Component {
    constructor(props){
@@ -23,7 +23,7 @@ export default class List extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const diffFilters = nextProps.filters !== this.props.filters; // if filters haven't changed, don't re-render.
+    const diffFilters = nextProps.filters !== this.props.filters; 
     
     if (diffFilters) {
       this.cards(nextProps, 1)
@@ -49,7 +49,8 @@ export default class List extends React.Component {
  }
 
   cards(props, page) {
-    var request = encodeQueryData(props.filters)
+    var filters = scrubFilters(props.filters)
+    var request = encodeQueryData(filters)
 
     fetch(`/cards?page=${page}&${request}`, {
       headers: {
@@ -83,8 +84,6 @@ export default class List extends React.Component {
     } else {
       return
     };
-
-    deck.sort(sortDeck);
     
     this.props.updateDeck(deck)
   }

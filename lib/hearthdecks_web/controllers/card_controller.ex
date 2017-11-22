@@ -15,11 +15,21 @@ defmodule HearthdecksWeb.CardController do
       page = 
         params
         |> index_filters
-        |> IO.inspect
         |> Cards.all
   
       render conn, "index.json", page: page
     end
+
+    def dbfid(conn, params) do
+      deck = 
+        params
+        |> split 
+        |> Cards.select
+  
+      render conn, "card_select.json", deck: deck
+    end
+
+    defp split(params), do: String.split(params["dbfids"], ",")
 
     defp current_page(params), do: Map.get(params, "page", 1)
 

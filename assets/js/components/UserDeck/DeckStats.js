@@ -1,6 +1,8 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
+// Work in Progress component.
+
 export default class DeckStats extends React.Component {
     constructor(props) {
         super(props)

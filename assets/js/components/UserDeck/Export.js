@@ -48,6 +48,7 @@ export default class ExportDeck extends React.Component {
             format: 1
         };
        deckstring = encode(str);
+
        return deckstring;
 
       } else {

@@ -18,6 +18,18 @@ defmodule Hearthdecks.Cards do
         |> Repo.paginate(page: opts.page, page_size: 8)
     end
 
+    def select(ids) do
+        Card
+        |> by_dbfid(ids)
+        |> Repo.paginate(page: 1, page_size: 30)
+    end
+
+    defp by_dbfid(q, ids) do
+        from c in q,
+        where: c.dbfId in ^ids
+    end
+         
+
     # defp filter({field, value}, query) when is_list(value), do: where(query, [o], field(o, ^field) in ^value)
     # defp filter({field, value}, query), do: where(query, [o], field(o, ^field) == ^value)
     # defp filters(query, filters), do: Enum.reduce(filters, query, &filter/2)
@@ -47,8 +59,6 @@ defmodule Hearthdecks.Cards do
         from c in q,
         where: [cost: ^mana]
     end
-
-
 
     def player_class(q, nil), do: q
     def player_class(q, class) do

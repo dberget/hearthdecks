@@ -3,6 +3,7 @@ import MainNav from "./HeaderNav/MainNav"
 import List from "./CardList/List"
 import Deck from "./UserDeck/Deck" 
 import { Grid } from 'semantic-ui-react'
+import { sortDeck } from '../utils'
 import ManaBar from "./CardList/ManaBar.js"
 import { DeckSuccess } from './Messages/DeckSuccess'
 
@@ -22,34 +23,39 @@ export default class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this)
     this.handleFilterClass = this.handleFilterClass.bind(this)
     this.handleCostChange = this.handleCostChange.bind(this)
+    this.handleDeckUpload = this.handleDeckUpload.bind(this)
   }
 
-  handleDeckChange(deck) {
-    localStorage.setItem("deck", JSON.stringify(deck));
+   componentdidmount() {
+     const cachedDeck = localstorage.getitem("deck");
+     const cachedClass = localstorage.getitem("class");
 
-    this.setState(prevState => ({
-      deck: deck
-    }));
+     if (cachedDeck && cachedClass) {
+       this.setstate({
+         deck: json.parse(cachedDeck),
+         class: json.parse(cachedClass),
+         filters: object.assign({}, this.state.filters, {
+          class: json.parse(cachedClass)
+        }),
+       })
+     }
+   }
 
-  }
+ handleDeckChange(deck) {
+  deck.sort(sortDeck);
+  localStorage.setItem("deck", JSON.stringify(deck));
 
-  componentDidMount() {
-  const cachedDeck = localStorage.getItem("deck");
-  const cachedClass = localStorage.getItem("class");
+  this.setState(prevState => ({
+    deck: deck
+  }));
 
-  if (cachedDeck && cachedClass) {
-    this.setState({ 
-      deck: JSON.parse(cachedDeck),
-      class: JSON.parse(cachedClass),
-    })
-    this.setState({
-      filters: Object.assign({}, this.state.filters, {
-        class: JSON.parse(cachedClass)
-      }),
-    }); 
-  }
- }  
+}
 
+handleDeckUpload(deck, playerClass) {
+  this.handleDeckChange(deck);
+  this.handleClassChange(playerClass);
+  this.handleFilterClass(playerClass);
+}
 
   handleSearch(term) {
     this.setState({
@@ -123,7 +129,10 @@ export default class App extends React.Component {
                active={this.state.filters.cost}
                handleCostClick={this.handleCostChange}
                />
-         <Deck class={this.state.class} deck={this.state.deck} updateDeck={this.handleDeckChange} />
+         <Deck class={this.state.class} 
+               deck={this.state.deck} 
+               handleDeckUpload={this.handleDeckUpload} 
+               />
       </div>
     );
   }

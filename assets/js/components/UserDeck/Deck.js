@@ -2,6 +2,7 @@ import React from 'react'
 import DeckItem from './DeckItem'
 import { Header, Segment, Input, Label, Icon } from 'semantic-ui-react'
 import ExportDeck from './Export'
+import ImportDeck from './ImportDeck'
 import { countDeck } from '../../utils'
 
 export default class Deck extends React.Component {
@@ -22,8 +23,6 @@ export default class Deck extends React.Component {
       this.props.updateDeck(deck)
     }
 
-   
-
 
     render() {
      const { deck } = this.props 
@@ -37,6 +36,7 @@ export default class Deck extends React.Component {
           <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />
          )}
         </Segment>
+        <ImportDeck uploadDeck={this.props.handleDeckUpload}  />
        </div>
      );
     }
