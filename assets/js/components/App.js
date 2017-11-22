@@ -26,16 +26,18 @@ export default class App extends React.Component {
     this.handleDeckUpload = this.handleDeckUpload.bind(this)
   }
 
-   componentdidmount() {
-     const cachedDeck = localstorage.getitem("deck");
-     const cachedClass = localstorage.getitem("class");
+   componentDidMount() {
+     const cachedDeck = localStorage.getItem("deck");
+     const cachedClass = localStorage.getItem("class");
+
+     console.log(cachedDeck, cachedClass)
 
      if (cachedDeck && cachedClass) {
-       this.setstate({
-         deck: json.parse(cachedDeck),
-         class: json.parse(cachedClass),
-         filters: object.assign({}, this.state.filters, {
-          class: json.parse(cachedClass)
+       this.setState({
+         deck: JSON.parse(cachedDeck),
+         class: JSON.parse(cachedClass),
+         filters: Object.assign({}, this.state.filters, {
+          class: JSON.parse(cachedClass)
         }),
        })
      }
