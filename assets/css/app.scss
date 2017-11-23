@@ -3,7 +3,6 @@ $darkgrey: #4E5560;
 $jet: #2F2F2F;
 $mustard: #FFC857;
 $white: #ffffff;
-
 .container {
     display: -webkit-flex;
     display: flex;
@@ -35,7 +34,6 @@ h1 {
     padding: 5px;
     margin-right: 10px;
     width: 100%;
-
     h1 {
         display: inline;
     }
@@ -49,8 +47,6 @@ h1 {
 .list-container {
     -webkit-flex: 4;
     flex: 4;
-
-
     .list-body {
         display: -webkit-flex;
         display: flex;
@@ -65,7 +61,6 @@ h1 {
         background-color: white;
         min-height: 550px;
     }
-
     .card-entries {
         display: -webkit-flex;
         display: flex;
@@ -76,21 +71,18 @@ h1 {
         flex: 3;
         height: 100%;
     }
-
     .ui.menu {
         border-bottom: 0px;
         margin: 0 0 0 0;
         max-height: 0%;
-        background-color: $white; 
+        background-color: $white;
         border-radius: 0;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
     }
-
     .ui.search .prompt {
         border-radius: 10px;
     }
-
     .ui.button.next-button {
         margin-left: auto;
     }
@@ -105,74 +97,110 @@ img.hsImage {
     width: 80%;
     display: block;
     margin: -15px auto;
-
     &:hover {
         cursor: pointer;
     }
 }
 
 .deck-container {
-    margin: 0px 0px 0px 5px;
+    margin: 0 10px 0 10px;
     -webkit-align-self: flex-start;
     align-self: flex-start;
     -webkit-flex: 1;
     flex: 1;
+}
 
-    .deck-list {
-        line-height: 2rem;
+.deck-list {
+    line-height: 2rem;
+    margin: 10px 0px 10px 0px;
+}
+
+.deck-card {
+    margin: .25rem;
+    border: 1px solid;
+    border-radius: 5px;
+    -webkit-animation-name: card-add;
+    -webkit-animation-duration: .5s;
+    animation-name: card-add;
+    animation-duration: .5s;
+    &:hover {
+        cursor: pointer;
+        background-color: $mustard;
     }
+}
 
-    }
+.mana {
+    display: inline-block;
+    color: $white;
+    background-color: $darkblue;
+    text-align: center;
+    width: 7%;
+    height: 29px;
+}
 
-    .deck-card {
-        margin: .25rem;
-        border: 1px solid;
-        border-radius: 5px;
-        -webkit-animation-name: card-add;
-        -webkit-animation-duration: .5s;
-        animation-name: card-add;
-        animation-duration: .5s;
+span.count {
+    float: right;
+    text-align: center;
+    color: $mustard;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 1.4rem solid $jet;
+    border-bottom: 29px solid $jet;
+}
 
-        &:hover {
-            cursor: pointer;
-            background-color: $mustard;
-        }
+.deck-name {
+    font-size: 1.4rem;
+    text-align: center;
+}
 
-        
-    }
-    .mana {
-        display: inline-block;
-        color: $white;
-        background-color: $darkblue;
-        text-align: center;
-        width: 7%;
-        height: 29px;
-    }
+.deck--footer {
+    width: 100%;
 
-    span.count {
+    .import {
         float: right;
-        text-align: center;
-        color: $mustard;
-        width: 0;
-        height: 0;
-        border-left: 15px solid transparent;
-        border-right: 1.4rem solid $jet;
-        border-bottom: 29px solid $jet;
-
-    }
-
-    .deck-name {
-        margin: auto;
-        font-size: 1.4rem;
-    }
-
-    button {
-        float: right;
+        width: 45%;
         background-color: transparent;
         border: solid;
         border-width: thin;
+        padding: 5px;
+
+        &:hover {
+            cursor: pointer;
+            color: white;
+            background-color: $darkgrey;
+        }
     }
 
+    .import .field {
+        width: 100%;
+        
+    }
+
+   .export {
+        min-width: 50px;
+        width: 45%;
+        background-color: transparent;
+        border: solid;
+        border-width: thin;
+        padding: 5px;
+
+        &:hover {
+            cursor: pointer;
+            color: white;
+            background-color: $darkgrey;
+        }
+    }
+
+    .ui.form {
+        margin-top: 5px;
+
+        .button {
+            margin-top: 3px;
+        }
+
+    }
+}
 
 i.star.icon {
     width: 0;
@@ -183,7 +211,6 @@ i.star.icon {
     margin: 5px auto;
     height: 40px;
     width: 33%;
-
     .ui.buttons {
         margin: auto;
         width: 100%;
@@ -193,15 +220,15 @@ i.star.icon {
 
 #flash_notice {
     text-align: center;
-	width:400px;
-	padding:10px;
-	background: $mustard;
-	color: $jet;
-	height:50px;
-	line-height:30px;
-	border:1px solid #060;
-	font-size:12pt;
-    margin-top:30px;
+    width: 400px;
+    padding: 10px;
+    background: $mustard;
+    color: $jet;
+    height: 50px;
+    line-height: 30px;
+    border: 1px solid #060;
+    font-size: 12pt;
+    margin-top: 30px;
     border-radius: 5px;
 }
 

@@ -54,9 +54,6 @@ export default class ExportDeck extends React.Component {
       } else {
           flash_notice(`Erm, You need 30 Cards to export. Add ${30 - count} more.`)
       }
-      
-
-    
     }
 
     buttonContent() {
@@ -72,7 +69,7 @@ export default class ExportDeck extends React.Component {
 
     render() { 
         return(
-             <Clipboard component="button" option-text={this.handleClick} onSuccess={this.onSuccess}> {this.buttonContent.bind(this)()} </Clipboard>
+             <Clipboard className="button export" component="button" option-text={this.handleClick} onSuccess={this.onSuccess}> {this.buttonContent.bind(this)()} </Clipboard>
         ) 
     }
 }

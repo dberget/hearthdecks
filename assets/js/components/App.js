@@ -30,8 +30,6 @@ export default class App extends React.Component {
      const cachedDeck = localStorage.getItem("deck");
      const cachedClass = localStorage.getItem("class");
 
-     console.log(cachedDeck, cachedClass)
-
      if (cachedDeck && cachedClass) {
        this.setState({
          deck: JSON.parse(cachedDeck),
@@ -133,6 +131,7 @@ handleDeckUpload(deck, playerClass) {
                />
          <Deck class={this.state.class} 
                deck={this.state.deck} 
+               updateDeck = {this.handleDeckChange}
                handleDeckUpload={this.handleDeckUpload} 
                />
       </div>

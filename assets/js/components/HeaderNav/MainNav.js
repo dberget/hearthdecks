@@ -37,7 +37,6 @@ export default class MainNav extends React.Component {
       <h1> HEARTHDECKS </h1>
         <Menu secondary >
           <Dropdown selection placeholder="select class" value={this.props.class} placeholder="Select Class" options={classes} onChange={this.selectClass.bind(this)} />
-          <Button className="resetButton" onClick={this.resetDeck}><Icon name='undo'/> New Class </Button>
           <Button className="resetButton" onClick={this.resetDeck}><Icon name='undo'/> Reset Deck</Button>
         </Menu>
       </div>

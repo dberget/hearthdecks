@@ -1,15 +1,17 @@
 import React from 'react'
 import {encode, decode} from 'deckstrings'
-import { Form, Button } from 'semantic-ui-react'
-import { countDeck, flash_notice } from '../../utils'
+import { Form, Button, Input } from 'semantic-ui-react'
 import Clipboard from 'react-clipboard.js';
+
+import { countDeck, flash_notice } from '../../utils'
+import ImportButton from './ImportButton'
 import { processDeck, addCount } from '../Helpers/DeckHelpers';
 
 export default class ImportDeck extends React.Component {
     constructor(props){
         super(props)
         
-        this.state = {deckstring: '', deck: []}
+        this.state = {deckstring: '', deck: [], isExpanded: false}
 
         this.getClassbydbfId = this.getClassbydbfId.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -57,10 +59,14 @@ export default class ImportDeck extends React.Component {
      };
 
 
-      handleChange(e, { name, value }) { 
+    handleChange(e, { name, value }) { 
         this.setState(deckstring => ({
             deckstring: value
-          }));
+        }));
+    }
+
+    handleExpand() {
+        this.setState({isExpanded: !this.state.isExpanded})
     }
 
     handleUpload() {
@@ -68,19 +74,26 @@ export default class ImportDeck extends React.Component {
         var userDeck = processDeck(deck)
         var playerClass = this.getClassbydbfId(deck.heroes)
 
-        this.setState({deckstring: ""})
+        this.setState({deckstring: "", deck: [], isExpanded: false})
         this.getCards(userDeck, deck.cards, playerClass)
     }
 
 
     render() { 
-       const { deckstring } = this.state
+       const { deckstring, isExpanded } = this.state
 
         return(
-            <Form onSubmit={this.handleUpload}> 
-              <Form.Input onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
-               <Button type='submit'> Upload </Button>
-            </Form>
+            <span>
+                {isExpanded ? ( 
+                    <Form onSubmit={this.handleUpload}>
+                        <Input fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
+                        <Button type='submit' size='tiny' basic > Upload </Button>
+                        <Button onClick={this.handleExpand.bind(this)} size='tiny' color='red' basic> Cancel </Button>
+                    </Form>
+                 ) : (
+                    <ImportButton onClick={this.handleExpand.bind(this)} />
+                )}
+            </span>
         ) 
     }
 }
