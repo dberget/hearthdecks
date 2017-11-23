@@ -3,6 +3,7 @@ $darkgrey: #4E5560;
 $jet: #2F2F2F;
 $mustard: #FFC857;
 $white: #ffffff;
+
 .container {
     display: -webkit-flex;
     display: flex;
@@ -119,10 +120,12 @@ img.hsImage {
     margin: .25rem;
     border: 1px solid;
     border-radius: 5px;
+    position: relative;
     -webkit-animation-name: card-add;
     -webkit-animation-duration: .5s;
     animation-name: card-add;
     animation-duration: .5s;
+
     &:hover {
         cursor: pointer;
         background-color: $mustard;
@@ -160,6 +163,7 @@ span.count {
     .import {
         float: right;
         width: 45%;
+        border-radius: .28571429rem;
         background-color: transparent;
         border: solid;
         border-width: thin;
@@ -179,6 +183,7 @@ span.count {
 
    .export {
         min-width: 50px;
+        border-radius: .28571429rem;
         width: 45%;
         background-color: transparent;
         border: solid;
@@ -226,7 +231,6 @@ i.star.icon {
     color: $jet;
     height: 50px;
     line-height: 30px;
-    border: 1px solid #060;
     font-size: 12pt;
     margin-top: 30px;
     border-radius: 5px;
@@ -235,17 +239,17 @@ i.star.icon {
 @-webkit-keyframes card-add {
     0% {
         background-color: color($mustard/4);
-        left: 10px;
+        right: 10px;
         top: 0px;
     }
     50% {
         background-color: color($mustard/2);
-        left: 10px;
+        right: 5px;
         top: 0px;
     }
     100% {
         background-color: $mustard;
-        left: 0px;
+        right: 0px;
         top: 0px;
     }
 }
@@ -253,17 +257,17 @@ i.star.icon {
 @keyframes card-add {
     0% {
         background-color: color($mustard/4);
-        left: 10px;
+        right: 10px;
         top: 0px;
     }
     50% {
         background-color: color($mustard/2);
-        left: 10px;
+        right: 5px;
         top: 0px;
     }
     100% {
         background-color: $mustard;
-        left: 0px;
+        right: 0px;
         top: 0px;
     }
 }

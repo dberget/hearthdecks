@@ -64,17 +64,17 @@ export default class List extends React.Component {
   }
 
   handleCardClick(card) {
-    let maxDeckSize = 30
     let deck = this.props.deck
+    let maxDeckSize = 30
     let count = countCard(card, deck)
     let deckSize = countDeck(deck) 
     let maxCardCount = card.rarity == "Legendary" ? 1 : 2;
 
     if (deckSize == maxDeckSize) { 
       flash_notice("Your Deck has Reached 30 Cards") 
-      return
+      return 
     } else if (count == maxCardCount) {
-      return
+      return 
     } else if (count == 0) {
       card.count = 1
       deck.push(card)

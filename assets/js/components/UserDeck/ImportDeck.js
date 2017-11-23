@@ -11,7 +11,7 @@ export default class ImportDeck extends React.Component {
     constructor(props){
         super(props)
         
-        this.state = {deckstring: '', deck: [], isExpanded: false}
+        this.state = {deckstring: '', deck: [], hidden: true}
 
         this.getClassbydbfId = this.getClassbydbfId.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -66,7 +66,8 @@ export default class ImportDeck extends React.Component {
     }
 
     handleExpand() {
-        this.setState({isExpanded: !this.state.isExpanded})
+        this.setState({hidden: !this.state.hidden})
+        this.setState({ active: !this.state.active })
     }
 
     handleUpload() {
@@ -80,19 +81,15 @@ export default class ImportDeck extends React.Component {
 
 
     render() { 
-       const { deckstring, isExpanded } = this.state
+       const { deckstring, hidden } = this.state
 
         return(
             <span>
-                {isExpanded ? ( 
-                    <Form onSubmit={this.handleUpload}>
-                        <Input fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
-                        <Button type='submit' size='tiny' basic > Upload </Button>
-                        <Button onClick={this.handleExpand.bind(this)} size='tiny' color='red' basic> Cancel </Button>
-                    </Form>
-                 ) : (
                     <ImportButton onClick={this.handleExpand.bind(this)} />
-                )}
+                    <Form hidden={hidden} onSubmit={this.handleUpload}>
+                        <Input inline fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
+                        <Button type='submit' size='tiny' basic > Upload </Button>
+                    </Form>
             </span>
         ) 
     }
