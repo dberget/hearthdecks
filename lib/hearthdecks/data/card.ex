@@ -14,6 +14,7 @@ defmodule Hearthdecks.Data.Card do
     field :imgGold, :string
     field :playerClass, :string
     field :rarity, :string
+    field :race, :string
     field :collectible, :boolean
     field :cost, :integer
     field :text, :string
@@ -27,7 +28,7 @@ defmodule Hearthdecks.Data.Card do
   @doc false
   def changeset(%Card{} = card, attrs) do
     card
-    |> cast(attrs, [:cardId, :standard, :dbfId, :name, :cardSet, :type, :faction, :img, :imgGold, :playerClass, :rarity, :collectible, :cost, :text, :attack, :health])
+    |> cast(attrs, [:cardId, :race, :standard, :dbfId, :name, :cardSet, :type, :faction, :img, :imgGold, :playerClass, :rarity, :collectible, :cost, :text, :attack, :health])
     |> validate_required([])
   end
 end

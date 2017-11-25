@@ -72,6 +72,7 @@ defmodule Hearthdecks.Cards do
     from c in query,
         where: ilike(c.name, ^"%#{t}%"),
         or_where: ilike(c.text, ^"%#{t}%"),
+        or_where: ilike(c.race, ^"%#{t}%"),
         or_where: ilike(c.rarity, ^"%#{t}%")
     end
 end

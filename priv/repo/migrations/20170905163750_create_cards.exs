@@ -8,6 +8,7 @@ defmodule Hearthdecks.Repo.Migrations.CreateCards do
       add :name, :string
       add :cardSet, :string
       add :type, :string
+      add :race, :string
       add :faction, :string
       add :img, :string
       add :imgGold, :string

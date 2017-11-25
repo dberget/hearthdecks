@@ -100,6 +100,7 @@ handleDeckUpload(deck, playerClass) {
 
   handleClassChange(playerClass) {
     localStorage.setItem("class", JSON.stringify(playerClass));
+
     this.setState(prevState => ({
       class: playerClass
     })

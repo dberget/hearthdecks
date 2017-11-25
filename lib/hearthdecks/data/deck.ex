@@ -6,7 +6,7 @@ defmodule Hearthdecks.Data.Deck do
 
   schema "decks" do
       field :name, :string
-      field :cards, :map
+      field :deckstring, :string
     timestamps()
   end
 

@@ -3,6 +3,7 @@ defmodule Hearthdecks.Repo.Migrations.CreateDecks do
 
   def change do
     create table(:decks) do
+      add :deckstring, :string
 
       timestamps()
     end
