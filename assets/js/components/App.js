@@ -14,7 +14,8 @@ export default class App extends React.Component {
     this.state = {
       class: "",
       filters: {},
-      deck: []
+      deck: [],
+      maxCardCount: 2
     }
 
     this.handleDeckChange = this.handleDeckChange.bind(this)
@@ -24,6 +25,7 @@ export default class App extends React.Component {
     this.handleFilterClass = this.handleFilterClass.bind(this)
     this.handleCostChange = this.handleCostChange.bind(this)
     this.handleDeckUpload = this.handleDeckUpload.bind(this)
+    this.handleMaxCard = this.handleMaxCard.bind(this)
   }
 
    componentDidMount() {
@@ -51,6 +53,15 @@ export default class App extends React.Component {
 
 }
 
+handleMaxCard(renoMode) {
+  var maxCount = renoMode ? 1 : 2;
+  
+  this.setState(prevState => ({
+    maxCardCount: maxCount
+  }));
+
+}
+
 handleDeckUpload(deck, playerClass) {
   this.handleDeckChange(deck);
   this.handleClassChange(playerClass);
@@ -61,7 +72,8 @@ handleDeckUpload(deck, playerClass) {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
         search: term,
-        cost: ""
+        cost: "",
+        expansion: ""
       }),
     }); 
   }
@@ -129,8 +141,10 @@ handleDeckUpload(deck, playerClass) {
                handleCostChange={this.handleCostChange}
                active={this.state.filters.cost}
                handleCostClick={this.handleCostChange}
+               maxCardCount={this.state.maxCardCount}
                />
          <Deck class={this.state.class} 
+               handleMaxCard={this.handleMaxCard}
                deck={this.state.deck} 
                updateDeck = {this.handleDeckChange}
                handleDeckUpload={this.handleDeckUpload} 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {encode, decode} from 'deckstrings'
-import { Form, Button, Input } from 'semantic-ui-react'
+import { Form, Button, Input, Radio } from 'semantic-ui-react'
 import Clipboard from 'react-clipboard.js';
 
 import { countDeck, flash_notice } from '../../utils'
@@ -11,12 +11,13 @@ export default class ImportDeck extends React.Component {
     constructor(props){
         super(props)
         
-        this.state = {deckstring: '', deck: [], hidden: true}
+        this.state = {deckstring: '', deck: [], hidden: true, checked: false}
 
         this.getClassbydbfId = this.getClassbydbfId.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleUpload = this.handleUpload.bind(this)
         this.getCards = this.getCards.bind(this)
+        this.handleToggle = this.handleToggle.bind(this)
     }
 
     getClassbydbfId(playerClass) {
@@ -66,7 +67,7 @@ export default class ImportDeck extends React.Component {
     }
 
     handleExpand() {
-        this.setState({hidden: !this.state.hidden})
+        this.setState({ hidden: !this.state.hidden })
         this.setState({ active: !this.state.active })
     }
 
@@ -75,21 +76,26 @@ export default class ImportDeck extends React.Component {
         var userDeck = processDeck(deck)
         var playerClass = this.getClassbydbfId(deck.heroes)
 
-        this.setState({deckstring: "", deck: [], isExpanded: false})
+        this.setState({deckstring: "", deck: [], hidden: false})
         this.getCards(userDeck, deck.cards, playerClass)
     }
 
+    handleToggle(e, {value}) { 
+        this.props.handleMaxCard(!this.state.checked)
+        this.setState({checked: !this.state.checked})
+    }
 
     render() { 
-       const { deckstring, hidden } = this.state
+       const { deckstring, hidden, checked } = this.state
 
         return(
             <span>
                     <ImportButton onClick={this.handleExpand.bind(this)} />
                     <Form hidden={hidden} onSubmit={this.handleUpload}>
-                        <Input inline fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
+                        <Input fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
                         <Button type='submit' size='tiny' basic > Upload </Button>
                     </Form>
+                    <Radio onChange={this.handleToggle} checked={this.state.checked === true} label='Reno Mode?' toggle />
             </span>
         ) 
     }

@@ -8,7 +8,7 @@ export default class DeckItem extends React.Component {
       <div className="deck-card" onClick={this.props.onClick(this.props)}>
         <span className="mana"> {this.props.mana} </span> 
         <span className="card-name"> {this.props.name} </span> 
-        <Count count={this.props.count} star={this.props.rarity} />
+        <Count count={this.props.count} rarity={this.props.rarity} />
       </div>
   );
  }

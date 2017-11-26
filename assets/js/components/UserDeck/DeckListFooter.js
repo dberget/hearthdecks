@@ -8,7 +8,7 @@ const DeckListFooter = (props) => {
     return(
     <div className="deck--footer">
     <ExportDeck class={props.class} deck={props.deck} /> 
-    <ImportDeck uploadDeck={props.handleDeckUpload}  />
+    <ImportDeck handleMaxCard={props.handleMaxCard} uploadDeck={props.handleDeckUpload}  />
     </div>
     )
 }

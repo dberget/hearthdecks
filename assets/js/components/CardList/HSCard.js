@@ -20,7 +20,7 @@ export default class HSCard extends React.Component {
     return (
       <div className="img-container"> 
        <Transition animation={animation} duration={duration} visible={visible}>
-        <img className="hsImage" onClick={this.handleClick} src={this.props.data.img} />
+        <img style={this.props.style} className="hsImage" onClick={this.handleClick} src={this.props.data.img} />
        </Transition>
       </div>
     )

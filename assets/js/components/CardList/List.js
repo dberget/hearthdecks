@@ -3,6 +3,7 @@ import HSCard from "./HSCard.js"
 import ManaBar from './ManaBar'
 import { countDeck, countCard, sortDeck, flash_notice } from '../../utils'
 import ListSearch from "./ListSearch"
+import ClassSelect from './ClassSelect'
 import { Grid, Button, Message, Icon } from 'semantic-ui-react'
 import { encodeQueryData, scrubFilters } from '../Helpers/ApiHelpers'
 
@@ -68,7 +69,7 @@ export default class List extends React.Component {
     let maxDeckSize = 30
     let count = countCard(card, deck)
     let deckSize = countDeck(deck) 
-    let maxCardCount = card.rarity == "Legendary" ? 1 : 2;
+    let maxCardCount = card.rarity == "Legendary" ? 1 : this.props.maxCardCount;
 
     if (deckSize == maxDeckSize) { 
       flash_notice("Your Deck has Reached 30 Cards") 

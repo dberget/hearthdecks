@@ -36,7 +36,7 @@ export default class Deck extends React.Component {
             <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />
            )}
           </div>
-          <DeckListFooter class={this.props.class} handleDeckUpload={handleDeckUpload} deck={deck}  />  
+          <DeckListFooter handleMaxCard={this.props.handleMaxCard} class={this.props.class} handleDeckUpload={handleDeckUpload} deck={deck}  />  
         </Segment>
        </div>
      );
