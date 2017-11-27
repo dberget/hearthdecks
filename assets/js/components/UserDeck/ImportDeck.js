@@ -95,7 +95,7 @@ export default class ImportDeck extends React.Component {
                         <Input fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
                         <Button type='submit' size='tiny' basic > Upload </Button>
                     </Form>
-                    <Radio onChange={this.handleToggle} checked={this.state.checked === true} label='Reno Mode?' toggle />
+                    <Radio className="reno-mode" onChange={this.handleToggle} checked={this.state.checked === true} label='Reno Mode?' toggle />
             </span>
         ) 
     }

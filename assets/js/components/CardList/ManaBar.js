@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Menu } from 'semantic-ui-react'
+import { Button, Menu, Label } from 'semantic-ui-react'
 
   const ManaBar = (props) => {
       return(
