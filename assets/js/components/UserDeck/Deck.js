@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment } from 'semantic-ui-react'
+import { Segment, Input } from 'semantic-ui-react'
 
 import DeckItem from './DeckItem'
 import DeckListFooter from './DeckListFooter'
@@ -8,6 +8,9 @@ export default class Deck extends React.Component {
     constructor(props){
      super(props)
 
+     this.state = {deckTitle: this.props.class + " Deck"}
+
+     this.deckTitleChange = this.deckTitleChange.bind(this)
     }
 
     handleCardRemove(card) {
@@ -24,19 +27,25 @@ export default class Deck extends React.Component {
     }
 
 
+    deckTitleChange(e) {
+      e.preventDefault()
+      this.setState({deckTitle: e.target.value})
+    }
+
+
     render() {
      const { deck, handleDeckUpload } = this.props 
 
      return (
        <div className="deck-container">
         <Segment>
-         <div className="deck-name"> {this.props.class} Deck </div> 
+         <input onChange={this.deckTitleChange} value={this.state.deckTitle} />
           <div className="deck-list">
            {deck.map(card =>
             <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />
            )}
           </div>
-          <DeckListFooter handleMaxCard={this.props.handleMaxCard} class={this.props.class} handleDeckUpload={handleDeckUpload} deck={deck}  />  
+          <DeckListFooter deckTitle={this.state.deckTitle} handleMaxCard={this.props.handleMaxCard} class={this.props.class} handleDeckUpload={handleDeckUpload} deck={deck}  />  
         </Segment>
        </div>
      );
