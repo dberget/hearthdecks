@@ -54,20 +54,19 @@ export default class App extends React.Component {
 
 }
 
-handleMaxCard(renoMode) {
-  var maxCount = renoMode ? 1 : 2;
+  handleMaxCard(renoMode) {
+    var maxCount = renoMode ? 1 : 2;
   
-  this.setState(prevState => ({
-    maxCardCount: maxCount
-  }));
+    this.setState(prevState => ({
+      maxCardCount: maxCount
+    }));
+  }
 
-}
-
-handleDeckUpload(deck, playerClass) {
-  this.handleClassChange(playerClass);
-  this.handleFilterClass(playerClass);
-  this.handleDeckChange(deck);
-}
+  handleDeckUpload(deck, playerClass) {
+    this.handleClassChange(playerClass);
+    this.handleFilterClass(playerClass);
+    this.handleDeckChange(deck);
+  }
 
   handleSearch(term) {
     this.setState({

@@ -49,6 +49,12 @@ export default class ExportDeck extends React.Component {
         };
        deckstring = encode(str);
 
+       let string = 
+       `###${this.props.deckTitle} \ 
+       ${deckstring}`;
+
+       console.log(string)
+
        return deckstring;
 
       } else {
