@@ -8,7 +8,7 @@ export default class ListSearch extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {activeName: "Class", checked: false}
+    this.state = { checked: false }
 
     this.filterNeutral = this.filterNeutral.bind(this)
     this.handleFilterClass= this.handleFilterClass.bind(this)
@@ -21,12 +21,10 @@ export default class ListSearch extends React.Component {
 
   handleFilterClass() {
     this.props.updateFilterClass(this.props.class)
-    this.setState({activeName: "Class"})
   }
   
   filterNeutral() {
     this.props.updateFilterClass("Neutral")
-    this.setState({activeName: "Neutral"})
   }
 
   selectResult(e) {
@@ -47,7 +45,7 @@ export default class ListSearch extends React.Component {
 
   resetDeck() {
     var newDeck = []
-    this.props.resetDeck(newDeck)
+    this.props.updateDeck(newDeck)
    }
 
   handleToggle(e, {value}) { 
@@ -57,12 +55,12 @@ export default class ListSearch extends React.Component {
 
 
   render() {
-      const { activeName, checked } = this.state
+      const { checked } = this.state
 
     return (
         <Menu className="list-search" borderless >
-          <Menu.Item active={activeName === "Class"} onClick={this.handleFilterClass}> {this.props.class} </Menu.Item>
-          <Menu.Item active={activeName === "Neutral"} onClick={this.filterNeutral}> Neutral </Menu.Item>
+          <Menu.Item active={this.props.class === this.props.filters.class} onClick={this.handleFilterClass}> {this.props.class} </Menu.Item>
+          <Menu.Item active={"Neutral" === this.props.filters.class} onClick={this.filterNeutral}> Neutral </Menu.Item>
           <Menu.Item> 
             <Radio className="reno-mode" onChange={this.handleToggle} checked={this.state.checked === true} label='Reno Mode?' toggle />
           </Menu.Item>

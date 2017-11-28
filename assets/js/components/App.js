@@ -72,9 +72,9 @@ handleDeckUpload(deck, playerClass) {
   handleSearch(term) {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
-        search: term,
+        class: "",
         cost: "",
-        expansion: ""
+        search: term
       }),
     }); 
   }
@@ -116,6 +116,7 @@ handleDeckUpload(deck, playerClass) {
 
     this.setState(prevState => ({
       class: playerClass,
+      maxCardCount: 2
     })
    );
   }
@@ -125,36 +126,32 @@ handleDeckUpload(deck, playerClass) {
       <div className="container">
       <h1> HEARTHDECKS </h1>
        {!this.state.class && 
-         <ClassList updateClass={this.handleClassChange} 
-                    updateFilterClass={this.handleFilterClass} 
-                    resetDeck={this.handleDeckChange} 
-                    />
-         } 
-      {this.state.class && 
-        <MainNav searchTerm={this.handleSearch} 
-                 updateFilterClass={this.handleFilterClass}
-                 updateExpansion={this.handleExpansionChange} 
-                 class={this.state.class} 
-                 updateClass={this.handleClassChange}
-                 deck={this.state.deck} 
-          />
-      }
-         {this.state.class && 
-         <List filters={this.state.filters} 
-               resetDeck={this.handleDeckChange} 
-               deck={this.state.deck} 
-               updateDeck={this.handleDeckChange} 
-               searchTerm={this.handleSearch} 
-               updateFilterClass={this.handleFilterClass}
-               updateExpansion={this.handleExpansionChange} 
-               class={this.state.class}
-               activeMana={this.state.filters.cost}
-               handleCostChange={this.handleCostChange}
-               active={this.state.filters.cost}
-               handleCostClick={this.handleCostChange}
-               handleMaxCard={this.handleMaxCard}
-               resetDeck={this.handleDeckChange} 
-               maxCardCount={this.state.maxCardCount}
+       <ClassList updateClass={this.handleClassChange} 
+                  updateFilterClass={this.handleFilterClass} 
+                  resetDeck={this.handleDeckChange} 
+                  />
+       }
+       {this.state.class && 
+      <MainNav updateFilterClass={this.handleFilterClass}
+               updateClass={this.handleClassChange}
+               />
+       }
+       {this.state.class && 
+      <List filters={this.state.filters} 
+            resetDeck={this.handleDeckChange} 
+            deck={this.state.deck} 
+            updateDeck={this.handleDeckChange} 
+            searchTerm={this.handleSearch} 
+            updateFilterClass={this.handleFilterClass}
+            updateExpansion={this.handleExpansionChange} 
+            class={this.state.class}
+            activeMana={this.state.filters.cost}
+            handleCostChange={this.handleCostChange}
+            active={this.state.filters.cost}
+            handleCostClick={this.handleCostChange}
+            handleMaxCard={this.handleMaxCard}
+            resetDeck={this.handleDeckChange} 
+            maxCardCount={this.state.maxCardCount}
                />
          }
          {this.state.class && 
