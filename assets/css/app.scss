@@ -3,7 +3,6 @@ $darkgrey: #4E5560;
 $jet: #2F2F2F;
 $mustard: #FFC857;
 $white: #ffffff;
-
 .container {
     display: -webkit-flex;
     display: flex;
@@ -17,11 +16,18 @@ html body {
     height: 100%;
     font-size: 62.5%;
     background-color: $darkgrey;
+    background: url(/images/bg.jpg) no-repeat center center;
+    
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
 }
 
 h1 {
     color: $white;
-    margin: 0px;
+    width: 100%;
+
 }
 
 .ui.icon.button {
@@ -33,21 +39,54 @@ h1 {
 
 .main-nav {
     padding: 5px;
-    margin-right: 10px;
     width: 100%;
-    h1 {
-        display: inline;
-    }
+   
 }
 
-.ui.button.resetButton {
-    margin-left: 4px;
-    height: inherit;
+.class-container {
+    width: 70%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+
+    .class-list-body {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        flex-flow: wrap;
+        justify-content: center;
+        overflow: hidden;
+        width: 80%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin: 10px;
+        color: $jet;
+    }
+    
+}
+
+.card-entries {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-flow: wrap;
+    -webkit-flex: 4;
+    flex: 4;
+    height: 100%;
 }
 
 .list-container {
     -webkit-flex: 4;
     flex: 4;
+    border-radius: 2px;
+
     .list-body {
         display: -webkit-flex;
         display: flex;
@@ -61,25 +100,18 @@ h1 {
         overflow: hidden;
         background-color: white;
         min-height: 550px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
     }
-    .card-entries {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        flex-flow: wrap;
-        -webkit-flex: 3;
-        flex: 3;
-        height: 100%;
-    }
+    
     .ui.menu {
         border-bottom: 0px;
         margin: 0 0 0 0;
         max-height: 0%;
         background-color: $white;
         border-radius: 0;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
     }
     .ui.search .prompt {
         border-radius: 10px;
@@ -89,13 +121,27 @@ h1 {
     }
 }
 
-.img-container {
+.img-container--3 {
+    overflow: hidden;
+    width: calc(100% / 3);
+}
+
+.img-container--4 {
     overflow: hidden;
     width: calc(100% / 4);
 }
 
-img.hsImage {
+.hsImage--4 {
     width: 80%;
+    display: block;
+    margin: -15px auto;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.hsImage--3 {
+    width: 60%;
     display: block;
     margin: -15px auto;
     &:hover {
@@ -125,7 +171,6 @@ img.hsImage {
     -webkit-animation-duration: .5s;
     animation-name: card-add;
     animation-duration: .5s;
-
     &:hover {
         cursor: pointer;
         background-color: $mustard;
@@ -159,7 +204,6 @@ span.count {
 
 .deck--footer {
     width: 100%;
-
     .import {
         float: right;
         width: 45%;
@@ -168,20 +212,16 @@ span.count {
         border: solid;
         border-width: thin;
         padding: 5px;
-
         &:hover {
             cursor: pointer;
             color: white;
             background-color: $darkgrey;
         }
     }
-
     .import .field {
         width: 100%;
-        
     }
-
-   .export {
+    .export {
         min-width: 50px;
         border-radius: .28571429rem;
         width: 45%;
@@ -189,21 +229,17 @@ span.count {
         border: solid;
         border-width: thin;
         padding: 5px;
-
         &:hover {
             cursor: pointer;
             color: white;
             background-color: $darkgrey;
         }
     }
-
     .ui.form {
         margin-top: 5px;
-
         .button {
             margin-top: 3px;
         }
-
     }
 }
 
@@ -234,6 +270,10 @@ i.star.icon {
     font-size: 12pt;
     margin-top: 30px;
     border-radius: 5px;
+}
+
+.reno-mode {
+    margin-top: 5px;
 }
 
 @-webkit-keyframes card-add {

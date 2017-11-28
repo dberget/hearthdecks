@@ -11,13 +11,12 @@ export default class ImportDeck extends React.Component {
     constructor(props){
         super(props)
         
-        this.state = {deckstring: '', deck: [], hidden: true, checked: false}
+        this.state = {deckstring: '', deck: [], hidden: true }
 
         this.getClassbydbfId = this.getClassbydbfId.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleUpload = this.handleUpload.bind(this)
         this.getCards = this.getCards.bind(this)
-        this.handleToggle = this.handleToggle.bind(this)
     }
 
     getClassbydbfId(playerClass) {
@@ -80,13 +79,10 @@ export default class ImportDeck extends React.Component {
         this.getCards(userDeck, deck.cards, playerClass)
     }
 
-    handleToggle(e, {value}) { 
-        this.props.handleMaxCard(!this.state.checked)
-        this.setState({checked: !this.state.checked})
-    }
+ 
 
     render() { 
-       const { deckstring, hidden, checked } = this.state
+       const { deckstring, hidden } = this.state
 
         return(
             <span>
@@ -95,7 +91,6 @@ export default class ImportDeck extends React.Component {
                         <Input fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
                         <Button type='submit' size='tiny' basic > Upload </Button>
                     </Form>
-                    <Radio className="reno-mode" onChange={this.handleToggle} checked={this.state.checked === true} label='Reno Mode?' toggle />
             </span>
         ) 
     }

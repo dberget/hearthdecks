@@ -10,11 +10,10 @@
     <title>Hello Hearthdecks!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <script>require('js/index')</script>
   </head>
 
   <body>
         <%= render @view_module, @view_template, assigns %>
   </body>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 </html>

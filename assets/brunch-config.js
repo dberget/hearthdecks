@@ -14,9 +14,6 @@ exports.config = {
   conventions: {
     assets: [
       /^(static)/
-    ],
-    ignored: [
-      /\test.js$/
     ]
   },
 
@@ -31,8 +28,15 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
-      presets: ['es2015', 'react'],
+      presets: ['env', 'react'],
+      ignore: [/^node_modules/]
     },
+  },
+
+  modules: {
+    autoRequire: {
+      "js/app.js": ["js/index"]
+    }
   },
 
   npm: {
@@ -40,6 +44,9 @@ exports.config = {
     globals: {
       $: 'jquery',
       jQuery: 'jquery'
+    },
+    styles: {
+      'semantic-ui-css': ["semantic.min"]
     },
     whitelist: [
       "react",

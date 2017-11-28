@@ -3,7 +3,6 @@ import HSCard from "./HSCard.js"
 import ManaBar from './ManaBar'
 import { countDeck, countCard, sortDeck, flash_notice } from '../../utils'
 import ListSearch from "./ListSearch"
-import ClassSelect from './ClassSelect'
 import { Grid, Button, Message, Icon } from 'semantic-ui-react'
 import { encodeQueryData, scrubFilters } from '../Helpers/ApiHelpers'
 
@@ -18,10 +17,10 @@ export default class List extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.deck.length) {
+    if (this.props.class) {
       this.cards(this.props, 1)
     }
-  }
+  } 
 
   componentWillReceiveProps(nextProps) {
     const diffFilters = nextProps.filters !== this.props.filters; 
@@ -96,7 +95,7 @@ export default class List extends React.Component {
         <div className="list-body">
           <Button className="prev-button" onClick={() => this.handlePageClick("prev")}> <Icon name="arrow left" /></Button>
           <div className="card-entries">
-            {this.state.entries.map(card => <HSCard onSelect={this.handleCardClick} key={card.id} data={card} /> 
+            {this.state.entries.map(card => <HSCard rowSize={4} onSelect={this.handleCardClick} key={card.id} data={card} /> 
             )}
           </div>
           <Button className="next-button" onClick={() => this.handlePageClick("next")}><Icon name="arrow right" /></Button>

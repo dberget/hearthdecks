@@ -5,6 +5,7 @@ import Deck from "./UserDeck/Deck"
 import { Grid } from 'semantic-ui-react'
 import { sortDeck } from '../utils'
 import ManaBar from "./CardList/ManaBar.js"
+import ClassList from './ClassSelect/ClassList'
 import { DeckSuccess } from './Messages/DeckSuccess'
 
 export default class App extends React.Component {
@@ -63,9 +64,9 @@ handleMaxCard(renoMode) {
 }
 
 handleDeckUpload(deck, playerClass) {
-  this.handleDeckChange(deck);
   this.handleClassChange(playerClass);
   this.handleFilterClass(playerClass);
+  this.handleDeckChange(deck);
 }
 
   handleSearch(term) {
@@ -114,7 +115,7 @@ handleDeckUpload(deck, playerClass) {
     localStorage.setItem("class", JSON.stringify(playerClass));
 
     this.setState(prevState => ({
-      class: playerClass
+      class: playerClass,
     })
    );
   }
@@ -122,15 +123,25 @@ handleDeckUpload(deck, playerClass) {
   render () {
     return (
       <div className="container">
+      <h1> HEARTHDECKS </h1>
+       {!this.state.class && 
+         <ClassList updateClass={this.handleClassChange} 
+                    updateFilterClass={this.handleFilterClass} 
+                    resetDeck={this.handleDeckChange} 
+                    />
+         } 
+      {this.state.class && 
         <MainNav searchTerm={this.handleSearch} 
                  updateFilterClass={this.handleFilterClass}
                  updateExpansion={this.handleExpansionChange} 
                  class={this.state.class} 
-                 resetDeck={this.handleDeckChange} 
                  updateClass={this.handleClassChange}
                  deck={this.state.deck} 
-                 />
+          />
+      }
+         {this.state.class && 
          <List filters={this.state.filters} 
+               resetDeck={this.handleDeckChange} 
                deck={this.state.deck} 
                updateDeck={this.handleDeckChange} 
                searchTerm={this.handleSearch} 
@@ -141,14 +152,18 @@ handleDeckUpload(deck, playerClass) {
                handleCostChange={this.handleCostChange}
                active={this.state.filters.cost}
                handleCostClick={this.handleCostChange}
+               handleMaxCard={this.handleMaxCard}
+               resetDeck={this.handleDeckChange} 
                maxCardCount={this.state.maxCardCount}
                />
+         }
+         {this.state.class && 
          <Deck class={this.state.class} 
-               handleMaxCard={this.handleMaxCard}
                deck={this.state.deck} 
                updateDeck = {this.handleDeckChange}
                handleDeckUpload={this.handleDeckUpload} 
                />
+         }
       </div>
     );
   }
