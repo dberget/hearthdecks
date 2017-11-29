@@ -82,6 +82,10 @@ h1 {
     height: 100%;
 }
 
+.manabar {
+    margin: 0 auto;
+}
+
 .list-container {
     -webkit-flex: 4;
     flex: 4;
@@ -100,22 +104,22 @@ h1 {
         overflow: hidden;
         background-color: white;
         min-height: 550px;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
     }
     
-    .ui.menu {
-        border-bottom: 0px;
+    .ui.menu.top-nav {
         margin: 0 0 0 0;
-        max-height: 0%;
-        background-color: $white;
         border-radius: 0;
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
+        height: 50px;
     }
-    .ui.search .prompt {
-        border-radius: 10px;
-    }
+    .ui.menu.bot-nav {
+        margin: 0 0 0 0;
+        border-radius: 0;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        height: 50px;
+    }  
     .ui.button.next-button {
         margin-left: auto;
     }

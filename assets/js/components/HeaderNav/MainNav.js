@@ -26,7 +26,7 @@ export default class MainNav extends React.Component {
     return (
       <div className="main-nav">
         <Menu secondary>
-          <Button className="resetButton" onClick={this.resetClass}><Icon name='undo'/> New Deck</Button>
+          <Button className="resetButton" onClick={this.resetClass}><Icon name='undo'/> New Class</Button>
         </Menu>
       </div>
     );

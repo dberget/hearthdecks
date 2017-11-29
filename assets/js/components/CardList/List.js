@@ -1,9 +1,10 @@
 import React from 'react'
-import HSCard from "./HSCard.js"
-import ManaBar from './ManaBar'
-import { countDeck, countCard, sortDeck, flash_notice } from '../../utils'
-import ListSearch from "./ListSearch"
 import { Grid, Button, Message, Icon } from 'semantic-ui-react'
+
+import TopNav from "./TopNav"
+import BottomNav from './BottomNav'
+import HSCard from "./HSCard.js"
+import { countDeck, countCard, sortDeck, flash_notice } from '../../utils'
 import { encodeQueryData, scrubFilters } from '../Helpers/ApiHelpers'
 
 export default class List extends React.Component {
@@ -91,7 +92,7 @@ export default class List extends React.Component {
   render() {
     return (
       <div className="list-container">
-       <ListSearch {...this.props} />
+       <TopNav {...this.props} />
         <div className="list-body">
           <Button className="prev-button" onClick={() => this.handlePageClick("prev")}> <Icon name="arrow left" /></Button>
           <div className="card-entries">
@@ -100,7 +101,7 @@ export default class List extends React.Component {
           </div>
           <Button className="next-button" onClick={() => this.handlePageClick("next")}><Icon name="arrow right" /></Button>
         </div>
-         <ManaBar active={this.props.active} handleClick={this.props.handleCostClick} />
+        <BottomNav toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleMaxCard={this.props.handleMaxCard} />
       </div>
     );
   }

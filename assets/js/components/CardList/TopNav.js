@@ -1,10 +1,8 @@
 import React from 'react'
-import { Dropdown, Button, Search, Menu, Icon, Radio } from 'semantic-ui-react'
+import { Dropdown, Button, Input, Menu, Icon, Radio } from 'semantic-ui-react'
 import ExpansionDropdown from './ExpansionDropdown'
-import ManaBar from './ManaBar'
-import { classes } from '../../constants'
 
-export default class ListSearch extends React.Component {
+export default class TopNav extends React.Component {
   constructor(props) {
     super(props)
 
@@ -12,11 +10,10 @@ export default class ListSearch extends React.Component {
 
     this.filterNeutral = this.filterNeutral.bind(this)
     this.handleFilterClass= this.handleFilterClass.bind(this)
-    this.toggleExpansion = this.toggleExpansion.bind(this)
     this.selectResult = this.selectResult.bind(this)
     this.handleManaChange = this.handleManaChange.bind(this)
-    this.handleToggle = this.handleToggle.bind(this)
     this.resetDeck = this.resetDeck.bind(this)
+    this.resetClass = this.resetClass.bind(this)
   }
 
   handleFilterClass() {
@@ -39,8 +36,11 @@ export default class ListSearch extends React.Component {
     this.props.handleCostChange(data.value)
   }
 
-  toggleExpansion(e, data) {
-    this.props.updateExpansion(data.value)
+  resetClass() {
+    var newClass = ""
+
+    this.props.updateClass(newClass);
+    this.props.updateFilterClass(newClass);
   }
 
   resetDeck() {
@@ -48,32 +48,27 @@ export default class ListSearch extends React.Component {
     this.props.updateDeck(newDeck)
    }
 
-  handleToggle(e, {value}) { 
-    this.props.handleMaxCard(!this.state.checked)
-    this.setState({checked: !this.state.checked})
-  }
-
+ 
 
   render() {
       const { checked } = this.state
 
     return (
-        <Menu className="list-search" borderless >
+        <Menu className="top-nav" borderless>
           <Menu.Item active={this.props.class === this.props.filters.class} onClick={this.handleFilterClass}> {this.props.class} </Menu.Item>
           <Menu.Item active={"Neutral" === this.props.filters.class} onClick={this.filterNeutral}> Neutral </Menu.Item>
-          <Menu.Item> 
-            <Radio className="reno-mode" onChange={this.handleToggle} checked={this.state.checked === true} label='Reno Mode?' toggle />
-          </Menu.Item>
           <Menu.Menu position="right">
-          <Menu.Item> 
-            <ExpansionDropdown onChange={this.toggleExpansion.bind(this)} />
-          </Menu.Item>
-          <Menu.Item> 
-            <Search showNoResults={false} onSearchChange={this.selectResult} placeholder="Search..." />
-          </Menu.Item>
-          <Menu.Item> 
-            <Button basic className="resetButton" onClick={this.resetDeck}><Icon name='undo'/> Reset </Button>
-          </Menu.Item>
+            <Menu.Item> 
+              <Input transparent icon={{ name: 'search' }} onChange={this.selectResult} placeholder="Search..." />
+            </Menu.Item>
+            <Menu.Item onClick={this.resetDeck}> 
+              <Icon name='trash outline'/> 
+               Reset Deck
+            </Menu.Item>
+            <Menu.Item onClick={this.resetClass} > 
+              <Icon name='undo'/> 
+              New Class
+            </Menu.Item>
           </Menu.Menu>
         </Menu>
     );

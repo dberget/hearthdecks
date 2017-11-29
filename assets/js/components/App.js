@@ -71,7 +71,6 @@ export default class App extends React.Component {
   handleSearch(term) {
     this.setState({
       filters: Object.assign({}, this.state.filters, {
-        class: "",
         cost: "",
         search: term
       }),
@@ -131,15 +130,11 @@ export default class App extends React.Component {
                   />
        }
        {this.state.class && 
-      <MainNav updateFilterClass={this.handleFilterClass}
-               updateClass={this.handleClassChange}
-               />
-       }
-       {this.state.class && 
       <List filters={this.state.filters} 
             resetDeck={this.handleDeckChange} 
             deck={this.state.deck} 
             updateDeck={this.handleDeckChange} 
+            updateClass={this.handleClassChange}
             searchTerm={this.handleSearch} 
             updateFilterClass={this.handleFilterClass}
             updateExpansion={this.handleExpansionChange} 

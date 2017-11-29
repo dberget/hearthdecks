@@ -12,6 +12,7 @@ export default class ExportDeck extends React.Component {
         this.handleClick = this.handleClick.bind(this)
         this.getClassdbfId = this.getClassdbfId.bind(this)
         this.onSuccess = this.onSuccess.bind(this)
+        this.buttonContent = this.buttonContent.bind(this)
     }
 
     getClassdbfId(playerClass) {
@@ -53,9 +54,7 @@ export default class ExportDeck extends React.Component {
        `###${this.props.deckTitle} \ 
        ${deckstring}`;
 
-       console.log(string)
-
-       return deckstring;
+       return string;
 
       } else {
           flash_notice(`Erm, You need 30 Cards to export. Add ${30 - count} more.`)
@@ -75,7 +74,7 @@ export default class ExportDeck extends React.Component {
 
     render() { 
         return(
-             <Clipboard className="button export" component="button" option-text={this.handleClick} onSuccess={this.onSuccess}> {this.buttonContent.bind(this)()} </Clipboard>
+             <Clipboard className="button export" component="button" option-text={this.handleClick} onSuccess={this.onSuccess}> {this.buttonContent()} </Clipboard>
         ) 
     }
 }
