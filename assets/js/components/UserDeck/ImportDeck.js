@@ -2,16 +2,17 @@ import React from 'react'
 import {encode, decode} from 'deckstrings'
 import { Form, Button, Input, Radio } from 'semantic-ui-react'
 import Clipboard from 'react-clipboard.js';
+import { withRouter } from 'react-router-dom'
 
 import { countDeck, flash_notice } from '../../utils'
 import ImportButton from './ImportButton'
 import { processDeck, addCount } from '../Helpers/DeckHelpers';
 
-export default class ImportDeck extends React.Component {
+class ImportDeck extends React.Component {
     constructor(props){
         super(props)
         
-        this.state = {deckstring: '', deck: [], hidden: true }
+        this.state = {deckstring: '', hidden: true, playerClass: "" }
 
         this.getClassbydbfId = this.getClassbydbfId.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -37,12 +38,14 @@ export default class ImportDeck extends React.Component {
                 return "Paladin"
             case 930:
                 return "Rogue"
+            case 274:
+                return "Druid"
         }
 
     }
 
      getCards(dbfids, cardCounts, playerClass) {
-         fetch(`/search/cards?dbfids=${dbfids}`, {
+         fetch(`/upload/cards?dbfids=${dbfids}`, {
                  headers: {
                      'Content-Type': 'application/json'
                  }
@@ -56,8 +59,10 @@ export default class ImportDeck extends React.Component {
              .then((deck) => {
                  this.props.uploadDeck(deck, playerClass)
              })
+             .then(() => {
+                this.props.history.push(`${playerClass}`)
+             })
      };
-
 
     handleChange(e, { name, value }) { 
         this.setState(deckstring => ({
@@ -67,7 +72,6 @@ export default class ImportDeck extends React.Component {
 
     handleExpand() {
         this.setState({ hidden: !this.state.hidden })
-        this.setState({ active: !this.state.active })
     }
 
     handleUpload() {
@@ -75,7 +79,7 @@ export default class ImportDeck extends React.Component {
         var userDeck = processDeck(deck)
         var playerClass = this.getClassbydbfId(deck.heroes)
 
-        this.setState({deckstring: "", deck: [], hidden: false})
+        this.setState({deckstring: "", hidden: true, playerClass: playerClass})
         this.getCards(userDeck, deck.cards, playerClass)
     }
 
@@ -89,9 +93,11 @@ export default class ImportDeck extends React.Component {
                     <ImportButton onClick={this.handleExpand.bind(this)} />
                     <Form hidden={hidden} onSubmit={this.handleUpload}>
                         <Input fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
-                        <Button type='submit' size='tiny' basic > Upload </Button>
+                        <Button type="submit" size='tiny' basic > Upload </Button>
                     </Form>
             </span>
         ) 
     }
 }
+
+export default withRouter(ImportDeck);

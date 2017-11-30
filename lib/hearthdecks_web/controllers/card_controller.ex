@@ -29,6 +29,15 @@ defmodule HearthdecksWeb.CardController do
       render conn, "card_select.json", deck: deck
     end
 
+    def class(conn, params) do
+      page = 
+        params
+        |> index_filters
+        |> Cards.all
+
+      render conn, "index.json", page: page
+    end
+
     defp split(params), do: String.split(params["dbfids"], ",")
 
     defp current_page(params), do: Map.get(params, "page", 1)

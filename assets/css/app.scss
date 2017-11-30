@@ -80,6 +80,10 @@ h1 {
     -webkit-flex: 4;
     flex: 4;
     height: 100%;
+
+    a {
+        width: 33%
+    }
 }
 
 .manabar {
@@ -89,7 +93,6 @@ h1 {
 .list-container {
     -webkit-flex: 4;
     flex: 4;
-    border-radius: 2px;
 
     .list-body {
         display: -webkit-flex;
@@ -105,20 +108,22 @@ h1 {
         background-color: white;
         min-height: 550px;
     }
+
+    .ui.menu {
+        height: 50px;
+    }
     
     .ui.menu.top-nav {
         margin: 0 0 0 0;
         border-radius: 0;
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
-        height: 50px;
     }
     .ui.menu.bot-nav {
         margin: 0 0 0 0;
         border-radius: 0;
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
-        height: 50px;
     }  
     .ui.button.next-button {
         margin-left: auto;
@@ -127,7 +132,6 @@ h1 {
 
 .img-container--3 {
     overflow: hidden;
-    width: calc(100% / 3);
 }
 
 .img-container--4 {

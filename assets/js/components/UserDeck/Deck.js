@@ -28,7 +28,6 @@ export default class Deck extends React.Component {
 
 
     deckTitleChange(e) {
-      e.preventDefault()
       this.setState({deckTitle: e.target.value})
     }
 
@@ -39,7 +38,7 @@ export default class Deck extends React.Component {
      return (
        <div className="deck-container">
         <Segment>
-         <input onChange={this.deckTitleChange} value={this.state.deckTitle} />
+         <input onChange={this.deckTitleChange} value={this.state.deckTitle}  />
           <div className="deck-list">
            {deck.map(card =>
             <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />

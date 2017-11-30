@@ -2,6 +2,7 @@ import React from 'react'
 import { classes } from "../../constants"
 import { Dropdown } from 'semantic-ui-react'
 import HSCard from '../CardList/HSCard'
+import { Link } from 'react-router-dom'
 
 export default class ClassList extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ export default class ClassList extends React.Component {
           <h2> Select a class </h2>
           <div className="class-list-body">
             <div className="card-entries">
-                {classes.map(hero => <HSCard rowSize={3} onSelect={this.handleCardClick} key={hero.id} data={hero} /> 
+                {classes.map(hero => <Link to={hero.value}> <HSCard rowSize={3} onSelect={this.handleCardClick} key={hero.id} data={hero} /> </Link>
               )}
             </div>
           </div>

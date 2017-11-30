@@ -14,6 +14,8 @@ defmodule Hearthdecks.Tasks.CardUpload do
 
     @heroes ["HERO_01", "HERO_02", "HERO_03", "HERO_04", "HERO_05", "HERO_06", "HERO_07", "HERO_08", "HERO_09"] 
 
+    @key Application.get_env(:hearthdecks, :key)
+
     def run do
       Enum.each(@expansions, &(add_set/1))
       Enum.each(@standard, &(add_standard_to_set/1))
@@ -23,7 +25,7 @@ defmodule Hearthdecks.Tasks.CardUpload do
     defp add_set(set) do
       IO.puts("adding cards from #{set}")
       exp = URI.encode(set)
-      request = HTTPoison.get!("https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/#{exp}?collectible=1", ["X-Mashape-Key": "xp7ORs0Tt6mshTK9TCYiWMt2rPNpp1XwlRIjsnSZ1fU5oDJ2FJ"])  
+      request = HTTPoison.get!("https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/#{exp}?collectible=1", ["X-Mashape-Key": @key])  
       body = Poison.decode!(request.body, keys: :atoms)
       Enum.each(body, fn(x) -> Hearthdecks.Data.create_card(x) end)
     end
