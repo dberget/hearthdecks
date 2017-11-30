@@ -3,16 +3,17 @@ $darkgrey: #4E5560;
 $jet: #2F2F2F;
 $mustard: #FFC857;
 $white: #ffffff;
+
 .container {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
     flex-flow: wrap;
-    margin: 10px;
 }
 
 html body {
+    margin: 10px;
     height: 100%;
     font-size: 62.5%;
     background-color: $darkgrey;
@@ -24,10 +25,9 @@ html body {
       background-size: cover;
 }
 
-h1 {
+a h1 {
     color: $white;
-    width: 100%;
-
+    padding-bottom: 5px;
 }
 
 .ui.icon.button {

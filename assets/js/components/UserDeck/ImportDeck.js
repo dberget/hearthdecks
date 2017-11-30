@@ -60,7 +60,7 @@ class ImportDeck extends React.Component {
                  this.props.uploadDeck(deck, playerClass)
              })
              .then(() => {
-                this.props.history.push(`${playerClass}`)
+                this.props.history.push(playerClass)
              })
      };
 

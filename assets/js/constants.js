@@ -78,46 +78,46 @@ export const expansions = [{
 export const classes = [{
     value: "Mage",
     text: "Mage",
-    key: "1",
+    key: 1,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_08.png"
   }, {
     value: "Warrior",
     text: "Warrior",
-    key: "2",
+    key: 2,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_01.png"
   }, {
     text: "Warlock",
     value: "Warlock",
-    key: "3",
+    key: 3,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_07.png"
   }, {
     text: "Paladin",
     value: "Paladin",
-    key: "4",
+    key: 4,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_04.png"
   }, {
     text: "Priest",
     value: "Priest",
-    key: "5",
+    key: 5,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_09.png"
   }, {
     text: "Rogue",
     value: "Rogue",
-    key: "6",
+    key: 6,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_03.png"
   }, {
     text: "Druid",
     value: "Druid",
-    key: "7",
+    key: 7,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_06.png"
   }, {
     value: "Hunter",
     text: "Hunter",
-    key: "8",
+    key: 8,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_05.png"
   }, {
     value: "Shaman",
     text: "Shaman",
-    key: "9",
+    key: 9,
     img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_02.png"
   }]

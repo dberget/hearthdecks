@@ -8,13 +8,14 @@ export default class ClassList extends React.Component {
     constructor(props) {
         super(props)
 
-        this.handleCardClick = this.handleCardClick.bind(this)
+        this.handleClassClick = this.handleClassClick.bind(this)
     }
 
 
-    handleCardClick(playerClass) {
+    handleClassClick(playerClass) {
         this.props.updateFilterClass(playerClass.value)
         this.props.updateClass(playerClass.value)
+        this.props.saveDeck(true)
         this.props.resetDeck([])
     }
 
@@ -25,7 +26,7 @@ export default class ClassList extends React.Component {
           <h2> Select a class </h2>
           <div className="class-list-body">
             <div className="card-entries">
-                {classes.map(hero => <Link to={hero.value}> <HSCard rowSize={3} onSelect={this.handleCardClick} key={hero.id} data={hero} /> </Link>
+                {classes.map(hero => <Link key={hero.value} to={hero.value}> <HSCard rowSize={3} onSelect={this.handleClassClick} key={hero.id} data={hero} /> </Link>
               )}
             </div>
           </div>

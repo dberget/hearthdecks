@@ -6,11 +6,11 @@ import { sortDeck } from '../utils'
 import ManaBar from "./CardList/ManaBar.js"
 import ClassList from './ClassSelect/ClassList'
 import { DeckSuccess } from './Messages/DeckSuccess'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 
 
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props){
     super(props)
 
@@ -29,35 +29,42 @@ export default class App extends React.Component {
     this.handleCostChange = this.handleCostChange.bind(this)
     this.handleDeckUpload = this.handleDeckUpload.bind(this)
     this.handleCardLimit = this.handleCardLimit.bind(this)
+    this.handleStorage = this.handleStorage.bind(this)
   }
 
-  //  componentDidMount() {
-  //    const cachedDeck = localStorage.getItem("deck");
-  //    const cachedClass = localStorage.getItem("class");
+   componentDidMount() {
+     let className = this.props.location.pathname
+     let cachedDeck = localStorage.getItem(className)
 
-  //    if (cachedDeck && cachedClass) {
-  //      this.setState({
-  //        deck: JSON.parse(cachedDeck),
-  //        class: JSON.parse(cachedClass),
-  //        filters: Object.assign({}, this.state.filters, {
-  //         class: JSON.parse(cachedClass)
-  //       }),
-  //      })
-  //    }
-  //  }
+     if (cachedDeck) {
+       let savedDeck = JSON.parse(cachedDeck)
+
+       this.setState({
+         deck: savedDeck
+       })
+     } 
+  }
+
+   handleStorage(save) {
+     let saveDeck = this.state.deck
+     let className = this.state.class
+
+     if (save) {
+        localStorage.setItem("/" + className, JSON.stringify(saveDeck));
+     }
+   }
 
  handleDeckChange(deck) {
   deck.sort(sortDeck);
-  // localStorage.setItem("deck", JSON.stringify(deck));
 
   this.setState(prevState => ({
     deck: deck
   }));
 
+  this.handleStorage(true)
 }
 
   handleCardLimit(renoMode) {
-    console.log(renoMode)
     var maxCount = renoMode ? 1 : 2;
   
     this.setState(prevState => ({
@@ -113,8 +120,6 @@ export default class App extends React.Component {
   }
 
   handleClassChange(playerClass) {
-    // localStorage.setItem("class", JSON.stringify(playerClass));
-
     this.setState(prevState => ({
       class: playerClass,
       maxCardCount: 2,
@@ -128,12 +133,13 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
-        <Link to="/" ><h1> HEARTHDECKS </h1> </Link>
+      <Link to="/" ><h1> HEARTHDECKS </h1> </Link>
       <Route exact path="/" render={() => (
       <div className="container">
        <ClassList updateClass={this.handleClassChange} 
                   updateFilterClass={this.handleFilterClass} 
                   resetDeck={this.handleDeckChange} 
+                  saveDeck={this.handleStorage}
                   />
       </div>
       )}/>
@@ -159,7 +165,8 @@ export default class App extends React.Component {
                />
          <Deck class={this.state.class} 
                deck={this.state.deck} 
-               updateDeck = {this.handleDeckChange}
+               params={match.params}
+               updateDeck={this.handleDeckChange}
                handleDeckUpload={this.handleDeckUpload} 
                />
                </div>
@@ -168,3 +175,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default withRouter(App)

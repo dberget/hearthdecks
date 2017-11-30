@@ -8,10 +8,20 @@ export default class Deck extends React.Component {
     constructor(props){
      super(props)
 
-     this.state = {deckTitle: this.props.class + " Deck"}
+     this.state = {deckTitle: ""}
 
      this.deckTitleChange = this.deckTitleChange.bind(this)
     }
+
+    componentDidMount() {
+      let className = "/" + this.props.class
+      let cachedDeck = localStorage.getItem(className)
+
+      if (cachedDeck) {
+        this.props.updateDeck(JSON.parse(cachedDeck))
+      }
+    }
+
 
     handleCardRemove(card) {
       let { deck } = this.props
@@ -38,7 +48,7 @@ export default class Deck extends React.Component {
      return (
        <div className="deck-container">
         <Segment>
-         <input onChange={this.deckTitleChange} value={this.state.deckTitle}  />
+         <input onChange={this.deckTitleChange} value={this.props.class || this.props.params.class}  />
           <div className="deck-list">
            {deck.map(card =>
             <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />

@@ -15,18 +15,8 @@ export default class List extends React.Component {
 
     this.handlePageClick = this.handlePageClick.bind(this)
     this.handleCardClick = this.handleCardClick.bind(this)
-    // this.validateClass = this.validateClass.bind(this)
-
-    // this.validateClass(this.props.params.class, this.props.class)
   }
 
-  // validateClass(paramsClass, propsClass) {
-  //   if (paramsClass && !propsClass) {
-  //     this.props.updateClass(paramsClass)
-  //   }
-  // }
-
-  
    componentDidMount() {
     if (this.props.class) {
       this.cards(this.props, 1)

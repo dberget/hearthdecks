@@ -1,3 +1,0 @@
-const checkClass = (props) => {
-
-}
