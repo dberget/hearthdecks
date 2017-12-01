@@ -3,16 +3,17 @@ $darkgrey: #4E5560;
 $jet: #2F2F2F;
 $mustard: #FFC857;
 $white: #ffffff;
+
 .container {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
     flex-flow: wrap;
-    margin: 10px;
 }
 
 html body {
+    margin: 10px;
     height: 100%;
     font-size: 62.5%;
     background-color: $darkgrey;
@@ -24,11 +25,15 @@ html body {
       background-size: cover;
 }
 
-h1 {
-    color: $white;
-    width: 100%;
-
+.basic.button.false {
+    display: none;
 }
+
+a h1 {
+    color: $white;
+    display: inline;
+}
+
 
 .ui.icon.button {
     margin: 3px;
@@ -37,19 +42,22 @@ h1 {
     width: 3rem;
 }
 
-.main-nav {
-    padding: 5px;
-    width: 100%;
-   
-}
-
 .class-container {
+    padding: 10px;
     width: 70%;
     margin: 0 auto;
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 5px;
+
+    .ui.form {
+        margin-right: 3.5px;
+    }
+
+    .ui.input {
+        margin-right: 3px;
+    }
 
     .class-list-body {
         display: -webkit-flex;
@@ -67,7 +75,14 @@ h1 {
     h2 {
         margin: 10px;
         color: $jet;
+        display: inline;
     }
+
+    h3 {
+        font-weight:  100;
+        display: inline;
+    }
+
     
 }
 
@@ -80,6 +95,10 @@ h1 {
     -webkit-flex: 4;
     flex: 4;
     height: 100%;
+
+    a {
+        width: 33%
+    }
 }
 
 .manabar {
@@ -89,7 +108,6 @@ h1 {
 .list-container {
     -webkit-flex: 4;
     flex: 4;
-    border-radius: 2px;
 
     .list-body {
         display: -webkit-flex;
@@ -105,20 +123,22 @@ h1 {
         background-color: white;
         min-height: 550px;
     }
+
+    .ui.menu {
+        height: 50px;
+    }
     
     .ui.menu.top-nav {
         margin: 0 0 0 0;
         border-radius: 0;
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
-        height: 50px;
     }
     .ui.menu.bot-nav {
         margin: 0 0 0 0;
         border-radius: 0;
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
-        height: 50px;
     }  
     .ui.button.next-button {
         margin-left: auto;
@@ -127,7 +147,6 @@ h1 {
 
 .img-container--3 {
     overflow: hidden;
-    width: calc(100% / 3);
 }
 
 .img-container--4 {
@@ -207,46 +226,22 @@ span.count {
 }
 
 
-.deck--footer {
+.export {
+    border-radius: .28571429rem;
     width: 100%;
-    .import {
-        float: right;
-        width: 45%;
-        border-radius: .28571429rem;
-        background-color: transparent;
-        border: solid;
-        border-width: thin;
-        padding: 5px;
-        &:hover {
-            cursor: pointer;
-            color: white;
-            background-color: $darkgrey;
-        }
-    }
-    .import .field {
-        width: 100%;
-    }
-    .export {
-        min-width: 50px;
-        border-radius: .28571429rem;
-        width: 45%;
-        background-color: transparent;
-        border: solid;
-        border-width: thin;
-        padding: 5px;
-        &:hover {
-            cursor: pointer;
-            color: white;
-            background-color: $darkgrey;
-        }
-    }
-    .ui.form {
-        margin-top: 5px;
-        .button {
-            margin-top: 3px;
-        }
+    background-color: transparent;
+    border: solid;
+    border-width: thin;
+    padding: 5px;
+
+    &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: $darkgrey;
     }
 }
+
+
 
 i.star.icon {
     width: 0;

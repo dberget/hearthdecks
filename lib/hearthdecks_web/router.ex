@@ -17,13 +17,14 @@ defmodule HearthdecksWeb.Router do
     pipe_through :browser 
 
     get "/", PageController, :index
+    get "/:class", PageController, :index
   end
 
   scope "/", HearthdecksWeb do
     pipe_through :api
 
-    get "/cards", CardController, :index
-    get "/search/cards", CardController, :dbfid
+    get "/new/cards", CardController, :index
+    get "/upload/cards", CardController, :dbfid
   end
 
 end

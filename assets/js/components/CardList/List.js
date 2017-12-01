@@ -17,15 +17,17 @@ export default class List extends React.Component {
     this.handleCardClick = this.handleCardClick.bind(this)
   }
 
-  componentDidMount() {
+   componentDidMount() {
     if (this.props.class) {
       this.cards(this.props, 1)
+    } else {
+      this.props.updateClass(this.props.params.class)
     }
   } 
 
   componentWillReceiveProps(nextProps) {
     const diffFilters = nextProps.filters !== this.props.filters; 
-    
+
     if (diffFilters) {
       this.cards(nextProps, 1)
     }
@@ -53,7 +55,7 @@ export default class List extends React.Component {
     var filters = scrubFilters(props.filters)
     var request = encodeQueryData(filters)
 
-    fetch(`/cards?page=${page}&${request}`, {
+    fetch(`/new/cards?page=${page}&${request}`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -101,7 +103,7 @@ export default class List extends React.Component {
           </div>
           <Button className="next-button" onClick={() => this.handlePageClick("next")}><Icon name="arrow right" /></Button>
         </div>
-        <BottomNav toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleMaxCard={this.props.handleMaxCard} />
+        <BottomNav toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleCardLimit={this.props.handleCardLimit} />
       </div>
     );
   }

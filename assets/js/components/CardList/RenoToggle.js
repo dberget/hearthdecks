@@ -10,7 +10,7 @@ export default class RenoToggle extends React.Component {
     }
 
     handleToggle(e, {value}) { 
-        this.props.handleMaxCard(!this.state.checked)
+        this.props.handleCardLimit(!this.state.checked)
         this.setState({checked: !this.state.checked})
       }
 

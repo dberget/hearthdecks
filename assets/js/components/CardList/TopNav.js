@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dropdown, Button, Input, Menu, Icon, Radio } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import ExpansionDropdown from './ExpansionDropdown'
 
 export default class TopNav extends React.Component {
@@ -37,6 +38,7 @@ export default class TopNav extends React.Component {
   }
 
   resetClass() {
+    console.log("reset")
     var newClass = ""
 
     this.props.updateClass(newClass);
@@ -65,7 +67,7 @@ export default class TopNav extends React.Component {
               <Icon name='trash outline'/> 
                Reset Deck
             </Menu.Item>
-            <Menu.Item onClick={this.resetClass} > 
+            <Menu.Item as={Link} to="/" > 
               <Icon name='undo'/> 
               New Class
             </Menu.Item>

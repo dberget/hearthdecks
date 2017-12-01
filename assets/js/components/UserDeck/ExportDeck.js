@@ -33,6 +33,8 @@ export default class ExportDeck extends React.Component {
                 return [671]
             case "Rogue":
                 return [930]
+            case "Druid":
+                return [274]
         }
     }
 
