@@ -1,5 +1,4 @@
 import React from 'react'
-import MainNav from "./HeaderNav/MainNav"
 import List from "./CardList/List"
 import Deck from "./UserDeck/Deck" 
 import { sortDeck } from '../utils'
@@ -135,13 +134,12 @@ class App extends React.Component {
       <div>
       <Link to="/" ><h1> HEARTHDECKS </h1> </Link>
       <Route exact path="/" render={() => (
-      <div className="container">
        <ClassList updateClass={this.handleClassChange} 
+                  uploadDeck={this.handleDeckUpload}
                   updateFilterClass={this.handleFilterClass} 
                   resetDeck={this.handleDeckChange} 
                   saveDeck={this.handleStorage}
                   />
-      </div>
       )}/>
       <Route exact path="/:class" render={({match}) => (
       <div className="container">
@@ -167,7 +165,6 @@ class App extends React.Component {
                deck={this.state.deck} 
                params={match.params}
                updateDeck={this.handleDeckChange}
-               handleDeckUpload={this.handleDeckUpload} 
                />
                </div>
         )}/>

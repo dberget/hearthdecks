@@ -2,13 +2,13 @@ import React from 'react'
 import { Segment, Input } from 'semantic-ui-react'
 
 import DeckItem from './DeckItem'
-import DeckListFooter from './DeckListFooter'
+import ExportDeck from './ExportDeck'
 
 export default class Deck extends React.Component {
     constructor(props){
      super(props)
 
-     this.state = {deckTitle: ""}
+     this.state = {deckTitle: this.props.params.class + " Deck"}
 
      this.deckTitleChange = this.deckTitleChange.bind(this)
     }
@@ -48,13 +48,13 @@ export default class Deck extends React.Component {
      return (
        <div className="deck-container">
         <Segment>
-         <input onChange={this.deckTitleChange} value={this.props.class || this.props.params.class}  />
+         <input onChange={this.deckTitleChange} value={this.state.deckTitle}  />
           <div className="deck-list">
            {deck.map(card =>
             <DeckItem count={card.count} rarity={card.rarity} onClick={(e) => this.handleCardRemove.bind(this, e)} mana={card.cost} key={card.id} name={card.name} />
            )}
           </div>
-          <DeckListFooter deckTitle={this.state.deckTitle} handleMaxCard={this.props.handleMaxCard} class={this.props.class} handleDeckUpload={handleDeckUpload} deck={deck}  />  
+          <ExportDeck deckTitle={this.state.deckTitle} class={this.props.class} deck={deck} /> 
         </Segment>
        </div>
      );

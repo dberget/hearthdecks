@@ -12,12 +12,13 @@ class ImportDeck extends React.Component {
     constructor(props){
         super(props)
         
-        this.state = {deckstring: '', hidden: true, playerClass: "" }
+        this.state = {deckstring: '', hidden: true}
 
         this.getClassbydbfId = this.getClassbydbfId.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleUpload = this.handleUpload.bind(this)
         this.getCards = this.getCards.bind(this)
+        this.handleExpand = this.handleExpand.bind(this)
     }
 
     getClassbydbfId(playerClass) {
@@ -79,7 +80,6 @@ class ImportDeck extends React.Component {
         var userDeck = processDeck(deck)
         var playerClass = this.getClassbydbfId(deck.heroes)
 
-        this.setState({deckstring: "", hidden: true, playerClass: playerClass})
         this.getCards(userDeck, deck.cards, playerClass)
     }
 
@@ -89,13 +89,15 @@ class ImportDeck extends React.Component {
        const { deckstring, hidden } = this.state
 
         return(
-            <span>
-                    <ImportButton onClick={this.handleExpand.bind(this)} />
+            <div>
+                <Button className={`${hidden}`} basic onClick={this.handleExpand}> Import </Button>
                     <Form hidden={hidden} onSubmit={this.handleUpload}>
-                        <Input fluid onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
-                        <Button type="submit" size='tiny' basic > Upload </Button>
+                        <Form.Group>
+                         <Input onChange={this.handleChange} value={deckstring} placeholder='Paste Deckstring' />
+                         <Button type="submit" basic> Import </Button>
+                        </Form.Group>
                     </Form>
-            </span>
+            </div>
         ) 
     }
 }
