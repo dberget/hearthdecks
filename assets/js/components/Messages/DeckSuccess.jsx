@@ -1,8 +1,10 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-export const DeckSuccess = (props) => (
+const DeckSuccess = () => (
   <Message positive>
     <Message.Content> Deck Copied Successfully! </Message.Content>
   </Message>
 )
+
+export default DeckSuccess

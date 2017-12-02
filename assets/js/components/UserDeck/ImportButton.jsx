@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const ImportButton = ({onClick}) => {
+const ImportButton = ({ onClick }) => {
   return <button type="button" className="import" onClick={onClick}> Import </button>
 }
 
