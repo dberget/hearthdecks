@@ -1,7 +1,10 @@
 exports.config = {
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      joinTo: {
+        'js/app.js': /^(js)/,
+        'js/vendor.js': /^node_modules/,
+      },
     },
     stylesheets: {
       joinTo: "css/app.css"
@@ -36,7 +39,7 @@ exports.config = {
   modules: {
     autoRequire: {
       "js/app.js": ["js/index"]
-    }
+    },
   },
 
   npm: {
@@ -44,9 +47,6 @@ exports.config = {
     globals: {
       $: 'jquery',
       jQuery: 'jquery'
-    },
-    styles: {
-      'semantic-ui-css': ["semantic.min"]
     },
     whitelist: [
       "react",

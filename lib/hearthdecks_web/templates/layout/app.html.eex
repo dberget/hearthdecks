@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Hearthdecks!</title>
+    <title>Hearthdecks!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
   </head>
@@ -15,5 +15,6 @@
   <body>
         <%= render @view_module, @view_template, assigns %>
   </body>
+    <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 </html>

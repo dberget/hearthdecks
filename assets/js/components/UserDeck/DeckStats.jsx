@@ -24,13 +24,13 @@ export default class DeckStats extends React.Component {
         let row2 = `bar__${costs[2]}`
         let row3 = `bar__${costs[3]}`
 
-        return ( 
-            <div className = "deck--stats_container">
-              <Segment className="deck-stats" >
-                <div className={row1}> 1 </div>
-                <div className={row2}> 2 </div>
-                <div className={row3}> 3 </div>
-              </Segment> 
+        return (
+            <div className="deck--stats_container">
+                <Segment className="deck-stats" >
+                    <div className={row1}> 1 </div>
+                    <div className={row2}> 2 </div>
+                    <div className={row3}> 3 </div>
+                </Segment>
             </div>
         );
     }

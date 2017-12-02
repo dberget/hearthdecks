@@ -1,16 +1,13 @@
-import {encodeQueryData} from './ApiHelpers'
-
 export function processDeck(deck) {
-    var dbfids = []
-    var cards = deck.cards
+    const dbfids = []
+    const cards = deck.cards
 
-    for (var i = 0; i < cards.length; ++i) {
+    for (var i = 0; i < cards.length; i += 1) {
         dbfids.push(cards[i][0])
     }
 
-    return dbfids;
+    return dbfids
 }
-
 
 export function addCount(userDeck, deck) {
     for (var i = 0; i < userDeck.length; ++i) {
@@ -21,5 +18,5 @@ export function addCount(userDeck, deck) {
         }
     }
 
-    return deck;
+    return deck
 }

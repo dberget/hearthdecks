@@ -1,5 +1,5 @@
 $darkblue: #063560;
-$darkgrey: #4E5560;
+$darkgrey: #596164;
 $jet: #2F2F2F;
 $mustard: #FFC857;
 $white: #ffffff;
@@ -13,16 +13,13 @@ $white: #ffffff;
 }
 
 html body {
-    margin: 10px;
-    height: 100%;
+    padding: 10px;
     font-size: 62.5%;
-    background-color: $darkgrey;
-    background: url(/images/bg.jpg) no-repeat center center;
-    
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
+    background-color: #596164;
+    background: -webkit-linear-gradient(#868f96, #596164); /* For Safari 5.1 to 6.0 */
+    background: -moz-linear-gradient(#868f96, #596164); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#868f96, #596164); /* Standard syntax */
+
 }
 
 .basic.button.false {
@@ -43,11 +40,11 @@ a h1 {
 }
 
 .class-container {
+    margin-top: 5px;
     padding: 10px;
     width: 70%;
     margin: 0 auto;
     background: #fff;
-    border-radius: 2px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 5px;
 
@@ -108,6 +105,7 @@ a h1 {
 .list-container {
     -webkit-flex: 4;
     flex: 4;
+    margin-top: 5px;
 
     .list-body {
         display: -webkit-flex;
@@ -116,41 +114,43 @@ a h1 {
         flex-direction: row;
         flex-flow: wrap;
         justify-content: center;
-        -webkit-flex: 4;
-        flex: 4;
         padding: 5px;
         overflow: hidden;
         background-color: white;
-        min-height: 550px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        min-height: 72vh;
     }
 
     .ui.menu {
         height: 50px;
     }
+
+    .ui.menu>.item:first-child {
+        border-radius: 0;
+    }
     
     .ui.menu.top-nav {
-        margin: 0 0 0 0;
-        border-radius: 0;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
+        margin-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
     }
     .ui.menu.bot-nav {
-        margin: 0 0 0 0;
-        border-radius: 0;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
+        margin-top: 0;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
     }  
     .ui.button.next-button {
         margin-left: auto;
     }
 }
 
-.img-container--3 {
-    overflow: hidden;
-}
-
 .img-container--4 {
-    overflow: hidden;
     width: calc(100% / 4);
 }
 
@@ -160,6 +160,9 @@ a h1 {
     margin: -15px auto;
     &:hover {
         cursor: pointer;
+        transform: scale(1.05);
+        -webkit-transform:  scale(1.05); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
+        -ms-transform: scale(1.05);
     }
 }
 
@@ -169,11 +172,14 @@ a h1 {
     margin: -15px auto;
     &:hover {
         cursor: pointer;
+        transform: scale(1.05);
     }
 }
 
 .deck-container {
-    margin: 0 10px 0 10px;
+    margin: 5px 10px 0 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
     -webkit-align-self: flex-start;
     align-self: flex-start;
     -webkit-flex: 1;
@@ -226,13 +232,14 @@ span.count {
 }
 
 
-.export {
-    border-radius: .28571429rem;
+ button.export {
+    border-radius: 5px;
     width: 100%;
     background-color: transparent;
-    border: solid;
-    border-width: thin;
-    padding: 5px;
+    border: none;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgba(34,36,38,.15) inset;
+    padding: 7px;
 
     &:hover {
         cursor: pointer;
