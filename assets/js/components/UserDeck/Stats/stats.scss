@@ -1,0 +1,71 @@
+.barcontainer {
+  position: relative;
+  border-radius: 5px;
+  margin-top: 3px;
+  width: 100%;
+  min-height: 20vw;
+  max-height: 50vw;
+  z-index: 1;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.barcontainerheader {
+  position: absolute;
+  width: 100%;
+  padding: 7px;
+  border-bottom: 1px solid #e0e1e2;
+  font-size: 1.5em;
+  text-align: center;
+  z-index: 0;
+}
+
+.bar {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  border-radius: 4px;
+  background: #e0e1e2 none;
+  width: 10%;
+  text-align: center;
+}
+
+.barlabel {
+  padding: 2px;
+  position: absolute;
+  background: #eee;
+  bottom: 0;
+  width: 100%;
+  color: black;
+}
+
+.bar:nth-child(2) {
+  left: 3%;
+}
+
+.bar:nth-child(3) {
+  left: 15%;
+}
+
+.bar:nth-child(4) {
+  left: 27%;
+}
+
+.bar:nth-child(5) {
+  left: 39%;
+}
+
+.bar:nth-child(6) {
+  left: 51%;
+}
+
+.bar:nth-child(7) {
+  left: 63%;
+}
+
+.bar:nth-child(8) {
+  left: 75%;
+}
+
+.bar:nth-child(9) {
+  left: 87%;
+}

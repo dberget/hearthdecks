@@ -13,6 +13,7 @@ export const countDeck = (deck) => {
 export const countCard = (card, deck) => {
   let count = 0
 
+
   for (let i = 0; i < deck.length; i += 1) {
     if (deck[i].name === card.name) {
       count += 1
