@@ -167,7 +167,7 @@ class App extends React.Component {
                 active={this.state.filters.cost}
                 handleCostClick={this.handleCostChange}
                 handleCardLimit={this.handleCardLimit}
-                maxCardCount={this.state.cardLimit}
+                cardLimit={this.state.cardLimit}
               />
               <Deck
                 class={this.state.class}
