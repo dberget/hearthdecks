@@ -1,6 +1,6 @@
 export function scrubFilters(state) {
     const newObj = [Object.keys(state).forEach(key =>
-        (state[key] === false) && delete state[key]), state][1]
+        (state[key] == false) && delete state[key]), state][1]
 
     return newObj
 }

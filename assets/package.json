@@ -32,8 +32,6 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
-    "prettier": "1.8.2",
-    "prettier-eslint": "^8.2.2",
     "sass-brunch": "^2.10.4",
     "uglify-js-brunch": "2.10.0"
   }
