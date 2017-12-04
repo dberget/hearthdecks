@@ -283,6 +283,14 @@ i.star.icon {
     margin-top: 5px;
 }
 
+.feedback {
+    position: absolute; 
+    bottom: 10px;
+    margin: 0 50%;
+    color: #eee;
+    font-size: .8rem;
+}
+
 @-webkit-keyframes card-add {
     0% {
         background-color: color($mustard/4);

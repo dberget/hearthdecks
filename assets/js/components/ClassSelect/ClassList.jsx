@@ -26,11 +26,7 @@ export default class ClassList extends React.Component {
     return (
       <div className="class-container">
         <Menu secondary>
-          <Menu.Header as="h2">
-            Select a Class
-            <Menu.Header as="h3">
-              or Import a Deck
-            </Menu.Header>
+          <Menu.Header as="h2"> Select a Class <Menu.Header as="h3"> or Import a Deck </Menu.Header>
           </Menu.Header>
           <Menu.Menu position="right">
             <ImportDeck uploadDeck={this.props.uploadDeck} />
