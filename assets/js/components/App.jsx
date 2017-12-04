@@ -88,15 +88,15 @@ class App extends React.Component {
     if (this.state.filters.cost !== mana.value) {
       this.setState({
         filters: Object.assign({}, this.state.filters, {
-          cost: mana.value,
-        }),
-      });
+          cost: mana.value
+        })
+      })
     } else {
       this.setState({
         filters: Object.assign({}, this.state.filters, {
-          cost: '',
+          cost: ""
         }),
-      });
+      })
     }
   }
 
