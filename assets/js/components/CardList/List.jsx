@@ -71,7 +71,7 @@ export default class List extends React.Component {
     const maxDeckSize = 30
     const count = countCard(card, deck)
     const deckSize = countDeck(deck)
-    const maxCardCount = card.rarity === 'Legendary' ? 1 : this.props.maxCardCount
+    const maxCardCount = card.rarity === 'Legendary' ? 1 : this.props.cardLimit
     let index = []
 
     if (deckSize === maxDeckSize) {
@@ -104,7 +104,7 @@ export default class List extends React.Component {
           </div>
           <Button className="next-button" onClick={() => this.handlePageClick('next')}><Icon name="arrow right" /></Button>
         </div>
-        <BottomNav toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleCardLimit={this.props.handleCardLimit} />
+        <BottomNav cardLimit={this.props.cardLimit} toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleCardLimit={this.props.handleCardLimit} />
       </div>
     );
   }

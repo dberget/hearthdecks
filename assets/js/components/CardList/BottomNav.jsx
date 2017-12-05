@@ -18,7 +18,7 @@ const BottomNav = (props) => {
                 <ManaBar active={props.active} handleClick={props.handleCostClick} />
             </Menu.Item>
             <Menu.Item position="right">
-                <RenoToggle handleCardLimit={props.handleCardLimit} />
+                <RenoToggle cardLimit={props.cardLimit} handleCardLimit={props.handleCardLimit} />
             </Menu.Item>
         </Menu>
     )

@@ -18,6 +18,7 @@ defmodule HearthdecksWeb.Router do
 
     get "/", PageController, :index
     get "/:class", PageController, :index
+    get "/deck/:deckstring", PageController, :index
   end
 
   scope "/", HearthdecksWeb do

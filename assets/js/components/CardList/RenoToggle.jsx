@@ -19,7 +19,7 @@ export default class RenoToggle extends React.Component {
             <Radio
                 className="reno-mode"
                 onChange={this.handleToggle}
-                checked={this.state.checked === true}
+                checked={this.props.cardLimit === 1}
                 label='Reno Mode?'
                 toggle
             />

@@ -6,6 +6,7 @@ import List from './CardList/List'
 import Deck from './UserDeck/Deck'
 import { sortDeck } from '../utils'
 import ClassList from './ClassSelect/ClassList'
+import ImportHelper from './Helpers/ImportHelper'
 
 
 class App extends React.Component {
@@ -57,7 +58,7 @@ class App extends React.Component {
 
     this.setState(prevState => ({
       deck: deck,
-    }));
+    }))
 
     this.handleStorage(true)
   }
@@ -167,7 +168,7 @@ class App extends React.Component {
                 active={this.state.filters.cost}
                 handleCostClick={this.handleCostChange}
                 handleCardLimit={this.handleCardLimit}
-                maxCardCount={this.state.cardLimit}
+                cardLimit={this.state.cardLimit}
               />
               <Deck
                 class={this.state.class}
@@ -175,11 +176,19 @@ class App extends React.Component {
                 params={match.params}
                 updateDeck={this.handleDeckChange}
               />
+              <a rel="noopener noreferrer" target="_blank" className="feedback" href="https://davidberget.typeform.com/to/y3PtBp"> Feedback </a>
             </div>
           )}
         />
-        <Ad />
-      </div >
+        <Route
+          exact
+          path="/deck/:deckstring"
+          render={({ match }) => (
+            <ImportHelper params={match.params} uploadDeck={this.handleDeckChange} />
+          )}
+        />
+         <Ad />
+      </div>
     )
   }
 }
