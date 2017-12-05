@@ -1,16 +1,18 @@
 import React from 'react'
-import { Segment, Input } from 'semantic-ui-react'
+import { Segment, Button } from 'semantic-ui-react'
 
 import DeckItem from './DeckItem'
 import ExportDeck from './ExportDeck'
+import DeckStats from './Stats/DeckStats'
 
 export default class Deck extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { deckTitle: `${this.props.params.class} Deck` }
+    this.state = { deckTitle: `${this.props.params.class} Deck`, showStats: true }
 
     this.deckTitleChange = this.deckTitleChange.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
 
   componentDidMount() {
@@ -36,6 +38,9 @@ export default class Deck extends React.Component {
     this.props.updateDeck(deck)
   }
 
+  handleOnClick() {
+    this.setState({ showStats: !this.state.showStats })
+  }
 
   deckTitleChange(e) {
     this.setState({ deckTitle: e.target.value })
@@ -49,6 +54,8 @@ export default class Deck extends React.Component {
       <div className="deck-container">
         <Segment>
           <input onChange={this.deckTitleChange} value={this.state.deckTitle} />
+          <Button size="tiny" basic onClick={this.handleOnClick} content="Deck Stats" />
+          <DeckStats hidden={this.state.showStats} data={deck} />
           <div className="deck-list">
             {deck.map(card =>
               (

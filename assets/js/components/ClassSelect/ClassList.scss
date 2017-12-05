@@ -1,0 +1,49 @@
+$darkblue: #063560;
+$darkgrey: #596164;
+$jet: #2F2F2F;
+$mustard: #FFC857;
+$white: #ffffff;
+
+.class-container {
+    margin-top: 5px;
+    padding: 10px;
+    width: 70%;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+
+    .ui.form {
+        margin-right: 3.5px;
+    }
+
+    .ui.input {
+        margin-right: 3px;
+    }
+
+    .class-list-body {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        flex-flow: wrap;
+        justify-content: center;
+        overflow: hidden;
+        width: 80%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin: 10px;
+        color: $jet;
+        display: inline;
+    }
+
+    h3 {
+        font-weight:  100;
+        display: inline;
+    }
+
+    
+}
