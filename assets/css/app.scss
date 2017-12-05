@@ -12,6 +12,7 @@ $white: #ffffff;
     flex-flow: wrap;
 }
 
+
 html body {
     padding: 10px;
     font-size: 62.5%;
@@ -19,7 +20,10 @@ html body {
     background: -webkit-linear-gradient(#868f96, #596164); /* For Safari 5.1 to 6.0 */
     background: -moz-linear-gradient(#868f96, #596164); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#868f96, #596164); /* Standard syntax */
+}
 
+.ad {
+    display: inline;
 }
 
 .basic.button.false {
@@ -134,7 +138,7 @@ a h1 {
 }
 
 .deck-container {
-    margin: 5px 10px 0 10px;
+    margin: 5px 10px 10px 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 5px;
     -webkit-align-self: flex-start;
@@ -144,7 +148,12 @@ a h1 {
 
     input {
         border: none;
+        width: 60%;
         font-size: 1.4rem;
+    }
+
+    button.basic.button {
+        display: inline;
     }
 }
 

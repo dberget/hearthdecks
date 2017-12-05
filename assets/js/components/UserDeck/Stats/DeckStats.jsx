@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Button, Statistic } from 'semantic-ui-react'
+import { Segment, Divider } from 'semantic-ui-react'
 
 import { countDeck } from '../../../utils'
 
@@ -25,7 +25,7 @@ export default class DeckStats extends React.Component {
             }
         } else {
             for (let i = 0; i < deck.length; ++i) {
-                if (deck[i].cost > 7) {
+                if (deck[i].cost > 6) {
                     list.push(deck[i].count)
                 }
             }
@@ -43,7 +43,7 @@ export default class DeckStats extends React.Component {
         const deck = this.props.data
         let total = 0
         const list = []
-        const dustValues = { common: 40, Rare: 100, Epic: 400, Legendary: 1600 }
+        // const dustValues = { common: 40, Rare: 100, Epic: 400, Legendary: 1600 }
 
         for (let i = 0; i < deck.length; ++i) {
             if (deck[i].rarity == "common") {
@@ -89,57 +89,65 @@ export default class DeckStats extends React.Component {
     render() {
 
         return (
-            <div>
-                <Segment hidden={this.props.hidden}>
-                    <Statistic size="mini" horizontal label="Dust" value={this.calcDust()} />
-                    <Statistic size="mini" horizontal label="Ave Mana Cost" value={this.calcMana()} />
-                    <div className="barcontainer">
-                        <div className="barcontainerheader">
-                            Mana Curve
+            <Segment basic hidden={this.props.hidden}>
+                <Divider horizontal> Stats </Divider>
+                <div className="stats-container">
+                    <div className="stat">
+                        <span className="stat-header"> Dust: </span>
+                        <span> {this.calcDust()} </span>
                     </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(0)}%` }}>
-                            <div className="barlabel">
-                                0
+                    <div className="stat">
+                        <span className="stat-header"> Ave. Mana: </span>
+                        <span> {this.calcMana()} </span>
                     </div>
-                        </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(1)}%` }}>
-                            <div className="barlabel">
-                                1
+                </div>
+                <div className="barcontainer">
+                    <div className="barcontainerheader">
+                        Mana Curve
                     </div>
-                        </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(2)}%` }}>
-                            <div className="barlabel">
-                                2
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(0)}%` }}>
+                        <div className="barlabel">
+                            0
                     </div>
-                        </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(3)}%` }}>
-                            <div className="barlabel">
-                                3
                     </div>
-                        </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(4)}%` }}>
-                            <div className="barlabel">
-                                4
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(1)}%` }}>
+                        <div className="barlabel">
+                            1
                     </div>
-                        </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(5)}%` }}>
-                            <div className="barlabel">
-                                5
                     </div>
-                        </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(6)}%` }}>
-                            <div className="barlabel">
-                                6
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(2)}%` }}>
+                        <div className="barlabel">
+                            2
                     </div>
-                        </div>
-                        <div className="bar" style={{ height: `${this.cardsAtManaCost(7)}%` }}>
-                            <div className="barlabel">
-                                7+
                     </div>
-                        </div>
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(3)}%` }}>
+                        <div className="barlabel">
+                            3
                     </div>
-                </Segment>
-            </div>
+                    </div>
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(4)}%` }}>
+                        <div className="barlabel">
+                            4
+                    </div>
+                    </div>
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(5)}%` }}>
+                        <div className="barlabel">
+                            5
+                    </div>
+                    </div>
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(6)}%` }}>
+                        <div className="barlabel">
+                            6
+                    </div>
+                    </div>
+                    <div className="bar" style={{ height: `${this.cardsAtManaCost(7)}%` }}>
+                        <div className="barlabel">
+                            7+
+                    </div>
+                    </div>
+                </div>
+                <Divider fitted horizontal> Deck </Divider>
+            </Segment>
         )
     }
 }

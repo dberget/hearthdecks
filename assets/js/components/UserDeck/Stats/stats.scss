@@ -1,10 +1,29 @@
+.stats-container {
+  .stat {
+    padding: 5px;
+    font-size: 1.1rem;
+  }
+
+  .stat-header {
+    font-weight: 700;
+  }
+}
+
+.ui.basic.segment {
+  margin-top: -8px;
+}
+
+.ui.fitted.horizontal.divider {
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+
 .barcontainer {
   position: relative;
   border-radius: 5px;
   margin-top: 3px;
   width: 100%;
-  min-height: 20vw;
-  max-height: 50vw;
+  min-height: 15vw;
   z-index: 1;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -23,16 +42,18 @@
   position: absolute;
   display: inline-block;
   bottom: 0;
-  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   background: #e0e1e2 none;
   width: 10%;
   text-align: center;
+  max-height: 85%
 }
 
 .barlabel {
-  padding: 2px;
   position: absolute;
-  background: #eee;
+  height: 15px;
+  padding: 2px;
   bottom: 0;
   width: 100%;
   color: black;
