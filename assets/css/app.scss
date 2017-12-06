@@ -41,6 +41,12 @@ a h1 {
 
 .manabar {
     margin: 0 auto;
+
+    .basic.button {
+        @media (max-width: 900px) {
+            padding: 10px;
+        }
+    }
 }
 
 .list-container {
@@ -141,6 +147,11 @@ a h1 {
     align-self: flex-start;
     -webkit-flex: 1;
     flex: 1;
+
+
+    @media (max-width: 1030px) {
+    margin: 5px 0;
+    }
 
     input {
         border: none;
