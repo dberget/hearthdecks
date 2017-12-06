@@ -146,7 +146,7 @@ export default class DeckStats extends React.Component {
                     </div>
                     <div className="bar" style={{ height: `${this.cardsAtManaCost(5) * 5}%` }}>
                         <div className="barAmount">
-                            {this.cardsAtManaCost(5) > 3 && this.cardsAtManaCost(5)}
+                            {this.cardsAtManaCost(5) > 2 && this.cardsAtManaCost(5)}
                         </div>
                         <div className="barlabel">
                             5

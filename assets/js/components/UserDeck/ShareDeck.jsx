@@ -65,7 +65,11 @@ export default class ExportDeck extends React.Component {
 
     generateLink() {
         const str = this.generateDeckString()
-        return `www.hearthdecks.daveberget.com/deck/${str}`
+        if (str === undefined) {
+            flashNotice(`Sorry, You need 30 Cards to share a deck.`)
+        } else {
+            return `www.hearthdecks.daveberget.com/deck/${str}`
+        }
     }
 
     render() {

@@ -98,12 +98,12 @@ export default class List extends React.Component {
       <div className="list-container">
         <TopNav {...this.props} />
         <div className="list-body">
-          <Button className="prev-button" onClick={() => this.handlePageClick('prev')}> <Icon name="arrow left" /></Button>
+          <Button disabled={this.state.page_number == 1} className="prev-button" onClick={() => this.handlePageClick('prev')}> <Icon name="arrow left" /></Button>
           <div className="card-entries">
             {this.state.entries.map(card => <HSCard rowSize={4} onSelect={this.handleCardClick} key={card.id} data={card} />
             )}
           </div>
-          <Button className="next-button" onClick={() => this.handlePageClick('next')}><Icon name="arrow right" /></Button>
+          <Button disabled={this.state.page_number == this.state.total_pages} className="next-button" onClick={() => this.handlePageClick('next')}><Icon name="arrow right" /></Button>
         </div>
         <BottomNav cardLimit={this.props.cardLimit} toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleCardLimit={this.props.handleCardLimit} />
       </div >
