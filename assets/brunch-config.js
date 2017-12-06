@@ -32,7 +32,7 @@ exports.config = {
   plugins: {
     babel: {
       presets: ['env', 'react'],
-      ignore: [/^node_modules/]
+      ignore: [/^node_modules/],
     },
   },
 

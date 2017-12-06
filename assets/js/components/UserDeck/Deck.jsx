@@ -1,8 +1,10 @@
 import React from 'react'
-import { Segment, Button } from 'semantic-ui-react'
+import { Segment, Button, Menu } from 'semantic-ui-react'
 
 import DeckItem from './DeckItem'
+import DeckMenu from './Menu/DeckMenu'
 import ExportDeck from './ExportDeck'
+import { countDeck } from '../../utils'
 import DeckStats from './Stats/DeckStats'
 
 export default class Deck extends React.Component {
@@ -12,7 +14,7 @@ export default class Deck extends React.Component {
     this.state = { deckTitle: `${this.props.params.class} Deck`, showStats: true }
 
     this.deckTitleChange = this.deckTitleChange.bind(this)
-    this.handleOnClick = this.handleOnClick.bind(this)
+    this.handleStatsClick = this.handleStatsClick.bind(this)
   }
 
   componentDidMount() {
@@ -38,7 +40,7 @@ export default class Deck extends React.Component {
     this.props.updateDeck(deck)
   }
 
-  handleOnClick() {
+  handleStatsClick() {
     this.setState({ showStats: !this.state.showStats })
   }
 
@@ -53,9 +55,9 @@ export default class Deck extends React.Component {
     return (
       <div className="deck-container">
         <Segment>
-          <input onChange={this.deckTitleChange} value={this.state.deckTitle} />
-          <Button size="tiny" basic onClick={this.handleOnClick} content="Deck Stats" />
+          <DeckMenu deck={deck} playerClass={this.props.class} deckTitle={this.state.deckTitle} handleStatsClick={this.handleStatsClick} />
           <DeckStats hidden={this.state.showStats} data={deck} />
+          <input onChange={this.deckTitleChange} value={this.state.deckTitle} />
           <div className="deck-list">
             {deck.map(card =>
               (
@@ -69,7 +71,6 @@ export default class Deck extends React.Component {
                 />
               ))}
           </div>
-          <ExportDeck deckTitle={this.state.deckTitle} class={this.props.class} deck={deck} />
         </Segment>
       </div>
     )

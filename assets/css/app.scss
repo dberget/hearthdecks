@@ -1,8 +1,4 @@
-$darkblue: #063560;
-$darkgrey: #596164;
-$jet: #2F2F2F;
-$mustard: #FFC857;
-$white: #ffffff;
+@import "utils";
 
 .container {
     display: -webkit-flex;
@@ -11,7 +7,6 @@ $white: #ffffff;
     flex-direction: row;
     flex-flow: wrap;
 }
-
 
 html body {
     padding: 10px;
@@ -22,10 +17,6 @@ html body {
     background: linear-gradient(#868f96, #596164); /* Standard syntax */
 }
 
-.ad {
-    display: inline;
-}
-
 .basic.button.false {
     display: none;
 }
@@ -33,14 +24,6 @@ html body {
 a h1 {
     color: $white;
     display: inline;
-}
-
-
-.ui.icon.button {
-    margin: 3px;
-    border-radius: 0rem;
-    color: $jet;
-    width: 3rem;
 }
 
 
@@ -54,9 +37,6 @@ a h1 {
     flex: 4;
     height: 100%;
 
-    a {
-        width: 33%
-    }
 }
 
 .manabar {
@@ -67,6 +47,11 @@ a h1 {
     -webkit-flex: 4;
     flex: 4;
     margin-top: 5px;
+    flex-basis: 770px;
+
+    @include for-big-desktop-up {
+        flex: 3;
+    }
 
     .list-body {
         display: -webkit-flex;
@@ -76,10 +61,16 @@ a h1 {
         flex-flow: wrap;
         justify-content: center;
         padding: 5px;
-        overflow: hidden;
         background-color: white;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        min-height: 72vh;
+
+        @include for-tablet-portrait-up {
+            min-height: 80vh;
+        }
+        @include for-desktop-up {
+            min-height: 72vh;
+        }
+        
     }
 
     .ui.menu {
@@ -118,22 +109,27 @@ a h1 {
 .hsImage--4 {
     width: 80%;
     display: block;
-    margin: -15px auto;
+    margin: -7px auto;
     &:hover {
         cursor: pointer;
         transform: scale(1.05);
         -webkit-transform:  scale(1.05); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
         -ms-transform: scale(1.05);
     }
-}
 
-.hsImage--3 {
-    width: 60%;
-    display: block;
-    margin: -15px auto;
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.05);
+    @include for-tablet-portrait-up {
+        width: 90%;
+        margin: -5px auto;
+    }
+
+    @include for-desktop-up {
+        width: 80%;
+        margin: -5px auto;
+    }
+
+    @include for-big-desktop-up {
+        width: 80%;
+        margin: -5px auto;
     }
 }
 
@@ -148,13 +144,10 @@ a h1 {
 
     input {
         border: none;
-        width: 60%;
+        width: 80%;
         font-size: 1.4rem;
     }
 
-    button.basic.button {
-        display: inline;
-    }
 }
 
 .deck-list {

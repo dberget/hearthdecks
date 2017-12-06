@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Icon } from 'semantic-ui-react'
+import Ad from '../Messages/Advert'
 
 import TopNav from './TopNav'
 import BottomNav from './BottomNav'
@@ -87,7 +88,7 @@ export default class List extends React.Component {
       deck[index].count = 2
     } else {
       return
-    };
+    }
 
     this.props.updateDeck(deck)
   }
@@ -105,7 +106,7 @@ export default class List extends React.Component {
           <Button className="next-button" onClick={() => this.handlePageClick('next')}><Icon name="arrow right" /></Button>
         </div>
         <BottomNav cardLimit={this.props.cardLimit} toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleCardLimit={this.props.handleCardLimit} />
-      </div>
-    );
+      </div >
+    )
   }
 }

@@ -1,7 +1,6 @@
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 import Clipboard from 'react-clipboard.js'
-import { Button, Icon } from 'semantic-ui-react'
 import { encode } from 'deckstrings'
 
 
@@ -12,14 +11,14 @@ export default class ExportDeck extends React.Component {
         super(props)
 
 
-        this.handleClick = this.handleClick.bind(this)
         this.getClassdbfId = this.getClassdbfId.bind(this)
         this.onSuccess = this.onSuccess.bind(this)
         this.generateDeckString = this.generateDeckString.bind(this)
+        this.generateLink = this.generateLink.bind(this)
     }
 
     onSuccess() {
-        flashNotice('Deck Copied Successfully!')
+        flashNotice('Link Copied Successfully!')
     }
 
     getClassdbfId(playerClass) {
@@ -45,10 +44,6 @@ export default class ExportDeck extends React.Component {
         }
     }
 
-    handleClick() {
-        return this.generateDeckString()
-    }
-
     generateDeckString() {
         const count = countDeck(this.props.deck)
 
@@ -64,8 +59,13 @@ export default class ExportDeck extends React.Component {
             deckstring = encode(str)
             return deckstring
         } else {
-            flashNotice(`You need 30 Cards to export. Add ${30 - count} more.`)
+            flashNotice(`You need 30 Cards to share. Add ${30 - count} more.`)
         }
+    }
+
+    generateLink() {
+        const str = this.generateDeckString()
+        return `www.hearthdecks.daveberget.com/deck/${str}`
     }
 
     render() {
@@ -73,12 +73,11 @@ export default class ExportDeck extends React.Component {
             <Clipboard
                 component="a"
                 className="item"
-                disabled={countDeck(this.props.deck) !== 30}
-                option-text={this.handleClick}
                 onSuccess={this.onSuccess}
+                option-text={this.generateLink}
             >
-                <Icon name="share" />
-                Export
+                <Icon name="linkify" />
+                Share
             </Clipboard>
         )
     }

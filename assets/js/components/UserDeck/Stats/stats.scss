@@ -10,18 +10,18 @@
 }
 
 .ui.basic.segment {
-  margin-top: -8px;
+  margin-top: -22px;
 }
 
 .ui.fitted.horizontal.divider {
-  margin-top: 15px;
+  margin-top: 22px;
   margin-bottom: -10px;
 }
 
 .barcontainer {
   position: relative;
   border-radius: 5px;
-  margin-top: 3px;
+  margin-top: 5px;
   width: 100%;
   min-height: 15vw;
   z-index: 1;
@@ -36,6 +36,11 @@
   font-size: 1.5em;
   text-align: center;
   z-index: 0;
+}
+
+.barAmount {
+  color: #fff;
+  padding-top: 2px;
 }
 
 .bar {

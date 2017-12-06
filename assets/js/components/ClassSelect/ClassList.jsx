@@ -33,7 +33,7 @@ export default class ClassList extends React.Component {
           </Menu.Menu>
         </Menu>
         <div className="class-list-body">
-          <div className="card-entries">
+          <div className="class-entries">
             {classes.map(hero =>
               (<Link
                 key={hero.value}

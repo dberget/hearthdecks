@@ -1,8 +1,4 @@
-$darkblue: #063560;
-$darkgrey: #596164;
-$jet: #2F2F2F;
-$mustard: #FFC857;
-$white: #ffffff;
+@import "../../../css/_utils";
 
 .class-container {
     margin-top: 5px;
@@ -12,6 +8,14 @@ $white: #ffffff;
     background: #fff;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 5px;
+
+    @include for-tablet-portrait-up {
+        width: 80%
+    }
+    @include for-desktop-up {
+        width: 70%
+    }
+
 
     .ui.form {
         margin-right: 3.5px;
@@ -28,10 +32,11 @@ $white: #ffffff;
         flex-direction: row;
         flex-flow: wrap;
         justify-content: center;
-        overflow: hidden;
-        width: 80%;
         margin: 0 auto;
         padding-bottom: 10px;
+        width: 80%;
+
+      
     }
 
     h2 {
@@ -45,5 +50,37 @@ $white: #ffffff;
         display: inline;
     }
 
+
+.class-entries {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-flow: wrap;
+
+    a {
+        width: 33%
+    }
+}
+
+    .hsImage--3 {
+        width: 60%;
+        display: block;
+        margin: -15px auto;
+
+        @include for-tablet-portrait-up {
+            width: 70%
+        }
+
+        @include for-desktop-up {
+            width: 60%
+        }
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    }
     
 }

@@ -72,9 +72,9 @@ class App extends React.Component {
   }
 
   handleDeckUpload(deck, playerClass) {
-    this.handleClassChange(playerClass);
-    this.handleFilterClass(playerClass);
-    this.handleDeckChange(deck);
+    this.handleClassChange(playerClass)
+    this.handleFilterClass(playerClass)
+    this.handleDeckChange(deck)
   }
 
   handleSearch(term) {
@@ -148,8 +148,8 @@ class App extends React.Component {
           )}
         />
         <Route
-          exact
           path="/:class"
+          exact
           render={({ match }) => (
             <div className="container">
               <List
@@ -176,18 +176,15 @@ class App extends React.Component {
                 params={match.params}
                 updateDeck={this.handleDeckChange}
               />
-              <a rel="noopener noreferrer" target="_blank" className="feedback" href="https://davidberget.typeform.com/to/y3PtBp"> Feedback </a>
             </div>
           )}
         />
         <Route
-          exact
           path="/deck/:deckstring"
           render={({ match }) => (
             <ImportHelper params={match.params} uploadDeck={this.handleDeckChange} />
           )}
         />
-         <Ad />
       </div>
     )
   }
