@@ -1,19 +1,29 @@
 import React from 'react'
 import { Segment, Divider } from 'semantic-ui-react'
 
-import { countDeck } from '../../../utils'
+import { countDeck, sum } from '../../../utils'
 
 export default class DeckStats extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = { mana: {}, dust: 0, aveMana: 0, spells: 0, minions: 0 }
+
         this.cardsAtManaCost = this.cardsAtManaCost.bind(this)
         this.calcMana = this.calcMana.bind(this)
         this.calcDust = this.calcDust.bind(this)
+        this.calcTypes = this.calcTypes.bind(this)
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        this.calcDust()
+        this.calcMana()
+        this.calcTypes()
     }
 
     cardsAtManaCost(cost) {
-        const deck = this.props.data
+        const deck = this.props.deck
         const list = []
         let total = 0
 
@@ -31,16 +41,37 @@ export default class DeckStats extends React.Component {
             }
         }
 
-        const sum = (acc, cv) => acc + cv
         if (list.length) {
-            total = list.reduce(sum)
+            total = list.reduce((sum), 0)
         }
 
         return total
     }
 
+
+    calcTypes() {
+        const deck = this.props.deck
+
+        let spells = deck
+            .filter((card) => {
+                return card.type === 'Spell';
+            }).map((card) => {
+                return card.count
+            }).reduce((sum), 0)
+
+        let minions = deck
+            .filter((card) => {
+                return card.type === 'Minion';
+            }).map((card) => {
+                return card.count
+            }).reduce((sum), 0)
+
+
+        this.setState({ spells: spells, minions: minions })
+    }
+
     calcDust() {
-        const deck = this.props.data
+        const deck = this.props.deck
         let total = 0
         const list = []
 
@@ -59,30 +90,28 @@ export default class DeckStats extends React.Component {
         }
 
 
-        const sum = (acc, cv) => acc + cv
         if (list.length) {
             total = list.reduce(sum)
         }
-        return total
+
+        this.setState({ dust: total })
 
     }
 
     calcMana() {
-        const deck = this.props.data
+        const deck = this.props.deck
         const totalCount = countDeck(deck)
         const list = []
         let total = 0
 
-        const reducer = (acc, cv) => acc + cv
-        for (let i = 0; i < deck.length; ++i) {
-            list.push(deck[i].cost * deck[i].count)
-        }
+        if (deck.length) {
+            for (let i = 0; i < deck.length; ++i) {
+                list.push(deck[i].cost * deck[i].count)
+            }
 
-        if (list.length) {
-            total = list.reduce(reducer) / totalCount
+            total = list.reduce((sum), 0) / totalCount
+            this.setState({ aveMana: total.toFixed(2) })
         }
-
-        return total.toFixed(2)
     }
 
     render() {
@@ -93,11 +122,19 @@ export default class DeckStats extends React.Component {
                 <div className="stats-container">
                     <div className="stat">
                         <span className="stat-header"> Dust: </span>
-                        <span> {this.calcDust()} </span>
+                        <span> {this.state.dust} </span>
                     </div>
                     <div className="stat">
                         <span className="stat-header"> Ave. Mana Cost: </span>
-                        <span> {this.calcMana()} </span>
+                        <span> {this.state.aveMana} </span>
+                    </div>
+                    <div className="stat">
+                        <span className="stat-header"> Spells: </span>
+                        <span> {this.state.spells} </span>
+                    </div>
+                    <div className="stat">
+                        <span className="stat-header"> Minions: </span>
+                        <span> {this.state.minions} </span>
                     </div>
                 </div>
                 <div className="barcontainer">

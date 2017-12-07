@@ -1,18 +1,17 @@
+export const sum = (acc, cv) => acc + cv
+
 export const countDeck = (deck) => {
   let deckCount = 0
   if (deck.length === 0) {
     deckCount = 0
   } else {
-    deckCount = deck.map(x => x.count).reduce((sum, value) => {
-      return sum + value
-    }, 0)
+    deckCount = deck.map(x => x.count).reduce((sum), 0)
   }
   return deckCount
 }
 
 export const countCard = (card, deck) => {
   let count = 0
-
 
   for (let i = 0; i < deck.length; i += 1) {
     if (deck[i].name === card.name) {

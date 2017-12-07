@@ -56,7 +56,7 @@ export default class Deck extends React.Component {
       <div className="deck-container">
         <Segment>
           <DeckMenu deck={deck} playerClass={this.props.class} deckTitle={this.state.deckTitle} handleStatsClick={this.handleStatsClick} />
-          <DeckStats hidden={this.state.showStats} data={deck} />
+          <DeckStats hidden={this.state.showStats} deck={deck} />
           <input onChange={this.deckTitleChange} value={this.state.deckTitle} />
           <div className="deck-list">
             {deck.map(card =>

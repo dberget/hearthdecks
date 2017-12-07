@@ -27,4 +27,5 @@
   </body>
     <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+      <noscript>Your browser does not support JavaScript!</noscript>
 </html>
