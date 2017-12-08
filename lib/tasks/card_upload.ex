@@ -3,14 +3,9 @@ defmodule Hearthdecks.Tasks.CardUpload do
   alias Hearthdecks.Data.Card
   import Ecto.Query
 
-    @standard ["Basic", "Kobolds & Catacombs", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"]
+    @standard Application.get_env(:hearthdecks, :standard)
 
-    @expansions ["Basic", "Kobolds & Catacombs", "Blackrock Mountain", "Classic",
-    "Goblins vs Gnomes", "Hall of Fame", "Journey to Un'Goro",
-    "Knights of the Frozen Throne", "Mean Streets of Gadgetzan",
-    "Naxxramas", "One Night in Karazhan",
-    "The Grand Tournament", "The League of Explorers",
-    "Whispers of the Old Gods"]
+    @expansions Application.get_env(:hearthdecks, :wild) 
 
     @heroes ["HERO_01", "HERO_02", "HERO_03", "HERO_04", "HERO_05", "HERO_06", "HERO_07", "HERO_08", "HERO_09"] 
 

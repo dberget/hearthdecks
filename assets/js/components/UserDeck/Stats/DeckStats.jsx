@@ -66,8 +66,15 @@ export default class DeckStats extends React.Component {
                 return card.count
             }).reduce((sum), 0)
 
+        let weapons = deck
+            .filter((card) => {
+                return card.type === 'Weapon';
+            }).map((card) => {
+                return card.count
+            }).reduce((sum), 0)
 
-        this.setState({ spells: spells, minions: minions })
+
+        this.setState({ spells: spells, minions: minions, weapons: weapons })
     }
 
     calcDust() {
