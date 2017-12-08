@@ -1,6 +1,8 @@
 defmodule HearthdecksWeb.Router do
   use HearthdecksWeb, :router
 
+  @classes Application.get_env(:hearthdecks, :classes)
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,8 +19,8 @@ defmodule HearthdecksWeb.Router do
     pipe_through :browser 
 
     get "/", PageController, :index
-    get "/:class", PageController, :index
     get "/deck/:deckstring", PageController, :index
+    Enum.each(@classes, &((get "/#{&1}", PageController, :index))) ## Creates a route for each class 
   end
 
   scope "/", HearthdecksWeb do

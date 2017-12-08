@@ -9,8 +9,8 @@ use Mix.Config
 config :hearthdecks,
   ecto_repos: [Hearthdecks.Repo],
   classes: ["Neutral","Druid","Hunter","Mage", "Paladin", "Priest","Rogue","Shaman", "Warlock", "Warrior"],
-  standard: ["Basic", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"],
-  wild: ["Basic", "Blackrock Mountain", "Classic", "Goblins vs Gnomes", "Hall of Fame", "Journey to Un'Goro", "Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "Naxxramas", "One Night in Karazhan", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods"]
+  standard: ["Basic", "Kobolds & Catacombs", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"],
+  wild: ["Basic", "Blackrock Mountain", "Classic", "Kobolds & Catacombs", "Goblins vs Gnomes", "Hall of Fame", "Journey to Un'Goro", "Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "Naxxramas", "One Night in Karazhan", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods"]
 
 # Configures the endpoint
 config :hearthdecks, HearthdecksWeb.Endpoint,

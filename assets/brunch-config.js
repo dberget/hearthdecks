@@ -1,3 +1,5 @@
+let glob = require("glob")
+
 exports.config = {
   files: {
     javascripts: {
@@ -34,6 +36,24 @@ exports.config = {
       presets: ['env', 'react'],
       ignore: [/^node_modules/],
     },
+    copycat: {
+      "fonts": "node_modules/semantic-ui-css/themes/default/assets/fonts"
+    },
+    swPrecache: {
+      swFileName: 'js/service-worker.js',
+      options: {
+        stripPrefix: '/priv/static',
+        staticFileGlobs: ['priv/static/**/*.*'],
+        dynamicUrlToDependencies: {
+          '/': [
+            ...glob.sync('priv/static/js/*.js'),
+            ...glob.sync('priv/static/css/*.css'),
+            ...glob.sync('priv/static/fonts/*'),
+            ...glob.sync('lib/hearthdecks_web/templates/**/*.eex'),
+          ],
+        },
+      },
+    },
   },
 
   modules: {
@@ -47,6 +67,9 @@ exports.config = {
     globals: {
       $: 'jquery',
       jQuery: 'jquery'
+    },
+    styles: {
+      "semantic-ui-css": ["semantic.min.css"]
     },
     whitelist: [
       "react",

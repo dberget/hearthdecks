@@ -2,14 +2,8 @@ defmodule HearthdecksWeb.CardController do
     use HearthdecksWeb, :controller
     alias Hearthdecks.Cards
   
-    @standard ["Basic", "Classic", "Journey to Un'Goro","Knights of the Frozen Throne", "Mean Streets of Gadgetzan", "One Night in Karazhan", "Whispers of the Old Gods"]
-
-    @wild ["Basic", "Blackrock Mountain", "Classic",
-    "Goblins vs Gnomes", "Hall of Fame", "Journey to Un'Goro",
-    "Knights of the Frozen Throne", "Mean Streets of Gadgetzan",
-    "Naxxramas", "One Night in Karazhan",
-    "The Grand Tournament", "The League of Explorers",
-    "Whispers of the Old Gods"]
+    @standard Application.get_env(:hearthdecks, :standard) 
+    @wild Application.get_env(:hearthdecks, :wild) 
 
     def index(conn, params) do
       page = 
