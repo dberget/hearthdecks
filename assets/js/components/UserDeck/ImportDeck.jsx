@@ -19,7 +19,6 @@ class ImportDeck extends React.Component {
     }
 
     getClassbydbfId(playerClass) {
-        console.log(playerClass)
         switch (playerClass[0]) {
             case 7:
                 return 'Warrior'
@@ -44,7 +43,7 @@ class ImportDeck extends React.Component {
     }
 
     getCards(dbfids, cardCounts, playerClass) {
-        fetch(`/upload/cards?dbfids=${dbfids}`, {
+        fetch(`/upload/cards?cards=${dbfids}`, {
             headers: {
                 'Content-Type': 'application/json'
             }

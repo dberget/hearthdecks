@@ -180,7 +180,8 @@ class App extends React.Component {
           )}
         />
         <Route
-          path="/deck/:deckstring"
+          exact
+          path="/:class/:cards/:count"
           render={({ match }) => (
             <ImportHelper params={match.params} uploadDeck={this.handleDeckChange} />
           )}

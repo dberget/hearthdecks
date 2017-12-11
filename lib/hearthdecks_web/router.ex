@@ -20,6 +20,7 @@ defmodule HearthdecksWeb.Router do
 
     get "/", PageController, :index
     get "/deck/:deckstring", PageController, :index
+    get "/:class/:cards/:count", PageController, :index
     Enum.each(@classes, &((get "/#{&1}", PageController, :index))) ## Creates a route for each class 
   end
 
@@ -28,6 +29,7 @@ defmodule HearthdecksWeb.Router do
 
     get "/new/cards", CardController, :index
     get "/upload/cards", CardController, :dbfid
+    get "/shared", CardController, :shared
   end
 
 end

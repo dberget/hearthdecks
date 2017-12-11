@@ -64,12 +64,11 @@ export default class ExportDeck extends React.Component {
     }
 
     generateLink() {
-        const str = this.generateDeckString()
-        if (str === undefined) {
-            flashNotice(`Sorry, You need 30 Cards to share a deck.`)
-        } else {
-            return `www.hearthdecks.daveberget.com/deck/${str}`
-        }
+        const deck = this.props.deck
+        let cards = deck.map(e => [parseInt(e.dbfId)]).join(',')
+        let count = deck.map(e => [e.count]).join(',')
+
+        return `www.hearthdecks.daveberget.com/${this.props.class}/${cards}/${count}`
     }
 
     render() {

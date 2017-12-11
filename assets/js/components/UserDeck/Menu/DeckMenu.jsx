@@ -5,7 +5,6 @@ import ExportDeck from '../ExportDeck'
 import ShareDeck from '../ShareDeck'
 import { countDeck } from '../../../utils'
 
-
 const DeckMenu = ({ deckTitle, deck, handleStatsClick, playerClass }) => {
   return (
     <Menu size="tiny" borderless >
@@ -15,9 +14,9 @@ const DeckMenu = ({ deckTitle, deck, handleStatsClick, playerClass }) => {
       </Menu.Item>
       <Menu.Item as={ExportDeck} deckTitle={deckTitle} class={playerClass} deck={deck} />
       <Menu.Item as={ShareDeck} deckTitle={deckTitle} class={playerClass} deck={deck} />
-      <Menu.Item>
+      <Menu.Item text>
         {countDeck(deck)}/30
-       </Menu.Item>
+      </Menu.Item>
     </Menu >
   )
 }

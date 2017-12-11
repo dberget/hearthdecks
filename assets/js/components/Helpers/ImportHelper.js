@@ -11,45 +11,20 @@ class ImportHelper extends React.Component {
 
         this.state = { playerClass: '' }
 
-        this.getClassbydbfId = this.getClassbydbfId.bind(this)
         this.getCards = this.getCards.bind(this)
     }
 
     componentDidMount() {
-        const deck = decode(this.props.params.deckstring)
-        const userDeck = processDeck(deck)
-        const playerClass = this.getClassbydbfId(deck.heroes)
+        const cards = this.props.params.cards
+        const counts = this.props.params.count
+        const playerClass = this.props.params.class
 
         this.setState({ playerClass: playerClass })
-        this.getCards(userDeck, deck.cards, playerClass)
+        this.getCards(cards, counts, playerClass)
     }
 
-    getClassbydbfId(playerClass) {
-        switch (playerClass[0]) {
-            case 7:
-                return 'Warrior'
-            case 813:
-                return 'Priest'
-            case 893:
-                return 'Warlock'
-            case 637:
-                return 'Mage'
-            case 31:
-                return 'Hunter'
-            case 1066:
-                return 'Shaman'
-            case 671:
-                return 'Paladin'
-            case 930:
-                return 'Rogue'
-            case 274:
-                return 'Druid'
-        }
-
-    }
-
-    getCards(dbfids, cardCounts, playerClass) {
-        fetch(`/upload/cards?dbfids=${dbfids}`, {
+    getCards(dbfids, counts, playerClass) {
+        fetch(`/shared?cards=${dbfids}&counts=${counts}`, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -57,11 +32,8 @@ class ImportHelper extends React.Component {
             .then((res) => {
                 return res.json()
             })
-            .then((json) => {
-                return addCount(cardCounts, json.entries)
-            })
             .then((deck) => {
-                this.props.uploadDeck(deck, playerClass)
+                this.props.uploadDeck(deck.entries, playerClass)
             })
             .then(() => {
                 this.props.history.push(playerClass)

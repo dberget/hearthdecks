@@ -62,6 +62,7 @@ export default class ExportDeck extends React.Component {
                 format: 1,
             }
             deckstring = encode(str)
+
             return deckstring
         } else {
             flashNotice(`You need 30 Cards to export. Add ${30 - count} more.`)

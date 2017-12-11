@@ -14,13 +14,28 @@ defmodule HearthdecksWeb.CardController do
       render conn, "index.json", page: page
     end
 
+    def shared(conn, params) do
+      counts = 
+        String.split(params["counts"], ",")
+        |> Enum.into([], &(String.to_integer/1))
+
+      cards =
+       params
+        |> split
+        |> Cards.select
+        
+        deck = Enum.zip(cards.entries, counts)
+
+       render conn, "shared_deck.json", deck: deck
+    end
+
     def dbfid(conn, params) do
-      deck = 
+      deck =
         params
         |> split 
         |> Cards.select
-  
-      render conn, "card_select.json", deck: deck
+
+       render conn, "card_select.json", deck: deck
     end
 
     def class(conn, params) do
@@ -32,7 +47,17 @@ defmodule HearthdecksWeb.CardController do
       render conn, "index.json", page: page
     end
 
-    defp split(params), do: String.split(params["dbfids"], ",")
+    defp split(params), do: String.split(params["cards"], ",")
+
+    #  defp format_params(params) do
+    #    cards = String.split(params["cards"], ",") 
+
+    #    counts =
+    #    String.split(params["counts"], ",")
+    #    |> Enum.into([], &(String.to_integer/1))
+
+    #    Enum.zip(cards, counts)
+    #  end
 
     defp current_page(params), do: Map.get(params, "page", 1)
 
