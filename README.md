@@ -12,7 +12,8 @@ To start your Phoenix server:
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+  * Start IEX and Phoenix endpoint with `iex -S mix phx.server`
+  * In iex, run `Hearthdecks.Tasks.CardUpload.run` to uplod current Hearthstone cards.
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
@@ -27,7 +28,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Acknowledgements
 
-* [DeckStrings](https://github.com/HearthSim/npm-deckstrings)
+* [npm-deckstrings](https://github.com/HearthSim/npm-deckstrings)
 * [HearthstoneAPI](http://hearthstoneapi.com/)
 
 ## Authors
