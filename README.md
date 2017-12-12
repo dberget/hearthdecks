@@ -27,8 +27,8 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Acknowledgements
 
-* [DeckStrings] (https://github.com/HearthSim/npm-deckstrings)
-* [HearthstoneAPI] (http://hearthstoneapi.com/)
+* [DeckStrings](https://github.com/HearthSim/npm-deckstrings)
+* [HearthstoneAPI](http://hearthstoneapi.com/)
 
 ## Authors
 
