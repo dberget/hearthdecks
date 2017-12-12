@@ -19,11 +19,11 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 ## Built With
 
 * [Elixir](https://elixir-lang.org/)
-* [Phoenix](www.phoenixframework.org)
+* [Phoenix](https://www.phoenixframework.org)
 * [Brunch.io](http://brunch.io/)
 * [Reactjs](https://reactjs.org/) 
 * [React-Router](https://reacttraining.com/react-router/)
-* [react-semantic-ui](www.react.semantic-ui.com)
+* [react-semantic-ui](https://www.react.semantic-ui.com)
 
 ## Acknowledgements
 
