@@ -25,8 +25,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 * [React-Router](https://reacttraining.com/react-router/)
 * [react-semantic-ui](www.react.semantic-ui.com)
 
+## Acknowledgements
+
+* [DeckStrings] (https://github.com/HearthSim/npm-deckstrings)
+* [HearthstoneAPI] (http://hearthstoneapi.com/)
+
 ## Authors
 
 * **David Berget**
-
 
