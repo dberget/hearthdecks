@@ -2,8 +2,7 @@
 
 Live Site: www.hearthdecks.daveberget.com
 
-Hearthstone deck building site that allows users to create, share, export decks for use in the Blizzard game Hearthstone. 
-
+Hearthstone deck building site that allows users to create, share, and export decks for use into the game. 
 
 
 ### Installing
