@@ -38,9 +38,7 @@ class App extends React.Component {
     if (cachedDeck) {
       const savedDeck = JSON.parse(cachedDeck)
 
-      this.setState({
-        deck: savedDeck,
-      })
+      this.setState({ deck: savedDeck })
     }
   }
 
@@ -56,19 +54,14 @@ class App extends React.Component {
   handleDeckChange(deck) {
     deck.sort(sortDeck)
 
-    this.setState(prevState => ({
-      deck: deck,
-    }))
-
+    this.setState({ deck: deck })
     this.handleStorage(true)
   }
 
   handleCardLimit(renoMode) {
     const maxCount = renoMode ? 1 : 2;
 
-    this.setState(prevState => ({
-      cardLimit: maxCount,
-    }))
+    this.setState({ cardLimit: maxCount })
   }
 
   handleDeckUpload(deck, playerClass) {
@@ -78,53 +71,60 @@ class App extends React.Component {
   }
 
   handleSearch(term) {
-    this.setState({
-      filters: Object.assign({}, this.state.filters, {
+    this.setState(prevState => ({
+      filters: {
+        ...prevState.filters,
         cost: '',
         search: term,
-      }),
-    });
+      },
+    }))
   }
 
   handleCostChange(e, mana) {
     if (this.state.filters.cost !== mana.value) {
-      this.setState({
-        filters: Object.assign({}, this.state.filters, {
+      this.setState(prevState => ({
+        filters: {
+          ...prevState.filters,
           cost: mana.value
-        })
-      })
+        }
+      }))
     } else {
-      this.setState({
-        filters: Object.assign({}, this.state.filters, {
+      this.setState(prevState => ({
+        filters: {
+          ...prevState.filters,
           cost: ""
-        }),
-      })
+        }
+      }))
     }
   }
 
+
   handleFilterClass(filterClass) {
-    this.setState({
-      filters: Object.assign({}, this.state.filters, {
-        class: filterClass,
-      }),
-    });
+    this.setState(prevState => ({
+      filters: {
+        ...prevState.filters,
+        class: filterClass
+      }
+    }))
   }
 
   handleExpansionChange(exp) {
-    this.setState({
-      filters: Object.assign({}, this.state.filters, {
+    this.setState(prevState => ({
+      filters: {
+        ...prevState.filters,
         expansion: exp,
-      }),
-    })
+      },
+    }))
   }
 
   handleClassChange(playerClass) {
     this.setState(prevState => ({
       class: playerClass,
       maxCardCount: 2,
-      filters: Object.assign({}, this.state.filters, {
-        class: playerClass,
-      }),
+      filters: {
+        ...prevState.filters,
+        class: playerClass
+      }
     }))
   }
 

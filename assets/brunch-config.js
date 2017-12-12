@@ -35,6 +35,7 @@ exports.config = {
     babel: {
       presets: ['env', 'react'],
       ignore: [/^node_modules/],
+      "plugins": ["transform-object-rest-spread"],
     },
     copycat: {
       "fonts": "node_modules/semantic-ui-css/themes/default/assets/fonts"

@@ -5,6 +5,7 @@ import ManaBar from './ManaBar'
 import ExpansionDropdown from './ExpansionDropdown'
 
 const BottomNav = (props) => {
+
     const toggleExpansion = (e, data) => {
         props.toggleExpansion(data.value)
     }
