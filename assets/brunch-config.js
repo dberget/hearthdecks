@@ -42,6 +42,7 @@ exports.config = {
     },
     swPrecache: {
       swFileName: 'js/service-worker.js',
+      directoryIndex: '/',
       options: {
         stripPrefix: '/priv/static',
         staticFileGlobs: ['priv/static/**/*.*'],

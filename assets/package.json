@@ -1,5 +1,7 @@
 {
-  "repository": {},
+  "repository": "https://github.com/dberget/hearthdecks",
+  "name": "hearthdecks",
+  "version": "1.0",
   "license": "MIT",
   "scripts": {
     "deploy": "brunch build --production",
