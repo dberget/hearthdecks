@@ -24,7 +24,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 * [Brunch.io](http://brunch.io/)
 * [Reactjs](https://reactjs.org/) 
 * [React-Router](https://reacttraining.com/react-router/)
-* [react-semantic-ui](https://www.react.semantic-ui.com)
+* [Semantic-UI-React](https://www.react.semantic-ui.com)
 
 ## Acknowledgements
 
