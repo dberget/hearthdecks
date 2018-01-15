@@ -4,11 +4,11 @@ defmodule Hearthdecks.Mixfile do
   def project do
     [
       app: :hearthdecks,
-      version: "0.6.5",
-      elixir: "~> 1.5.2",
+      version: "0.7.0",
+      elixir: "~> 1.7-dev",
       elixirc_paths: elixirc_paths(Mix1env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
@@ -26,7 +26,7 @@ defmodule Hearthdecks.Mixfile do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -43,7 +43,7 @@ defmodule Hearthdecks.Mixfile do
       {:cowboy, "~> 1.0"},
       {:distillery, "~> 1.0"},
       {:httpoison, "~> 0.13"},
-      {:scrivener_ecto, "~> 1.0"},
+      {:scrivener_ecto, "~> 1.0"}
     ]
   end
 
@@ -57,7 +57,7 @@ defmodule Hearthdecks.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end

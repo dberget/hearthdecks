@@ -3,10 +3,9 @@ defmodule Hearthdecks.Data.Deck do
   import Ecto.Changeset
   alias Hearthdecks.Data.Deck
 
-
   schema "decks" do
-      field :name, :string
-      field :deckstring, :string
+    field(:name, :string)
+    field(:deckstring, :string)
     timestamps()
   end
 

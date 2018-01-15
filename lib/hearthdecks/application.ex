@@ -11,7 +11,7 @@ defmodule Hearthdecks.Application do
       # Start the Ecto repository
       supervisor(Hearthdecks.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(HearthdecksWeb.Endpoint, []),
+      supervisor(HearthdecksWeb.Endpoint, [])
       # Start your own worker by calling: Hearthdecks.Worker.start_link(arg1, arg2, arg3)
       # worker(Hearthdecks.Worker, [arg1, arg2, arg3]),
     ]

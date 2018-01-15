@@ -14,7 +14,7 @@ const DeckMenu = ({ deckTitle, deck, handleStatsClick, playerClass }) => {
       </Menu.Item>
       <Menu.Item as={ExportDeck} deckTitle={deckTitle} class={playerClass} deck={deck} />
       <Menu.Item as={ShareDeck} deckTitle={deckTitle} class={playerClass} deck={deck} />
-      <Menu.Item text>
+      <Menu.Item>
         {countDeck(deck)}/30
       </Menu.Item>
     </Menu >

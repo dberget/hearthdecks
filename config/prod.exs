@@ -20,7 +20,7 @@ config :hearthdecks, HearthdecksWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   root: ".",
-  version: Mix.Project.config[:version]
+  version: Mix.Project.config()[:version]
 
 # Do not print debug messages in production
 config :logger, level: :info

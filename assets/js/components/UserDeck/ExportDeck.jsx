@@ -3,8 +3,6 @@ import { Menu } from 'semantic-ui-react'
 import Clipboard from 'react-clipboard.js'
 import { Button, Icon } from 'semantic-ui-react'
 import { encode } from 'deckstrings'
-
-
 import { countDeck, flashNotice } from '../../utils'
 
 export default class ExportDeck extends React.Component {
