@@ -4,7 +4,6 @@ defmodule Hearthdecks.Data.Deck do
   alias Hearthdecks.Data.Deck
 
   schema "decks" do
-    field(:name, :string)
     field(:deckstring, :string)
     timestamps()
   end
@@ -12,7 +11,7 @@ defmodule Hearthdecks.Data.Deck do
   @doc false
   def changeset(%Deck{} = deck, attrs) do
     deck
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:deckstring])
+    |> validate_required([:deckstring])
   end
 end

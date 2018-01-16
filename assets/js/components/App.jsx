@@ -1,7 +1,5 @@
 import React from 'react'
 import { Route, Link, withRouter } from 'react-router-dom'
-import Ad from './Messages/Advert'
-
 import List from './CardList/List'
 import Deck from './UserDeck/Deck'
 import { sortDeck } from '../utils'

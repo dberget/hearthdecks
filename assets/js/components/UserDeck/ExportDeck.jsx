@@ -4,6 +4,7 @@ import Clipboard from 'react-clipboard.js'
 import { Button, Icon } from 'semantic-ui-react'
 import { encode } from 'deckstrings'
 import { countDeck, flashNotice } from '../../utils'
+import socket from '../../socket.js'
 
 export default class ExportDeck extends React.Component {
     constructor(props) {
@@ -14,6 +15,11 @@ export default class ExportDeck extends React.Component {
         this.getClassdbfId = this.getClassdbfId.bind(this)
         this.onSuccess = this.onSuccess.bind(this)
         this.generateDeckString = this.generateDeckString.bind(this)
+        this.setPhoenixChannel = this.setPhoenixChannel.bind(this)
+    }
+
+    componentDidMount() {
+        this.setPhoenixChannel()
     }
 
     onSuccess() {
@@ -47,6 +53,15 @@ export default class ExportDeck extends React.Component {
         return this.generateDeckString()
     }
 
+    setPhoenixChannel() {
+        let channel = socket.channel("room", {})
+        this.setState({ channel: channel })
+
+        channel.join()
+            .receive("ok", resp => { console.log("Joined successfully", resp) })
+            .receive("error", resp => { console.log("Unable to join", resp) })
+    }
+
     generateDeckString() {
         const count = countDeck(this.props.deck)
 
@@ -60,6 +75,11 @@ export default class ExportDeck extends React.Component {
                 format: 1,
             }
             deckstring = encode(str)
+
+            console.log(this.state.channel.push("create_deck", { deckstring: deckstring }))
+
+            this.state.channel.push("create_deck", deckstring)
+                .receive("ok", resp => { console.log(resp) })
 
             return deckstring
         } else {

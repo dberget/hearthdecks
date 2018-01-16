@@ -1,8 +1,8 @@
-defmodule HearthdecksWeb.UserSocket do
+defmodule HearthdecksWeb.DeckSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", HearthdecksWeb.RoomChannel
+  channel("room", HearthdecksWeb.DeckChannel)
 
   ## Transports
   transport(:websocket, Phoenix.Transports.WebSocket)

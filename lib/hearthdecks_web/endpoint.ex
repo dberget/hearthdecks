@@ -1,7 +1,7 @@
 defmodule HearthdecksWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :hearthdecks
 
-  socket("/socket", HearthdecksWeb.UserSocket)
+  socket("/socket", HearthdecksWeb.DeckSocket)
 
   # Serve at "/" the static files from "priv/static" directory.
   #
