@@ -1,5 +1,5 @@
-import React from 'react'
-import Count from './CardCount'
+import React from "react"
+import Count from "./CardCount"
 
 const DeckItem = ({ name, count, mana, rarity, onClick }) => {
   return (

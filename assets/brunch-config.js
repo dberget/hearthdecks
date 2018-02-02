@@ -4,9 +4,9 @@ exports.config = {
   files: {
     javascripts: {
       joinTo: {
-        'js/app.js': /^(js)/,
-        'js/vendor.js': /^node_modules/,
-      },
+        "js/app.js": /^(js)/,
+        "js/vendor.js": /^node_modules/
+      }
     },
     stylesheets: {
       joinTo: "css/app.css"
@@ -17,9 +17,7 @@ exports.config = {
   },
 
   conventions: {
-    assets: [
-      /^(static)/
-    ]
+    assets: [/^(static)/]
   },
 
   // Phoenix paths configuration
@@ -33,49 +31,46 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
-      presets: ['env', 'react'],
+      presets: ["env", "react"],
       ignore: [/^node_modules/],
-      "plugins": ["transform-object-rest-spread"],
+      plugins: ["transform-object-rest-spread"]
     },
     copycat: {
-      "fonts": "node_modules/semantic-ui-css/themes/default/assets/fonts"
+      fonts: "node_modules/semantic-ui-css/themes/default/assets/fonts"
     },
     swPrecache: {
-      swFileName: 'js/service-worker.js',
-      directoryIndex: '/',
+      swFileName: "js/service-worker.js",
+      directoryIndex: "/",
       options: {
-        stripPrefix: '/priv/static',
-        staticFileGlobs: ['priv/static/**/*.*'],
+        stripPrefix: "/priv/static",
+        staticFileGlobs: ["priv/static/**/*.*"],
         dynamicUrlToDependencies: {
-          '/': [
-            ...glob.sync('priv/static/js/*.js'),
-            ...glob.sync('priv/static/css/*.css'),
-            ...glob.sync('priv/static/fonts/*'),
-            ...glob.sync('lib/hearthdecks_web/templates/**/*.eex'),
-          ],
-        },
-      },
-    },
+          "/": [
+            ...glob.sync("priv/static/js/*.js"),
+            ...glob.sync("priv/static/css/*.css"),
+            ...glob.sync("priv/static/fonts/*"),
+            ...glob.sync("lib/hearthdecks_web/templates/**/*.eex")
+          ]
+        }
+      }
+    }
   },
 
   modules: {
     autoRequire: {
       "js/app.js": ["js/index"]
-    },
+    }
   },
 
   npm: {
     enabled: true,
     globals: {
-      $: 'jquery',
-      jQuery: 'jquery'
+      $: "jquery",
+      jQuery: "jquery"
     },
     styles: {
       "semantic-ui-css": ["semantic.min.css"]
     },
-    whitelist: [
-      "react",
-      "react-dom"
-    ],
-  },
-};
+    whitelist: ["react", "react-dom"]
+  }
+}

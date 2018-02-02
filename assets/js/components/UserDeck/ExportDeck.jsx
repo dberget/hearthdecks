@@ -1,104 +1,111 @@
-import React from 'react'
-import { Menu } from 'semantic-ui-react'
-import Clipboard from 'react-clipboard.js'
-import { Button, Icon } from 'semantic-ui-react'
-import { encode } from 'deckstrings'
-import { countDeck, flashNotice } from '../../utils'
-import socket from '../../socket.js'
+import React from "react"
+import { Menu } from "semantic-ui-react"
+import Clipboard from "react-clipboard.js"
+import { Button, Icon } from "semantic-ui-react"
+import { encode } from "deckstrings"
+import { countDeck, flashNotice } from "../../utils"
+import socket from "../../socket.js"
 
 export default class ExportDeck extends React.Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
+    this.handleClick = this.handleClick.bind(this)
+    this.getClassdbfId = this.getClassdbfId.bind(this)
+    this.onSuccess = this.onSuccess.bind(this)
+    this.generateDeckString = this.generateDeckString.bind(this)
+    this.setPhoenixChannel = this.setPhoenixChannel.bind(this)
+  }
 
-        this.handleClick = this.handleClick.bind(this)
-        this.getClassdbfId = this.getClassdbfId.bind(this)
-        this.onSuccess = this.onSuccess.bind(this)
-        this.generateDeckString = this.generateDeckString.bind(this)
-        this.setPhoenixChannel = this.setPhoenixChannel.bind(this)
+  componentDidMount() {
+    this.setPhoenixChannel()
+  }
+
+  onSuccess() {
+    flashNotice("Deck Copied Successfully!")
+  }
+
+  getClassdbfId(playerClass) {
+    switch (playerClass) {
+      case "Warrior":
+        return [7]
+      case "Priest":
+        return [813]
+      case "Warlock":
+        return [893]
+      case "Mage":
+        return [637]
+      case "Hunter":
+        return [31]
+      case "Shaman":
+        return [1066]
+      case "Paladin":
+        return [671]
+      case "Rogue":
+        return [930]
+      case "Druid":
+        return [274]
     }
+  }
 
-    componentDidMount() {
-        this.setPhoenixChannel()
+  handleClick() {
+    return this.generateDeckString()
+  }
+
+  setPhoenixChannel() {
+    let channel = socket.channel("room", {})
+    this.setState({ channel: channel })
+
+    channel
+      .join()
+      .receive("ok", resp => {
+        console.log("Joined successfully", resp)
+      })
+      .receive("error", resp => {
+        console.log("Unable to join", resp)
+      })
+  }
+
+  generateDeckString() {
+    const count = countDeck(this.props.deck)
+
+    if (count === 30) {
+      const deck = this.props.deck
+      let deckstring = ""
+
+      const str = {
+        cards: deck.map(e => [parseInt(e.dbfId), e.count]),
+        heroes: this.getClassdbfId(this.props.class),
+        format: 1
+      }
+      deckstring = encode(str)
+
+      console.log(
+        this.state.channel.push("create_deck", { deckstring: deckstring })
+      )
+
+      this.state.channel.push("create_deck", deckstring).receive("ok", resp => {
+        console.log(resp)
+      })
+
+      return deckstring
+    } else {
+      flashNotice(`You need 30 Cards to export. Add ${30 - count} more.`)
     }
+  }
 
-    onSuccess() {
-        flashNotice('Deck Copied Successfully!')
-    }
-
-    getClassdbfId(playerClass) {
-        switch (playerClass) {
-            case 'Warrior':
-                return [7]
-            case 'Priest':
-                return [813]
-            case 'Warlock':
-                return [893]
-            case 'Mage':
-                return [637]
-            case 'Hunter':
-                return [31]
-            case 'Shaman':
-                return [1066]
-            case 'Paladin':
-                return [671]
-            case 'Rogue':
-                return [930]
-            case 'Druid':
-                return [274]
-        }
-    }
-
-    handleClick() {
-        return this.generateDeckString()
-    }
-
-    setPhoenixChannel() {
-        let channel = socket.channel("room", {})
-        this.setState({ channel: channel })
-
-        channel.join()
-            .receive("ok", resp => { console.log("Joined successfully", resp) })
-            .receive("error", resp => { console.log("Unable to join", resp) })
-    }
-
-    generateDeckString() {
-        const count = countDeck(this.props.deck)
-
-        if (count === 30) {
-            const deck = this.props.deck
-            let deckstring = ''
-
-            const str = {
-                cards: deck.map(e => [parseInt(e.dbfId), e.count]),
-                heroes: this.getClassdbfId(this.props.class),
-                format: 1,
-            }
-            deckstring = encode(str)
-
-            console.log(this.state.channel.push("create_deck", { deckstring: deckstring }))
-
-            this.state.channel.push("create_deck", deckstring)
-                .receive("ok", resp => { console.log(resp) })
-
-            return deckstring
-        } else {
-            flashNotice(`You need 30 Cards to export. Add ${30 - count} more.`)
-        }
-    }
-
-    render() {
-        return (
-            <Clipboard
-                component="a"
-                className="item"
-                disabled={countDeck(this.props.deck) !== 30}
-                option-text={this.handleClick}
-                onSuccess={this.onSuccess}
-            >
-                <Icon name="share" />
-                Export
-            </Clipboard>
-        )
-    }
+  render() {
+    return (
+      <Clipboard
+        component="a"
+        className="item"
+        disabled={countDeck(this.props.deck) !== 30}
+        option-text={this.handleClick}
+        onSuccess={this.onSuccess}
+      >
+        <Icon name="share" />
+        Export
+      </Clipboard>
+    )
+  }
 }

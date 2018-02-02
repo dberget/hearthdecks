@@ -1,21 +1,20 @@
-import React from 'react'
-import { Route, Link, withRouter } from 'react-router-dom'
-import List from './CardList/List'
-import Deck from './UserDeck/Deck'
-import { sortDeck } from '../utils'
-import ClassList from './ClassSelect/ClassList'
-import ImportHelper from './Helpers/ImportHelper'
-
+import React from "react"
+import { Route, Link, withRouter } from "react-router-dom"
+import List from "./CardList/List"
+import Deck from "./UserDeck/Deck"
+import { sortDeck } from "../utils"
+import ClassList from "./ClassSelect/ClassList"
+import ImportHelper from "./Helpers/ImportHelper"
 
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      class: '',
+      class: "",
       filters: {},
       deck: [],
-      cardLimit: 2,
+      cardLimit: 2
     }
 
     this.handleDeckChange = this.handleDeckChange.bind(this)
@@ -57,7 +56,7 @@ class App extends React.Component {
   }
 
   handleCardLimit(renoMode) {
-    const maxCount = renoMode ? 1 : 2;
+    const maxCount = renoMode ? 1 : 2
 
     this.setState({ cardLimit: maxCount })
   }
@@ -72,9 +71,9 @@ class App extends React.Component {
     this.setState(prevState => ({
       filters: {
         ...prevState.filters,
-        cost: '',
-        search: term,
-      },
+        cost: "",
+        search: term
+      }
     }))
   }
 
@@ -96,7 +95,6 @@ class App extends React.Component {
     }
   }
 
-
   handleFilterClass(filterClass) {
     this.setState(prevState => ({
       filters: {
@@ -110,8 +108,8 @@ class App extends React.Component {
     this.setState(prevState => ({
       filters: {
         ...prevState.filters,
-        expansion: exp,
-      },
+        expansion: exp
+      }
     }))
   }
 
@@ -129,7 +127,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/" >
+        <Link to="/">
           <h1> HEARTHDECKS </h1>
         </Link>
         <Route
@@ -181,7 +179,10 @@ class App extends React.Component {
           exact
           path="/:class/:cards/:count"
           render={({ match }) => (
-            <ImportHelper params={match.params} uploadDeck={this.handleDeckChange} />
+            <ImportHelper
+              params={match.params}
+              uploadDeck={this.handleDeckChange}
+            />
           )}
         />
       </div>

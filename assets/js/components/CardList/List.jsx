@@ -1,12 +1,12 @@
-import React from 'react'
-import { Button, Icon } from 'semantic-ui-react'
-import Ad from '../Messages/Advert'
+import React from "react"
+import { Button, Icon } from "semantic-ui-react"
+import Ad from "../Messages/Advert"
 
-import TopNav from './TopNav'
-import BottomNav from './BottomNav'
-import HSCard from './HSCard'
-import { countDeck, countCard, flashNotice } from '../../utils'
-import { encodeQueryData, scrubFilters } from '../Helpers/ApiHelpers'
+import TopNav from "./TopNav"
+import BottomNav from "./BottomNav"
+import HSCard from "./HSCard"
+import { countDeck, countCard, flashNotice } from "../../utils"
+import { encodeQueryData, scrubFilters } from "../Helpers/ApiHelpers"
 
 export default class List extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class List extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const diffFilters = nextProps.filters !== this.props.filters;
+    const diffFilters = nextProps.filters !== this.props.filters
 
     if (diffFilters) {
       this.cards(nextProps, 1)
@@ -37,13 +37,13 @@ export default class List extends React.Component {
   handlePageClick(pageAction) {
     let currentPage = this.state.page_number
 
-    if (currentPage === this.state.total_pages && pageAction === 'next') {
+    if (currentPage === this.state.total_pages && pageAction === "next") {
       return
-    } else if (currentPage === 1 && pageAction === 'prev') {
+    } else if (currentPage === 1 && pageAction === "prev") {
       return
-    } else if (pageAction == 'prev') {
+    } else if (pageAction == "prev") {
       currentPage -= 1
-    } else if (pageAction == 'next') {
+    } else if (pageAction == "next") {
       currentPage += 1
     } else {
       return
@@ -58,8 +58,8 @@ export default class List extends React.Component {
 
     fetch(`/new/cards?page=${page}&${request}`, {
       headers: {
-        'Content-Type': 'application/json'
-      },
+        "Content-Type": "application/json"
+      }
     })
       .then(res => res.json())
       .then(json => {
@@ -72,11 +72,11 @@ export default class List extends React.Component {
     const maxDeckSize = 30
     const count = countCard(card, deck)
     const deckSize = countDeck(deck)
-    const maxCardCount = card.rarity === 'Legendary' ? 1 : this.props.cardLimit
+    const maxCardCount = card.rarity === "Legendary" ? 1 : this.props.cardLimit
     let index = []
 
     if (deckSize === maxDeckSize) {
-      flashNotice('Your Deck has Reached 30 Cards')
+      flashNotice("Your Deck has Reached 30 Cards")
       return
     } else if (count === maxCardCount) {
       return
@@ -98,15 +98,39 @@ export default class List extends React.Component {
       <div className="list-container">
         <TopNav {...this.props} />
         <div className="list-body">
-          <Button disabled={this.state.page_number == 1} className="prev-button" onClick={() => this.handlePageClick('prev')}> <Icon name="arrow left" /></Button>
+          <Button
+            disabled={this.state.page_number == 1}
+            className="prev-button"
+            onClick={() => this.handlePageClick("prev")}
+          >
+            <Icon name="arrow left" />
+          </Button>
           <div className="card-entries">
-            {this.state.entries.map(card => <HSCard rowSize={4} onSelect={this.handleCardClick} key={card.id} data={card} />
-            )}
+            {this.state.entries.map(card => (
+              <HSCard
+                rowSize={4}
+                onSelect={this.handleCardClick}
+                key={card.id}
+                data={card}
+              />
+            ))}
           </div>
-          <Button disabled={this.state.page_number == this.state.total_pages} className="next-button" onClick={() => this.handlePageClick('next')}><Icon name="arrow right" /></Button>
+          <Button
+            disabled={this.state.page_number == this.state.total_pages}
+            className="next-button"
+            onClick={() => this.handlePageClick("next")}
+          >
+            <Icon name="arrow right" />
+          </Button>
         </div>
-        <BottomNav cardLimit={this.props.cardLimit} toggleExpansion={this.props.updateExpansion} active={this.props.active} handleCostClick={this.props.handleCostClick} handleCardLimit={this.props.handleCardLimit} />
-      </div >
+        <BottomNav
+          cardLimit={this.props.cardLimit}
+          toggleExpansion={this.props.updateExpansion}
+          active={this.props.active}
+          handleCostClick={this.props.handleCostClick}
+          handleCardLimit={this.props.handleCardLimit}
+        />
+      </div>
     )
   }
 }

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Input, Menu, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import React from "react"
+import { Input, Menu, Icon } from "semantic-ui-react"
+import { Link } from "react-router-dom"
 
 export default class TopNav extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class TopNav extends React.Component {
   }
 
   filterNeutral() {
-    this.props.updateFilterClass('Neutral')
+    this.props.updateFilterClass("Neutral")
   }
 
   selectResult(e) {
@@ -34,8 +34,8 @@ export default class TopNav extends React.Component {
   }
 
   resetClass() {
-    this.props.updateClass('')
-    this.props.updateFilterClass('')
+    this.props.updateClass("")
+    this.props.updateFilterClass("")
   }
 
   resetDeck() {
@@ -52,20 +52,25 @@ export default class TopNav extends React.Component {
           {this.props.class}
         </Menu.Item>
         <Menu.Item
-          active={'Neutral' === this.props.filters.class}
+          active={"Neutral" === this.props.filters.class}
           onClick={this.filterNeutral}
         >
           Neutral
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
-            <Input transparent icon={{ name: 'search' }} onChange={this.selectResult} placeholder="Search..." />
+            <Input
+              transparent
+              icon={{ name: "search" }}
+              onChange={this.selectResult}
+              placeholder="Search..."
+            />
           </Menu.Item>
           <Menu.Item onClick={this.resetDeck}>
             <Icon name="trash outline" />
             Reset Deck
           </Menu.Item>
-          <Menu.Item as={Link} to="/" >
+          <Menu.Item as={Link} to="/">
             <Icon name="undo" />
             New Class
           </Menu.Item>

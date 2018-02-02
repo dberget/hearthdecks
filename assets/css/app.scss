@@ -1,307 +1,310 @@
 @import "utils";
 
 .container {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    flex-flow: wrap;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  flex-flow: wrap;
 }
 
 html {
-    height: auto;
+  height: auto;
 }
 
 html body {
-    padding: 10px; 
-    font-size: 62.5%; 
-    background: -webkit-linear-gradient(#1f6da8, #596164); /* For Safari 5.1 to 6.0 */
-    background: -moz-linear-gradient(#868f96, #596164); /* For Firefox 3.6 to 15 */
-    background-image: linear-gradient(180deg, #868f96, #596164, #596164 100%); /* Standard syntax */
+  padding: 10px;
+  font-size: 62.5%;
+  background: -webkit-linear-gradient(
+    #1f6da8,
+    #596164
+  ); /* For Safari 5.1 to 6.0 */
+  background: -moz-linear-gradient(
+    #868f96,
+    #596164
+  ); /* For Firefox 3.6 to 15 */
+  background-image: linear-gradient(
+    180deg,
+    #868f96,
+    #596164,
+    #596164 100%
+  ); /* Standard syntax */
 }
 
-
 .basic.button.false {
-    display: none;
+  display: none;
 }
 
 h1 {
-    color: $white;
-    display: inline;
+  color: $white;
+  display: inline;
 }
 
-
 .card-entries {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  flex-flow: wrap;
+  -webkit-flex: 4;
+  flex: 4;
+  height: 100%;
+}
+
+.manabar {
+  margin: 0 auto;
+
+  .basic.button {
+    @media (max-width: 900px) {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    margin: 0 -15px;
+  }
+}
+
+.list-container {
+  -webkit-flex: 4;
+  flex: 4;
+  margin-top: 5px;
+  flex-basis: 770px;
+
+  @include for-big-desktop-up {
+    flex: 3;
+  }
+
+  .list-body {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
     flex-flow: wrap;
-    -webkit-flex: 4;
-    flex: 4;
-    height: 100%;
+    justify-content: center;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
-}
-
-.manabar {
-    margin: 0 auto;
-
-    .basic.button {
-        @media (max-width: 900px) {
-            padding: 10px;
-        }
+    @include for-tablet-portrait-up {
+      min-height: 80vh;
     }
-
-        @media (max-width: 600px) {
-            margin: 0 -15px;
-        }
-}
-
-.list-container {
-    -webkit-flex: 4;
-    flex: 4;
-    margin-top: 5px;
-    flex-basis: 770px;
-
-    @include for-big-desktop-up {
-        flex: 3;
+    @include for-desktop-up {
+      min-height: 80vh;
     }
+  }
 
-    .list-body {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        flex-flow: wrap;
-        justify-content: center;
-        padding: 5px;
-        background-color: white;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  .ui.menu {
+    height: 50px;
 
-        @include for-tablet-portrait-up {
-            min-height: 80vh;
-        }
-        @include for-desktop-up {
-            min-height: 80vh;
-        }
-        
+    @media (max-width: 700px) {
+      font-size: 0.8rem;
     }
+  }
 
-    .ui.menu {
-        height: 50px;
-         
-        @media (max-width: 700px) {
-                font-size: .8rem;
-        }
-    }
+  .ui.menu > .item:first-child {
+    border-radius: 0;
+  }
 
-    .ui.menu>.item:first-child {
-        border-radius: 0;
-    }
-    
-    .ui.menu.top-nav {
-        margin-bottom: 0;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    .ui.menu.bot-nav {
-        margin-top: 0;
-        border-top-right-radius: 0px;
-        border-top-left-radius: 0px;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }  
-    .ui.button.next-button {
-        margin-left: auto;
-    }
+  .ui.menu.top-nav {
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .ui.menu.bot-nav {
+    margin-top: 0;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .ui.button.next-button {
+    margin-left: auto;
+  }
 }
 
 .img-container--4 {
-    width: calc(100% / 4);
+  width: calc(100% / 4);
 }
 
 .hsImage--4 {
+  width: 80%;
+  display: block;
+  margin: -7px auto;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    -webkit-transform: scale(
+      1.05
+    ); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
+    -ms-transform: scale(1.05);
+  }
+
+  @include for-tablet-portrait-up {
+    width: 90%;
+    margin: -5px auto;
+  }
+
+  @include for-desktop-up {
     width: 80%;
-    display: block;
-    margin: -7px auto;
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.05);
-        -webkit-transform:  scale(1.05); /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
-        -ms-transform: scale(1.05);
-    }
+    margin: -5px auto;
+  }
 
-    @include for-tablet-portrait-up {
-        width: 90%;
-        margin: -5px auto;
-    }
-
-    @include for-desktop-up {
-        width: 80%;
-        margin: -5px auto;
-    }
-
-    @include for-big-desktop-up {
-        width: 80%;
-        margin: -5px auto;
-    }
+  @include for-big-desktop-up {
+    width: 80%;
+    margin: -5px auto;
+  }
 }
 
 .deck-container {
-    margin: 5px 10px 10px 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    border-radius: 5px;
-    -webkit-align-self: flex-start;
-    align-self: flex-start;
-    -webkit-flex: 1;
-    flex: 1;
+  margin: 5px 10px 10px 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+  -webkit-flex: 1;
+  flex: 1;
 
-
-    @media (max-width: 1030px) {
+  @media (max-width: 1030px) {
     margin: 5px 0;
-    }
+  }
 
-    input {
-        border: none;
-        width: 80%;
-        font-size: 1.4rem;
-    }
-
+  input {
+    border: none;
+    width: 80%;
+    font-size: 1.4rem;
+  }
 }
 
 .deck-list {
-    line-height: 2rem;
-    margin: 10px 0px 10px 0px;
+  line-height: 2rem;
+  margin: 10px 0px 10px 0px;
 }
 
 .deck-card {
-    margin: .25rem;
-    border: 1px solid;
-    border-radius: 5px;
-    position: relative;
-    -webkit-animation-name: card-add;
-    -webkit-animation-duration: .5s;
-    animation-name: card-add;
-    animation-duration: .5s;
-    &:hover {
-        cursor: pointer;
-        background-color: $mustard;
-    }
+  margin: 0.25rem;
+  border: 1px solid;
+  border-radius: 5px;
+  position: relative;
+  -webkit-animation-name: card-add;
+  -webkit-animation-duration: 0.5s;
+  animation-name: card-add;
+  animation-duration: 0.5s;
+  &:hover {
+    cursor: pointer;
+    background-color: $mustard;
+  }
 }
 
 .mana {
-    display: inline-block;
-    color: $white;
-    background-color: $darkblue;
-    text-align: center;
-    width: 7%;
-    height: 29px;
+  display: inline-block;
+  color: $white;
+  background-color: $darkblue;
+  text-align: center;
+  width: 7%;
+  height: 29px;
 }
 
 span.count {
-    float: right;
-    text-align: center;
-    color: $mustard;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 1.4rem solid $jet;
-    border-bottom: 29px solid $jet;
+  float: right;
+  text-align: center;
+  color: $mustard;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 1.4rem solid $jet;
+  border-bottom: 29px solid $jet;
 }
 
+button.export {
+  border-radius: 5px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  box-shadow: 0 0 0 1px rgba(34, 36, 38, 0.15) inset;
+  padding: 7px;
 
- button.export {
-    border-radius: 5px;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    outline: 0;
-    box-shadow: 0 0 0 1px rgba(34,36,38,.15) inset;
-    padding: 7px;
-
-    &:hover {
-        cursor: pointer;
-        color: white;
-        background-color: $darkgrey;
-    }
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: $darkgrey;
+  }
 }
-
-
 
 i.star.icon {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 .mana-bar {
-    margin: 5px auto;
-    height: 40px;
-    width: 33%;
-    .ui.buttons {
-        margin: auto;
-        width: 100%;
-        color: white;
-    }
+  margin: 5px auto;
+  height: 40px;
+  width: 33%;
+  .ui.buttons {
+    margin: auto;
+    width: 100%;
+    color: white;
+  }
 }
 
 #flash_notice {
-    text-align: center;
-    width: 400px;
-    padding: 10px;
-    background: $mustard;
-    color: $jet;
-    height: 50px;
-    line-height: 30px;
-    font-size: 12pt;
-    margin-top: 30px;
-    border-radius: 5px;
+  text-align: center;
+  width: 400px;
+  padding: 10px;
+  background: $mustard;
+  color: $jet;
+  height: 50px;
+  line-height: 30px;
+  font-size: 12pt;
+  margin-top: 30px;
+  border-radius: 5px;
 }
 
 .feedback {
-    position: absolute; 
-    bottom: 10px;
-    margin: 0 50%;
-    color: #eee;
-    font-size: .8rem;
+  position: absolute;
+  bottom: 10px;
+  margin: 0 50%;
+  color: #eee;
+  font-size: 0.8rem;
 }
 
 @-webkit-keyframes card-add {
-    0% {
-        background-color: color($mustard/4);
-        right: 10px;
-        top: 0px;
-    }
-    50% {
-        background-color: color($mustard/2);
-        right: 5px;
-        top: 0px;
-    }
-    100% {
-        background-color: $mustard;
-        right: 0px;
-        top: 0px;
-    }
+  0% {
+    background-color: color($mustard/4);
+    right: 10px;
+    top: 0px;
+  }
+  50% {
+    background-color: color($mustard/2);
+    right: 5px;
+    top: 0px;
+  }
+  100% {
+    background-color: $mustard;
+    right: 0px;
+    top: 0px;
+  }
 }
 
 @keyframes card-add {
-    0% {
-        background-color: color($mustard/4);
-        right: 10px;
-        top: 0px;
-    }
-    50% {
-        background-color: color($mustard/2);
-        right: 5px;
-        top: 0px;
-    }
-    100% {
-        background-color: $mustard;
-        right: 0px;
-        top: 0px;
-    }
+  0% {
+    background-color: color($mustard/4);
+    right: 10px;
+    top: 0px;
+  }
+  50% {
+    background-color: color($mustard/2);
+    right: 5px;
+    top: 0px;
+  }
+  100% {
+    background-color: $mustard;
+    right: 0px;
+    top: 0px;
+  }
 }
-
