@@ -4,7 +4,7 @@ defmodule Hearthdecks.Mixfile do
   def project do
     [
       app: :hearthdecks,
-      version: "0.7.1",
+      version: "1.0.0",
       elixir: "~> 1.6.0-rc.1",
       elixirc_paths: elixirc_paths(Mix1env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),

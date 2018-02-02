@@ -49,16 +49,6 @@ defmodule HearthdecksWeb.CardController do
 
   defp split(params), do: String.split(params["cards"], ",")
 
-  #  defp format_params(params) do
-  #    cards = String.split(params["cards"], ",") 
-
-  #    counts =
-  #    String.split(params["counts"], ",")
-  #    |> Enum.into([], &(String.to_integer/1))
-
-  #    Enum.zip(cards, counts)
-  #  end
-
   defp current_page(params), do: Map.get(params, "page", 1)
 
   defp search(params), do: Map.get(params, "search", nil)

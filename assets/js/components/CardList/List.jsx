@@ -68,7 +68,7 @@ export default class List extends React.Component {
   }
 
   handleCardClick(card) {
-    const deck = this.props.deck
+    const { deck, updateDeck } = this.props
     const maxDeckSize = 30
     const count = countCard(card, deck)
     const deckSize = countDeck(deck)
@@ -90,7 +90,7 @@ export default class List extends React.Component {
       return
     }
 
-    this.props.updateDeck(deck)
+    updateDeck(deck)
   }
 
   render() {

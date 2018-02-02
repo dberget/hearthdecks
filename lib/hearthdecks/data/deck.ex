@@ -8,7 +8,6 @@ defmodule Hearthdecks.Data.Deck do
     timestamps()
   end
 
-  @doc false
   def changeset(%Deck{} = deck, attrs) do
     deck
     |> cast(attrs, [:deckstring])

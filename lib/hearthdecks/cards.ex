@@ -28,10 +28,6 @@ defmodule Hearthdecks.Cards do
     from(c in q, where: c.dbfId in ^ids)
   end
 
-  # defp filter({field, value}, query) when is_list(value), do: where(query, [o], field(o, ^field) in ^value)
-  # defp filter({field, value}, query), do: where(query, [o], field(o, ^field) == ^value)
-  # defp filters(query, filters), do: Enum.reduce(filters, query, &filter/2)
-
   def standard(q, false), do: q
 
   def standard(q, true) do

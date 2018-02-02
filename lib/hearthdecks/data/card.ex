@@ -25,7 +25,6 @@ defmodule Hearthdecks.Data.Card do
     timestamps()
   end
 
-  @doc false
   def changeset(%Card{} = card, attrs) do
     card
     |> cast(attrs, [

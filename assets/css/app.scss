@@ -8,13 +8,16 @@
     flex-flow: wrap;
 }
 
+html {
+    height: auto;
+}
+
 html body {
-    padding: 10px;
-    font-size: 62.5%;
-    background-color: #596164;
-    background: -webkit-linear-gradient(#868f96, #596164); /* For Safari 5.1 to 6.0 */
+    padding: 10px; 
+    font-size: 62.5%; 
+    background: -webkit-linear-gradient(#1f6da8, #596164); /* For Safari 5.1 to 6.0 */
     background: -moz-linear-gradient(#868f96, #596164); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#868f96, #596164); /* Standard syntax */
+    background-image: linear-gradient(180deg, #868f96, #596164, #596164 100%); /* Standard syntax */
 }
 
 
@@ -79,7 +82,7 @@ h1 {
             min-height: 80vh;
         }
         @include for-desktop-up {
-            min-height: 72vh;
+            min-height: 80vh;
         }
         
     }
