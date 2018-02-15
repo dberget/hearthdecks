@@ -5,9 +5,13 @@ export default class HSCard extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { animation: "pulse", duration: 150, visible: true }
+    this.state = { animation: "pulse", duration: 150, visible: true, alt: "" }
 
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleImageErrored() {
+    this.setState({ alt: this.props.data.name })
   }
 
   handleClick() {
@@ -25,7 +29,8 @@ export default class HSCard extends React.Component {
             style={this.props.style}
             className={`hsImage--${rowSize}`}
             onClick={this.handleClick}
-            alt={this.props.data.name}
+            alt={this.state.alt}
+            onError={this.handleImageErrored}
             src={this.props.data.img}
           />
         </Transition>
