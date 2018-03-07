@@ -56,14 +56,7 @@ export default class ExportDeck extends React.Component {
     let channel = socket.channel("room", {})
     this.setState({ channel: channel })
 
-    channel
-      .join()
-      .receive("ok", resp => {
-        console.log("Joined successfully", resp)
-      })
-      .receive("error", resp => {
-        console.log("Unable to join", resp)
-      })
+    channel.join()
   }
 
   generateDeckString() {
@@ -80,13 +73,9 @@ export default class ExportDeck extends React.Component {
       }
       deckstring = encode(str)
 
-      console.log(
-        this.state.channel.push("create_deck", { deckstring: deckstring })
-      )
-
-      this.state.channel.push("create_deck", deckstring).receive("ok", resp => {
-        console.log(resp)
-      })
+      this.state.channel
+        .push("create_deck", deckstring)
+        .receive("ok", resp => {})
 
       return deckstring
     } else {

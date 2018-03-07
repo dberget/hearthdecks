@@ -1,74 +1,73 @@
 @import "../../../css/_utils";
 
 .class-container {
-    margin-top: 10px;
-    padding: 10px;
-    width: 70%;
-    margin: 0 auto;
-    background: #fff;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    border-radius: 5px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 70%;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  min-height: 80vh;
 
-    .loading {
-        height: 80vh;
-
-        @media screen and (orientation: portrait) {
-            height: 105vh;
-        }
-    }
+  .loading {
+    min-height: 80vh;
 
     @media screen and (orientation: portrait) {
-        width: 90%;
+      height: 105vh;
     }
+  }
+
+  @media screen and (orientation: portrait) {
+    width: 90%;
+  }
+
+  @include for-tablet-portrait-up {
+    width: 85%;
+  }
+  @include for-desktop-up {
+    width: 70%;
+  }
+
+  .ui.form {
+    margin-right: 3.5px;
+  }
+
+  .ui.input {
+    margin-right: 3px;
+  }
+
+  .class-list-body {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
 
     @include for-tablet-portrait-up {
-        width: 85%
+      width: 60%;
     }
+
     @include for-desktop-up {
-        width: 70%
+      width: 70%;
     }
+  }
 
+  h2 {
+    margin: 10px;
+    color: $jet;
+    display: inline;
+  }
 
-    .ui.form {
-        margin-right: 3.5px;
-    }
+  h3 {
+    font-weight: 100;
+    display: inline;
+  }
 
-    .ui.input {
-        margin-right: 3px;
-    }
-
-    .class-list-body {
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        flex-flow: wrap;
-        justify-content: center;
-        margin: 0 auto;
-        padding-bottom: 10px;
-
-      
-        @include for-tablet-portrait-up {
-            width: 60%;
-        }
-
-        @include for-desktop-up {
-            width: 70%
-        }
-    }
-
-    h2 {
-        margin: 10px;
-        color: $jet;
-        display: inline;
-    }
-
-    h3 {
-        font-weight:  100;
-        display: inline;
-    }
-
-.class-entries {
+  .class-entries {
     height: 100%;
     display: -webkit-flex;
     display: flex;
@@ -76,52 +75,48 @@
     flex-direction: row;
     flex-flow: wrap;
 
+    @media screen and (orientation: portrait) {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
 
-        @media screen and (orientation: portrait) {
-            -webkit-flex-direction: column;
-            flex-direction: column;
-        }
-    
     a {
-        width: 33%;
+      width: 33%;
 
-        @media screen and (orientation: portrait) {
-            height: 50%;
-            width: auto;
+      @media screen and (orientation: portrait) {
+        height: 50%;
+        width: auto;
+      }
+    }
+  }
+
+  .hsImage--3 {
+    width: 60%;
+    display: block;
+    margin: -15px auto;
+
+    @media screen and (orientation: portrait) {
+      width: 70%;
+      margin: -5px auto;
     }
 
-}
-   
-}
-
-    .hsImage--3 {
-        width: 60%;
-        display: block;
-        margin: -15px auto;
-       
-        @media screen and (orientation: portrait) {
-            width: 70%;
-            margin: -5px auto;
-        }
-
-        @include for-tablet-portrait-up {
-            width: 70%;
-            margin: -6px auto;
-        }
-
-        @include for-tablet-portrait-up {
-            width: 70%;
-            margin: -6px auto;
-        }
-
-        @include for-desktop-up {
-            width: 60%
-        }
-
-        &:hover {
-            cursor: pointer;
-            transform: scale(1.05);
-        }
+    @include for-tablet-portrait-up {
+      width: 70%;
+      margin: -6px auto;
     }
-    
+
+    @include for-tablet-portrait-up {
+      width: 70%;
+      margin: -6px auto;
+    }
+
+    @include for-desktop-up {
+      width: 60%;
+    }
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+  }
 }

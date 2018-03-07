@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import React from "react"
+import { Link } from "react-router-dom"
+import { Menu } from "semantic-ui-react"
 
-import { classes } from '../../constants'
-import HSCard from '../CardList/HSCard'
-import ImportDeck from '../UserDeck/ImportDeck'
+import { classes } from "../../constants"
+import HSCard from "../CardList/HSCard"
+import ImportDeck from "../UserDeck/ImportDeck.jsx"
 
 export default class ClassList extends React.Component {
   constructor(props) {
@@ -13,7 +13,6 @@ export default class ClassList extends React.Component {
     this.handleClassClick = this.handleClassClick.bind(this)
   }
 
-
   handleClassClick(playerClass) {
     this.props.updateFilterClass(playerClass.value)
     this.props.updateClass(playerClass.value)
@@ -21,12 +20,12 @@ export default class ClassList extends React.Component {
     this.props.resetDeck([])
   }
 
-
   render() {
     return (
       <div className="class-container">
         <Menu secondary>
-          <Menu.Header as="h2"> Select a Class <Menu.Header as="h3"> or Import a Deck </Menu.Header>
+          <Menu.Header as="h2">
+            Select a Class <Menu.Header as="h3"> or Import a Deck </Menu.Header>
           </Menu.Header>
           <Menu.Menu position="right">
             <ImportDeck uploadDeck={this.props.uploadDeck} />
@@ -34,11 +33,8 @@ export default class ClassList extends React.Component {
         </Menu>
         <div className="class-list-body">
           <div className="class-entries">
-            {classes.map(hero =>
-              (<Link
-                key={hero.value}
-                to={hero.value}
-              >
+            {classes.map(hero => (
+              <Link key={hero.value} to={hero.value}>
                 <HSCard
                   rowSize={3}
                   onSelect={this.handleClassClick}
@@ -46,7 +42,7 @@ export default class ClassList extends React.Component {
                   data={hero}
                 />
               </Link>
-              ))}
+            ))}
           </div>
         </div>
       </div>

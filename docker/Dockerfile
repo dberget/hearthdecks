@@ -3,7 +3,7 @@
 # libraries are in place when building releases
 FROM ubuntu:16.04
 
-ENV CACHE_BUST 20171114_1052
+ENV CACHE_BUST 20171114_1053
 
 RUN apt-get update && apt-get install -y apt-transport-https
 RUN apt-get install locales && locale-gen en_US.UTF-8

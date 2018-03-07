@@ -4,8 +4,8 @@ defmodule Hearthdecks.Mixfile do
   def project do
     [
       app: :hearthdecks,
-      version: "1.0.1",
-      elixir: "~> 1.5.2",
+      version: "1.0.3",
+      elixir: "~> 1.6.1",
       elixirc_paths: elixirc_paths(Mix1env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -33,7 +33,7 @@ defmodule Hearthdecks.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.0-rc"},
+      {:phoenix, "~> 1.3.1"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
@@ -41,7 +41,7 @@ defmodule Hearthdecks.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:distillery, "~> 1.0"},
+      {:distillery, "~> 1.5"},
       {:httpoison, "~> 0.13"},
       {:scrivener_ecto, "~> 1.0"}
     ]
