@@ -1,6 +1,6 @@
 # Hearthdecks
 
-Live Site: www.hearthdecks.daveberget.com
+Live Site: www.netdeck.xyz
 
 Hearthstone deck building site that allows users to create, share, and export decks for use into the game.
 
