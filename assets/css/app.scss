@@ -9,10 +9,12 @@
 }
 
 html {
-  height: auto;
+  height: 100%;
 }
 
-html body {
+body {
+  height: 100%;
+  margin: 0;
   padding: 10px;
   font-size: 62.5%;
   background: -webkit-linear-gradient(
