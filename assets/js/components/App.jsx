@@ -5,6 +5,7 @@ import Deck from "./UserDeck/Deck"
 import { sortDeck } from "../utils"
 import ClassList from "./ClassSelect/ClassList"
 import ImportHelper from "./Helpers/ImportHelper"
+import DeckProvider from "./UserDeck/DeckProvider.jsx"
 
 class App extends React.Component {
   constructor(props) {
@@ -126,66 +127,60 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Link to="/">
-          <h1> HEARTHDECKS </h1>
-        </Link>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <ClassList
-              updateClass={this.handleClassChange}
-              uploadDeck={this.handleDeckUpload}
-              updateFilterClass={this.handleFilterClass}
-              resetDeck={this.handleDeckChange}
-              saveDeck={this.handleStorage}
-            />
-          )}
-        />
-        <Route
-          path="/:class"
-          exact
-          render={({ match }) => (
-            <div className="container">
-              <List
-                filters={this.state.filters}
-                resetDeck={this.handleDeckChange}
-                deck={this.state.deck}
-                params={match.params}
-                updateDeck={this.handleDeckChange}
+      <DeckProvider>
+        <div>
+          <Link to="/">
+            <h1> HEARTHDECKS </h1>
+          </Link>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <ClassList
                 updateClass={this.handleClassChange}
-                searchTerm={this.handleSearch}
+                uploadDeck={this.handleDeckUpload}
                 updateFilterClass={this.handleFilterClass}
-                updateExpansion={this.handleExpansionChange}
-                class={this.state.class}
-                activeMana={this.state.filters.cost}
-                handleCostChange={this.handleCostChange}
-                active={this.state.filters.cost}
-                handleCostClick={this.handleCostChange}
-                handleCardLimit={this.handleCardLimit}
-                cardLimit={this.state.cardLimit}
+                resetDeck={this.handleDeckChange}
+                saveDeck={this.handleStorage}
               />
-              <Deck
-                class={this.state.class}
-                deck={this.state.deck}
+            )}
+          />
+          <Route
+            path="/:class"
+            exact
+            render={({ match }) => (
+              <div className="container">
+                <List
+                  filters={this.state.filters}
+                  params={match.params}
+                  updateClass={this.handleClassChange}
+                  searchTerm={this.handleSearch}
+                  updateFilterClass={this.handleFilterClass}
+                  updateExpansion={this.handleExpansionChange}
+                  class={this.state.class}
+                  activeMana={this.state.filters.cost}
+                  handleCostChange={this.handleCostChange}
+                  active={this.state.filters.cost}
+                  handleCostClick={this.handleCostChange}
+                  handleCardLimit={this.handleCardLimit}
+                  cardLimit={this.state.cardLimit}
+                />
+                <Deck class={this.state.class} params={match.params} />
+              </div>
+            )}
+          />
+          <Route
+            exact
+            path="/:class/:cards/:count"
+            render={({ match }) => (
+              <ImportHelper
                 params={match.params}
-                updateDeck={this.handleDeckChange}
+                uploadDeck={this.handleDeckChange}
               />
-            </div>
-          )}
-        />
-        <Route
-          exact
-          path="/:class/:cards/:count"
-          render={({ match }) => (
-            <ImportHelper
-              params={match.params}
-              uploadDeck={this.handleDeckChange}
-            />
-          )}
-        />
-      </div>
+            )}
+          />
+        </div>
+      </DeckProvider>
     )
   }
 }

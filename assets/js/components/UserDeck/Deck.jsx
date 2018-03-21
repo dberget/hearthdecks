@@ -6,6 +6,7 @@ import DeckMenu from "./Menu/DeckMenu"
 import ExportDeck from "./ExportDeck"
 import { countDeck } from "../../utils"
 import DeckStats from "./Stats/DeckStats"
+import { DeckConsumer } from "./DeckProvider.jsx"
 
 export default class Deck extends React.Component {
   constructor(props) {
@@ -20,27 +21,27 @@ export default class Deck extends React.Component {
     this.handleStatsClick = this.handleStatsClick.bind(this)
   }
 
-  componentDidMount() {
-    const className = `/${this.props.class}`
-    const cachedDeck = localStorage.getItem(className)
+  // componentDidMount() {
+  //   const className = `/${this.props.class}`
+  //   const cachedDeck = localStorage.getItem(className)
 
-    if (cachedDeck) {
-      this.props.updateDeck(JSON.parse(cachedDeck))
-    }
-  }
+  //   if (cachedDeck) {
+  //     this.props.updateDeck(JSON.parse(cachedDeck))
+  //   }
+  // }
 
-  handleCardRemove(card) {
-    const { deck } = this.props
-    const index = deck.map(x => x.name).indexOf(card.name)
+  // handleCardRemove(card) {
+  //   const { deck } = this.props
+  //   const index = deck.map(x => x.name).indexOf(card.name)
 
-    if (card.count === 2) {
-      deck[index].count -= 1
-    } else {
-      deck.splice(index, 1)
-    }
+  //   if (card.count === 2) {
+  //     deck[index].count -= 1
+  //   } else {
+  //     deck.splice(index, 1)
+  //   }
 
-    this.props.updateDeck(deck)
-  }
+  //   this.props.updateDeck(deck)
+  // }
 
   handleStatsClick() {
     this.setState({ showStats: !this.state.showStats })
@@ -51,32 +52,35 @@ export default class Deck extends React.Component {
   }
 
   render() {
-    const { deck } = this.props
-
+    const { deckTitle, showStats } = this.state
     return (
       <div className="deck-container">
-        <Segment>
-          <DeckMenu
-            deck={deck}
-            playerClass={this.props.class}
-            deckTitle={this.state.deckTitle}
-            handleStatsClick={this.handleStatsClick}
-          />
-          <DeckStats hidden={this.state.showStats} deck={deck} />
-          <input onChange={this.deckTitleChange} value={this.state.deckTitle} />
-          <div className="deck-list">
-            {deck.map(card => (
-              <DeckItem
-                count={card.count}
-                rarity={card.rarity}
-                onClick={e => this.handleCardRemove.bind(this, e)}
-                mana={card.cost}
-                key={card.id}
-                name={card.name}
+        <DeckConsumer>
+          {({ deck, removeCard }) => (
+            <Segment>
+              <DeckMenu
+                deck={deck}
+                playerClass={this.props.class}
+                deckTitle={deckTitle}
+                handleStatsClick={this.handleStatsClick}
               />
-            ))}
-          </div>
-        </Segment>
+              <DeckStats hidden={showStats} deck={deck} />
+              <input onChange={this.deckTitleChange} value={deckTitle} />
+              <div className="deck-list">
+                {deck.map(card => (
+                  <DeckItem
+                    count={card.count}
+                    rarity={card.rarity}
+                    handleClick={removeCard()}
+                    mana={card.cost}
+                    key={card.id}
+                    name={card.name}
+                  />
+                ))}
+              </div>
+            </Segment>
+          )}
+        </DeckConsumer>
       </div>
     )
   }
