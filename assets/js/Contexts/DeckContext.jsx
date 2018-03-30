@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-import { sortDeck } from "../../utils"
-import { countDeck, countCard, flashNotice } from "../../utils"
+import { countDeck, countCard, flashNotice, sortDeck } from "../utils"
 
 const DeckContext = React.createContext([])
 export const DeckConsumer = DeckContext.Consumer
@@ -12,12 +11,11 @@ class DeckProvider extends Component {
 
     this.removeCard = this.removeCard.bind(this)
     this.addCard = this.addCard.bind(this)
-    // this.handleStorage = this.handleStorage.bind(this)
+    this.handleStorage = this.handleStorage.bind(this)
     this.updateDeck = this.updateDeck.bind(this)
   }
 
   removeCard(card) {
-    console.log(card)
     const { deck } = this.state
     const index = deck.map(x => x.name).indexOf(card.name)
 
@@ -30,14 +28,23 @@ class DeckProvider extends Component {
     this.updateDeck(deck)
   }
 
-  // handleStorage(save) {
-  //   const saveDeck = this.state.deck
-  //   const className = this.state.class
+  componentDidMount() {
+    const className = `/${this.props.class}`
+    const cachedDeck = localStorage.getItem(className)
 
-  //   if (save) {
-  //     localStorage.setItem(`/${className}`, JSON.stringify(saveDeck))
-  //   }
-  // }
+    if (cachedDeck) {
+      this.updateDeck(JSON.parse(cachedDeck))
+    }
+  }
+
+  handleStorage(save) {
+    const saveDeck = this.state.deck
+    const className = this.state.class
+
+    if (save) {
+      localStorage.setItem(`/${className}`, JSON.stringify(saveDeck))
+    }
+  }
 
   addCard(card) {
     const { deck } = this.state
@@ -68,8 +75,8 @@ class DeckProvider extends Component {
   updateDeck(deck) {
     deck.sort(sortDeck)
 
-    this.setState({ deck: deck })
-    // this.handleStorage(true)
+    this.setState(prevState => ({ deck: deck }))
+    this.handleStorage(true)
   }
 
   render() {

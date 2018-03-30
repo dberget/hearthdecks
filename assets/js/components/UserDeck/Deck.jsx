@@ -6,7 +6,7 @@ import DeckMenu from "./Menu/DeckMenu"
 import ExportDeck from "./ExportDeck"
 import { countDeck } from "../../utils"
 import DeckStats from "./Stats/DeckStats"
-import { DeckConsumer } from "./DeckProvider.jsx"
+import { DeckConsumer } from "../../Contexts/DeckContext.jsx"
 
 export default class Deck extends React.Component {
   constructor(props) {
@@ -20,28 +20,6 @@ export default class Deck extends React.Component {
     this.deckTitleChange = this.deckTitleChange.bind(this)
     this.handleStatsClick = this.handleStatsClick.bind(this)
   }
-
-  // componentDidMount() {
-  //   const className = `/${this.props.class}`
-  //   const cachedDeck = localStorage.getItem(className)
-
-  //   if (cachedDeck) {
-  //     this.props.updateDeck(JSON.parse(cachedDeck))
-  //   }
-  // }
-
-  // handleCardRemove(card) {
-  //   const { deck } = this.props
-  //   const index = deck.map(x => x.name).indexOf(card.name)
-
-  //   if (card.count === 2) {
-  //     deck[index].count -= 1
-  //   } else {
-  //     deck.splice(index, 1)
-  //   }
-
-  //   this.props.updateDeck(deck)
-  // }
 
   handleStatsClick() {
     this.setState({ showStats: !this.state.showStats })
