@@ -2,7 +2,14 @@ defmodule Hearthdecks.Cards do
   alias Hearthdecks.{Repo, Data.Card}
   import Ecto.Query
 
-  @defaults %{playerClass: nil, search: nil, page: 1, cardSet: nil, standard: true, cost: nil}
+  @defaults %{
+    playerClass: nil,
+    search: nil,
+    page: 1,
+    cardSet: nil,
+    standard: true,
+    cost: nil
+  }
 
   def all(opts \\ %{}) do
     opts = Map.merge(@defaults, opts)
@@ -29,36 +36,19 @@ defmodule Hearthdecks.Cards do
   end
 
   def standard(q, false), do: q
-
-  def standard(q, true) do
-    from(c in q, where: [standard: true])
-  end
+  def standard(q, true), do: from(c in q, where: [standard: true])
 
   def card_set(q, nil), do: q
+  def card_set(q, set), do: from(c in q, where: [cardSet: ^set])
 
-  def card_set(q, set) do
-    from(c in q, where: [cardSet: ^set])
-  end
-
+  def mana(q, "7+"), do: from(c in q, where: c.cost > 6)
+  def mana(q, "<1"), do: from(c in q, where: c.cost < 1)
   def mana(q, nil), do: q
+  def mana(q, mana), do: from(c in q, where: [cost: ^mana])
 
-  def mana(q, "7+") do
-    from(c in q, where: c.cost > 6)
-  end
-
-  def mana(q, "<1") do
-    from(c in q, where: c.cost < 1)
-  end
-
-  def mana(q, mana) do
-    from(c in q, where: [cost: ^mana])
-  end
-
-  def player_class(q, nil), do: q
-
-  def player_class(q, class) do
-    from(c in q, where: [playerClass: ^class])
-  end
+  def player_class(q, nil), do: from(c in q, where: [playerClass: "Neutral"])
+  def player_class(q, ""), do: from(c in q, where: [playerClass: "Neutral"])
+  def player_class(q, class), do: from(c in q, where: [playerClass: ^class])
 
   def search_query(q, nil), do: q
   def search_query(q, %{"search" => "undefined"}), do: q

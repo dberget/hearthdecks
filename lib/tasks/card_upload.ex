@@ -45,7 +45,10 @@ defmodule Hearthdecks.Tasks.CardUpload do
     q = from(c in Card, where: c.cardSet == ^set)
     set_cards = Hearthdecks.Repo.all(q)
     set_ids = Enum.map(set_cards, & &1.id)
-    Enum.each(set_ids, fn x -> Hearthdecks.Data.update_card(%Card{id: x}, %{standard: true}) end)
+
+    Enum.each(set_ids, fn x ->
+      Hearthdecks.Data.update_card(%Card{id: x}, %{standard: true})
+    end)
   end
 
   defp remove_heroes(id) do

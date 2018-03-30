@@ -3,12 +3,61 @@ defmodule Hearthdecks.DataTest do
 
   alias Hearthdecks.Data
 
-  describe "cards" do
+  describe "Card" do
     alias Hearthdecks.Data.Card
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{
+      "attack" => nil,
+      "cardId" => "NEW1_003",
+      "cardSet" => "Basic",
+      "cost" => 0,
+      "dbfId" => "163",
+      "faction" => nil,
+      "health" => nil,
+      "img" => "http://media.services.zam.com/v1/media/byName/hs/cards/enus/NEW1_003.png",
+      "name" => "Sacrificial Pact",
+      "playerClass" => "Warlock",
+      "rarity" => "Free",
+      "text" => "Destroy a Demon. Restore #5 Health to your hero.",
+      "standard" => false,
+      "type" => "Spell"
+    }
+    @update_attrs %{
+      "attack" => nil,
+      "cardId" => "NEW1_004",
+      "cardSet" => "Basic",
+      "cost" => 0,
+      "dbfId" => "163",
+      "faction" => nil,
+      "health" => nil,
+      "img" => "http://media.services.zam.com/v1/media/byName/hs/cards/enus/NEW1_003.png",
+      "name" => "Sacrificial Pact",
+      "playerClass" => "Warlock",
+      "rarity" => "Free",
+      "text" => "Destroy a Demon. Restore #5 Health to your hero.",
+      "type" => "Spell"
+    }
+    @invalid_attrs %{
+      attack: nil,
+      cardId: "CS2_041",
+      cardSet: "Basic",
+      collectible: true,
+      cost: 0,
+      dbfId: nil,
+      faction: "Neutral",
+      health: nil,
+      img: nil,
+      imgGold: nil,
+      inserted_at: ~N[2017-12-12 05:10:29.722735],
+      name: "Ancestral Healing",
+      playerClass: "Shaman",
+      race: nil,
+      rarity: "Free",
+      standard: true,
+      text: "Restore a minion\\nto full Health and\\ngive it <b>Taunt</b>.",
+      type: "Spell",
+      updated_at: ~N[2017-12-12 05:10:42.319603]
+    }
 
     def card_fixture(attrs \\ %{}) do
       {:ok, card} =
@@ -17,11 +66,6 @@ defmodule Hearthdecks.DataTest do
         |> Data.create_card()
 
       card
-    end
-
-    test "list_cards/0 returns all cards" do
-      card = card_fixture()
-      assert Data.list_cards() == [card]
     end
 
     test "get_card!/1 returns the card with given id" do
@@ -37,36 +81,23 @@ defmodule Hearthdecks.DataTest do
       assert {:error, %Ecto.Changeset{}} = Data.create_card(@invalid_attrs)
     end
 
-    test "update_card/2 with valid data updates the card" do
-      card = card_fixture()
-      assert {:ok, card} = Data.update_card(card, @update_attrs)
-      assert %Card{} = card
-    end
-
-    test "update_card/2 with invalid data returns error changeset" do
-      card = card_fixture()
-      assert {:error, %Ecto.Changeset{}} = Data.update_card(card, @invalid_attrs)
-      assert card == Data.get_card!(card.id)
-    end
-
     test "delete_card/1 deletes the card" do
       card = card_fixture()
       assert {:ok, %Card{}} = Data.delete_card(card)
       assert_raise Ecto.NoResultsError, fn -> Data.get_card!(card.id) end
-    end
-
-    test "change_card/1 returns a card changeset" do
-      card = card_fixture()
-      assert %Ecto.Changeset{} = Data.change_card(card)
     end
   end
 
   describe "decks" do
     alias Hearthdecks.Data.Deck
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{
+      deckstring: "AAEBAQcE/wPx0wKdAqK8Ag26zgKGsALYAoe/ArnDAszDAqIE/ASQA43SAr7DApEGuMMCAA=="
+    }
+    @update_attrs %{
+      deckstring: "AAEBAQcE/wPx0wKdAqK8Ag26zgKGsALYAoe/ArnDAszDAvwEkAON0gK+wwKRBrjDAo4FAA=="
+    }
+    @invalid_attrs %{deckstring: nil}
 
     def deck_fixture(attrs \\ %{}) do
       {:ok, deck} =

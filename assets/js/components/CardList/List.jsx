@@ -1,8 +1,7 @@
 import React from "react"
 import { Button, Icon } from "semantic-ui-react"
-import Ad from "../Messages/Advert"
 
-import { DeckConsumer } from "../UserDeck/DeckProvider.jsx"
+import { DeckConsumer } from "../../Contexts/DeckContext.jsx"
 import TopNav from "./TopNav"
 import BottomNav from "./BottomNav"
 import HSCard from "./HSCard"
@@ -16,7 +15,6 @@ export default class List extends React.Component {
     this.state = { entries: [] }
 
     this.handlePageClick = this.handlePageClick.bind(this)
-    // this.handleCardClick = this.handleCardClick.bind(this)
   }
 
   componentDidMount() {
@@ -68,33 +66,9 @@ export default class List extends React.Component {
       })
   }
 
-  // handleCardClick(card) {
-  //   const { deck, updateDeck } = this.props
-  //   const maxDeckSize = 30
-  //   const count = countCard(card, deck)
-  //   const deckSize = countDeck(deck)
-  //   const maxCardCount = card.rarity === "Legendary" ? 1 : this.props.cardLimit
-  //   let index = []
-
-  //   if (deckSize === maxDeckSize) {
-  //     flashNotice("Your Deck has Reached 30 Cards")
-  //     return
-  //   } else if (count === maxCardCount) {
-  //     return
-  //   } else if (count === 0) {
-  //     card.count = 1
-  //     deck.push(card)
-  //   } else if (count === 1 && maxCardCount !== 1) {
-  //     index = deck.map(x => x.name).indexOf(card.name)
-  //     deck[index].count = 2
-  //   } else {
-  //     return
-  //   }
-
-  //   updateDeck(deck)
-  // }
-
   render() {
+    const { page_number, total_pages, entries } = this.state
+
     return (
       <DeckConsumer>
         {context => (
@@ -102,14 +76,14 @@ export default class List extends React.Component {
             <TopNav {...this.props} />
             <div className="list-body">
               <Button
-                disabled={this.state.page_number == 1}
+                disabled={page_number == 1}
                 className="prev-button"
                 onClick={() => this.handlePageClick("prev")}
               >
                 <Icon name="arrow left" />
               </Button>
               <div className="card-entries">
-                {this.state.entries.map(card => (
+                {entries.map(card => (
                   <HSCard
                     rowSize={4}
                     onSelect={context.addCard()}
@@ -119,20 +93,14 @@ export default class List extends React.Component {
                 ))}
               </div>
               <Button
-                disabled={this.state.page_number == this.state.total_pages}
+                disabled={page_number == total_pages}
                 className="next-button"
                 onClick={() => this.handlePageClick("next")}
               >
                 <Icon name="arrow right" />
               </Button>
             </div>
-            <BottomNav
-              cardLimit={this.props.cardLimit}
-              toggleExpansion={this.props.updateExpansion}
-              active={this.props.active}
-              handleCostClick={this.props.handleCostClick}
-              handleCardLimit={this.props.handleCardLimit}
-            />
+            <BottomNav {...this.props} />
           </div>
         )}
       </DeckConsumer>
