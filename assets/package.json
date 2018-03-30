@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "deploy": "brunch build --production",
+    "test": "jest",
     "watch": "brunch watch --stdin",
     "postinstall": "elixir fix_asset_urls.exs"
   },
@@ -24,13 +25,16 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "jest-cli": "^22.4.3",
     "auto-reload-brunch": "^2.7.1",
     "babel-brunch": "^6.1.1",
+    "babel-jest": "^22.4.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "brunch": "^2.10.12",
     "clean-css-brunch": "2.10.0",
     "copycat-brunch": "^1.1.0",
+    "jest": "^22.4.3",
     "prettier": "^1.10.2",
     "sass-brunch": "^2.10.4",
     "sw-precache-brunch": "^2.0.1",

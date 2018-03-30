@@ -21,6 +21,7 @@ defmodule HearthdecksWeb.Router do
     get("/", PageController, :index)
     get("/deck/:deckstring", PageController, :index)
     get("/:class/:cards/:count", PageController, :index)
+
     ## Creates a route for each class 
     Enum.each(@classes, &get("/#{&1}", PageController, :index))
   end

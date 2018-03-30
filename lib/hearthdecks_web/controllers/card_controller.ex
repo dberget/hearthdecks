@@ -21,7 +21,7 @@ defmodule HearthdecksWeb.CardController do
 
     cards =
       params
-      |> split
+      |> split_cards
       |> Cards.select()
 
     deck = Enum.zip(cards.entries, counts)
@@ -32,7 +32,7 @@ defmodule HearthdecksWeb.CardController do
   def dbfid(conn, params) do
     deck =
       params
-      |> split
+      |> split_cards
       |> Cards.select()
 
     render(conn, "card_select.json", deck: deck)
@@ -47,7 +47,7 @@ defmodule HearthdecksWeb.CardController do
     render(conn, "index.json", page: page)
   end
 
-  defp split(params), do: String.split(params["cards"], ",")
+  defp split_cards(params), do: String.split(params["cards"], ",")
 
   defp current_page(params), do: Map.get(params, "page", 1)
 
