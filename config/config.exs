@@ -22,16 +22,15 @@ config :hearthdecks,
   ],
   standard: [
     "Basic",
+    "The Witchwood",
     "Kobolds & Catacombs",
     "Classic",
     "Journey to Un'Goro",
-    "Knights of the Frozen Throne",
-    "Mean Streets of Gadgetzan",
-    "One Night in Karazhan",
-    "Whispers of the Old Gods"
+    "Knights of the Frozen Throne"
   ],
   wild: [
     "Basic",
+    "The Witchwood",
     "Blackrock Mountain",
     "Classic",
     "Kobolds & Catacombs",
