@@ -128,7 +128,7 @@ class App extends React.Component {
     return (
       <div>
         <Link to="/">
-          <h1> HEARTHDECKS </h1>
+          <h2> HEARTHSTONE </h2>
         </Link>
         <Route
           exact

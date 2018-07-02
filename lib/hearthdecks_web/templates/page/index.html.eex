@@ -1,5 +1,5 @@
 <div id="app">
-<h1>HEARTHDECKS</h1>
+<h1>Netdeck</h1>
     <div class="class-container">
         <div class="class-list-body loading">
         </div>
