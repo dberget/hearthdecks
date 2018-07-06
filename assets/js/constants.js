@@ -13,14 +13,9 @@ export const expansions = [
     text: "All Standard"
   },
   {
-    key: "Basic",
-    value: "Basic",
-    text: "Basic"
-  },
-  {
-    key: "Classic",
-    value: "Classic",
-    text: "Classic"
+    key: "The Witchwood",
+    value: "The Witchwood",
+    text: "Witchwood"
   },
   {
     key: "Kobolds & Catacombs",
@@ -28,29 +23,24 @@ export const expansions = [
     text: "Kobolds & Catacombs"
   },
   {
-    key: "Journey to Un'Goro",
-    value: "Journey to Un'Goro",
-    text: "Journey to Un'Goro"
-  },
-  {
     key: "Knights of the Frozen Throne",
     value: "Knights of the Frozen Throne",
     text: "Knights of the Frozen Throne"
   },
   {
-    key: "Mean Streets of Gadgetzan",
-    value: "Mean Streets of Gadgetzan",
-    text: "Mean Streets of Gadgetzan"
+    key: "Journey to Un'Goro",
+    value: "Journey to Un'Goro",
+    text: "Journey to Un'Goro"
   },
   {
-    key: "One Night in Karazhan",
-    value: "One Night in Karazhan",
-    text: "One Night in Karazhan"
+    key: "Classic",
+    value: "Classic",
+    text: "Classic"
   },
   {
-    key: "Whispers of the Old Gods",
-    value: "Whispers of the Old Gods",
-    text: "Whispers of the Old Gods"
+    key: "Basic",
+    value: "Basic",
+    text: "Basic"
   },
   {
     key: "Wild",
@@ -86,6 +76,21 @@ export const expansions = [
     key: "Naxxramas",
     value: "Naxxramas",
     text: "Naxxramas"
+  },
+  {
+    key: "Mean Streets of Gadgetzan",
+    value: "Mean Streets of Gadgetzan",
+    text: "Mean Streets of Gadgetzan"
+  },
+  {
+    key: "One Night in Karazhan",
+    value: "One Night in Karazhan",
+    text: "One Night in Karazhan"
+  },
+  {
+    key: "Whispers of the Old Gods",
+    value: "Whispers of the Old Gods",
+    text: "Whispers of the Old Gods"
   },
   {
     key: "Hall of Fame",
